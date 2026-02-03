@@ -6,7 +6,7 @@
 /* 浮动按钮 */
 #ai-avatar-button {
     position: fixed;
-    bottom: 100px; /* 向上移动，避免与回顶部按钮重叠 */
+    top: 100px; /* 移到右上角，导航栏下方 */
     right: 30px;
     width: 60px;
     height: 60px;
@@ -48,11 +48,11 @@
 /* 聊天窗口 */
 #ai-avatar-window {
     position: fixed;
-    bottom: 170px; /* 调整位置，与按钮保持70px间距 */
+    top: 170px; /* 移到右上角，与按钮保持70px间距 */
     right: 30px;
     width: 380px;
     height: 600px;
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 190px); /* 调整最大高度 */
     background: var(--card-bg);
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -60,8 +60,8 @@
     flex-direction: column;
     overflow: hidden;
     opacity: 0;
-    visibility: hidden; /* 添加这一行，确保完全隐藏 */
-    transform: scale(0.9) translateY(20px);
+    visibility: hidden;
+    transform: scale(0.9) translateY(-20px); /* 改为向上展开 */
     pointer-events: none;
     transition: all 0.3s ease;
     z-index: 9999;
@@ -328,13 +328,13 @@
     #ai-avatar-window {
         width: calc(100vw - 40px);
         right: 20px;
-        bottom: 130px; /* 移动端也相应调整 */
-        height: calc(100vh - 160px);
+        top: 80px; /* 移动端调整为靠上 */
+        height: calc(100vh - 100px);
         max-height: none;
     }
 
     #ai-avatar-button {
-        bottom: 60px; /* 移动端按钮位置，避开回顶部按钮 */
+        top: 80px; /* 移动端按钮位置 */
         right: 20px;
         width: 56px;
         height: 56px;

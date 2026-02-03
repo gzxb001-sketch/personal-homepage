@@ -364,16 +364,25 @@ class AIAvatarChatSecure {
         try {
             const savedPosition = localStorage.getItem('aiAvatarWindowPosition');
             if (savedPosition) {
-                const { left, bottom } = JSON.parse(savedPosition);
+                const position = JSON.parse(savedPosition);
                 const chatWindow = document.getElementById('ai-avatar-window');
                 const button = document.getElementById('ai-avatar-button');
 
-                chatWindow.style.left = left + 'px';
-                chatWindow.style.right = 'auto';
-                chatWindow.style.bottom = bottom + 'px';
+                // 支持旧格式和新格式
+                if (position.top !== undefined) {
+                    // 新格式（使用top）
+                    chatWindow.style.left = position.left + 'px';
+                    chatWindow.style.right = 'auto';
+                    chatWindow.style.top = position.top + 'px';
+                    chatWindow.style.bottom = 'auto';
 
-                button.style.left = left + 'px';
-                button.style.right = 'auto';
+                    button.style.left = position.left + 'px';
+                    button.style.right = 'auto';
+                } else if (position.bottom !== undefined) {
+                    // 旧格式（使用bottom），清除并使用默认位置
+                    localStorage.removeItem('aiAvatarWindowPosition');
+                    return;
+                }
 
                 const rect = chatWindow.getBoundingClientRect();
                 if (rect.right < 0 || rect.left > window.innerWidth ||
@@ -386,9 +395,9 @@ class AIAvatarChatSecure {
         }
     }
 
-    savePosition(left, bottom) {
+    savePosition(left, top) {
         try {
-            localStorage.setItem('aiAvatarWindowPosition', JSON.stringify({ left, bottom }));
+            localStorage.setItem('aiAvatarWindowPosition', JSON.stringify({ left, top }));
         } catch (error) {
             // 静默失败
         }
@@ -400,11 +409,13 @@ class AIAvatarChatSecure {
 
         chatWindow.style.left = 'auto';
         chatWindow.style.right = '30px';
-        chatWindow.style.bottom = '170px';
+        chatWindow.style.top = '170px';
+        chatWindow.style.bottom = 'auto';
 
         button.style.left = 'auto';
         button.style.right = '30px';
-        button.style.bottom = '100px';
+        button.style.top = '100px';
+        button.style.bottom = 'auto';
 
         localStorage.removeItem('aiAvatarWindowPosition');
         localStorage.removeItem('aiAvatarButtonPosition');
@@ -418,7 +429,7 @@ class AIAvatarChatSecure {
         // ========== 按钮拖拽 ==========
         let isButtonDragging = false;
         let buttonStartX, buttonStartY;
-        let buttonStartLeft, buttonStartBottom;
+        let buttonStartLeft, buttonStartTop;
         let buttonClickStartX, buttonClickStartY;
 
         const startButtonDrag = (e) => {
@@ -434,7 +445,7 @@ class AIAvatarChatSecure {
 
             const rect = button.getBoundingClientRect();
             buttonStartLeft = rect.left;
-            buttonStartBottom = window.innerHeight - rect.bottom;
+            buttonStartTop = rect.top;
 
             button.classList.add('dragging');
             button.style.transition = 'none';
@@ -452,21 +463,21 @@ class AIAvatarChatSecure {
             const deltaY = clientY - buttonStartY;
 
             let newLeft = buttonStartLeft + deltaX;
-            let newBottom = buttonStartBottom - deltaY;
+            let newTop = buttonStartTop + deltaY;
 
             const buttonSize = 60;
             const maxX = window.innerWidth - buttonSize - 20;
             const maxY = window.innerHeight - buttonSize - 20;
 
             newLeft = Math.max(20, Math.min(newLeft, maxX));
-            newBottom = Math.max(20, Math.min(newBottom, maxY));
+            newTop = Math.max(20, Math.min(newTop, maxY));
 
             button.style.left = newLeft + 'px';
             button.style.right = 'auto';
-            button.style.bottom = newBottom + 'px';
+            button.style.top = newTop + 'px';
+            button.style.bottom = 'auto';
 
             if (chatWindow.classList.contains('ai-avatar-open')) {
-                const windowWidth = chatWindow.offsetWidth;
                 chatWindow.style.left = newLeft + 'px';
                 chatWindow.style.right = 'auto';
             }
@@ -493,8 +504,8 @@ class AIAvatarChatSecure {
                 this.toggle();
             } else {
                 const currentLeft = parseInt(button.style.left);
-                const currentBottom = parseInt(button.style.bottom);
-                this.saveButtonPosition(currentLeft, currentBottom);
+                const currentTop = parseInt(button.style.top);
+                this.saveButtonPosition(currentLeft, currentTop);
             }
         };
 
@@ -509,7 +520,7 @@ class AIAvatarChatSecure {
         // ========== 聊天窗口拖拽 ==========
         let isWindowDragging = false;
         let startX, startY;
-        let startLeft, startBottom;
+        let startLeft, startTop;
         let windowWidth, windowHeight;
 
         const startWindowDrag = (e) => {
@@ -527,7 +538,7 @@ class AIAvatarChatSecure {
 
             const rect = chatWindow.getBoundingClientRect();
             startLeft = rect.left;
-            startBottom = window.innerHeight - rect.bottom;
+            startTop = rect.top;
 
             windowWidth = chatWindow.offsetWidth;
             windowHeight = chatWindow.offsetHeight;
@@ -549,17 +560,18 @@ class AIAvatarChatSecure {
             const deltaY = clientY - startY;
 
             let newLeft = startLeft + deltaX;
-            let newBottom = startBottom - deltaY;
+            let newTop = startTop + deltaY;
 
             const maxX = window.innerWidth - windowWidth - 20;
             const maxY = window.innerHeight - windowHeight - 20;
 
             newLeft = Math.max(20, Math.min(newLeft, maxX));
-            newBottom = Math.max(20, Math.min(newBottom, maxY));
+            newTop = Math.max(20, Math.min(newTop, maxY));
 
             chatWindow.style.left = newLeft + 'px';
             chatWindow.style.right = 'auto';
-            chatWindow.style.bottom = newBottom + 'px';
+            chatWindow.style.top = newTop + 'px';
+            chatWindow.style.bottom = 'auto';
 
             button.style.left = newLeft + 'px';
             button.style.right = 'auto';
@@ -577,9 +589,9 @@ class AIAvatarChatSecure {
             header.style.cursor = 'move';
 
             const currentLeft = parseInt(chatWindow.style.left);
-            const currentBottom = parseInt(chatWindow.style.bottom);
-            this.savePosition(currentLeft, currentBottom);
-            this.saveButtonPosition(currentLeft, currentBottom);
+            const currentTop = parseInt(chatWindow.style.top);
+            this.savePosition(currentLeft, currentTop);
+            this.saveButtonPosition(currentLeft, currentTop);
         };
 
         header.addEventListener('mousedown', startWindowDrag);
@@ -591,9 +603,9 @@ class AIAvatarChatSecure {
         header.addEventListener('touchend', endWindowDrag);
     }
 
-    saveButtonPosition(left, bottom) {
+    saveButtonPosition(left, top) {
         try {
-            localStorage.setItem('aiAvatarButtonPosition', JSON.stringify({ left, bottom }));
+            localStorage.setItem('aiAvatarButtonPosition', JSON.stringify({ left, top }));
         } catch (error) {
             // 静默失败
         }
@@ -603,18 +615,25 @@ class AIAvatarChatSecure {
         try {
             const savedPosition = localStorage.getItem('aiAvatarButtonPosition');
             if (savedPosition) {
-                const { left, bottom } = JSON.parse(savedPosition);
+                const position = JSON.parse(savedPosition);
                 const button = document.getElementById('ai-avatar-button');
 
-                const buttonSize = 60;
-                if (left < -buttonSize || left > window.innerWidth ||
-                    bottom < -buttonSize || bottom > window.innerHeight) {
-                    return;
+                // 支持旧格式和新格式
+                if (position.top !== undefined) {
+                    // 新格式（使用top）
+                    const buttonSize = 60;
+                    if (position.left < -buttonSize || position.left > window.innerWidth ||
+                        position.top < -buttonSize || position.top > window.innerHeight) {
+                        return;
+                    }
+                    button.style.left = position.left + 'px';
+                    button.style.right = 'auto';
+                    button.style.top = position.top + 'px';
+                    button.style.bottom = 'auto';
+                } else if (position.bottom !== undefined) {
+                    // 旧格式（使用bottom），清除并使用默认位置
+                    localStorage.removeItem('aiAvatarButtonPosition');
                 }
-
-                button.style.left = left + 'px';
-                button.style.right = 'auto';
-                button.style.bottom = bottom + 'px';
             }
         } catch (error) {
             // 静默失败

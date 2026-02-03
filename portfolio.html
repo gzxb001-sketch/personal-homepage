@@ -481,9 +481,6 @@
             transform: translateY(-2px) scale(1.05);
         }
     </style>
-
-    <!-- 路由系统已禁用 - 恢复普通跳转 -->
-    <!-- <script src="router.js"></script> -->
 </head>
 <body class="loading">
     <!-- Page Loader -->
@@ -524,9 +521,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- 页面内容容器 - 用于动态加载 -->
-    <div id="page-content">
 
     <!-- Main Content -->
     <main class="pt-24 pb-20 px-6">
@@ -845,8 +839,6 @@
             </p>
         </div>
     </footer>
-
-    </div><!-- end of #page-content -->
 
     <!-- JavaScript -->
     <script>
@@ -1374,24 +1366,6 @@
     <!-- AI数字分身聊天组件（安全版 - Vercel API代理） -->
     <link rel="stylesheet" href="ai-chatbot.css">
     <script src="ai-chatbot-secure.js"></script>
-
-    <!-- 移动端菜单功能 -->
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileLinks = document.querySelectorAll('#mobileMenu a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    document.getElementById('mobileMenu').classList.add('hidden');
-                });
-            });
-        });
-    </script>
-
     <script>
         // 初始化AI数字分身（安全版 - API Key隐藏在服务器端）
         const aiAvatar = new AIAvatarChatSecure({
