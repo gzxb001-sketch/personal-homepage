@@ -3,23 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王晓宇 | AI爱好者 & Agent搭建者 - 单页应用</title>
+    <title>王晓宇 | AI爱好者 & Agent搭建者 - 个人主页</title>
 
     <!-- ==================== SEO Meta Tags ==================== -->
     <meta name="description" content="王晓宇的个人主页 - 从农学学生到AI开发者的跨界之旅。AI技术爱好者、Agent搭建者、Vibe Coding探索者，致力于用AI探索无限可能，用代码构建美好未来。">
     <meta name="keywords" content="王晓宇, AI, 人工智能, AI Agent, 智能体, Coze, Web开发, Vibe Coding, 农学, 跨界, 个人主页">
     <meta name="author" content="王晓宇">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
     <meta property="og:title" content="王晓宇 | AI爱好者 & Agent搭建者">
     <meta property="og:description" content="从农学学生到AI开发者的跨界之旅。AI技术爱好者、Agent搭建者、Vibe Coding探索者。">
     <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="公子小白">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourdomain.com/">
+    <meta name="twitter:title" content="王晓宇 | AI爱好者 & Agent搭建者">
+    <meta name="twitter:description" content="从农学学生到AI开发者的跨界之旅。AI技术爱好者、Agent搭建者、Vibe Coding探索者。">
+    <meta name="twitter:image" content="https://yourdomain.com/twitter-image.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+
+    <!-- 预加载关键资源 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+
+    <!-- ==================== Original Content ==================== -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,6 +128,7 @@
             min-height: 100vh;
             color: var(--text-primary);
             overflow-x: hidden;
+            /* 平滑主题过渡 */
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -144,6 +163,17 @@
 
         [data-theme="light"] .card:hover {
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 3D卡片倾斜效果 */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .tilt-card-inner {
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
         }
 
         /* Primary button */
@@ -268,6 +298,58 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* 自定义光标样式 */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .custom-cursor.hover {
+            transform: translate(-50%, -50%) scale(2);
+            background: rgba(59, 130, 246, 0.1);
+            border-color: transparent;
+        }
+
+        .custom-cursor.clicking {
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+
+        /* 隐藏默认光标 */
+        body.cursor-custom {
+            cursor: none;
+        }
+
+        body.cursor-custom a,
+        body.cursor-custom button,
+        body.cursor-custom .card {
+            cursor: none;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animation delays */
+        .reveal.delay-100 { transition-delay: 0.02s; }
+        .reveal.delay-200 { transition-delay: 0.04s; }
+        .reveal.delay-300 { transition-delay: 0.06s; }
+        .reveal.delay-400 { transition-delay: 0.08s; }
+
         /* 页面加载动画 */
         .page-loader {
             position: fixed;
@@ -339,19 +421,6 @@
             }
         }
 
-        /* SPA页面切换动画 */
-        .page-section {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .page-section.hidden {
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
         /* 打字机效果样式 */
         .typewriter-container {
             display: inline-flex;
@@ -411,6 +480,172 @@
             transform: translateY(-2px) scale(1.05);
         }
 
+        /* SPA 页面切换样式 */
+        .page-section {
+            display: block;
+            opacity: 1;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .page-section.hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        /* 音乐播放器样式 */
+        #audioControl {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 9997;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        /* 音乐控制按钮 */
+        .music-control-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-control-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .music-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 播放状态 */
+        .music-control-btn.playing {
+            animation: pulse-music 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-music {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 40px rgba(102, 126, 234, 0.8);
+            }
+        }
+
+        /* 音乐图标跳动 */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        /* 音量控制 */
+        .volume-control {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            background: var(--card-bg, #171717);
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color, #27272A);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #audioControl:hover .volume-control {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .volume-control input[type="range"] {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .volume-control input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .volume-control input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 音乐提示 */
+        .music-tip {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            animation: slide-in 0.3s ease, fade-out 0.3s ease 2.7s forwards;
+            z-index: 9998;
+        }
+
+        @keyframes slide-in {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
         /* 证书模态框样式 */
         .certificate-modal {
             display: none;
@@ -436,11 +671,6 @@
             max-width: 900px;
             width: 100%;
             animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         @keyframes zoomIn {
@@ -483,7 +713,71 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
-        /* 模态框样式 */
+        /* 卡片翻转效果 */
+        .flip-card {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            min-height: 320px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 12px;
+        }
+
+        .flip-card-front {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            transform: rotateY(180deg);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Filter Button Styles */
+        .filter-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Modal Styles */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -517,11 +811,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .modal-close {
             position: absolute;
             top: 20px;
@@ -545,36 +834,26 @@
             transform: rotate(90deg);
         }
 
-        /* 3D卡片倾斜效果 */
-        .tilt-card {
-            transform-style: preserve-3d;
-            perspective: 1000px;
+        @keyframes fadeIn {
+            0% { opacity: '0' }
+            100% { opacity: '1' }
         }
 
-        .tilt-card-inner {
-            transition: transform 0.1s ease-out;
-            transform-style: preserve-3d;
+        @keyframes slideUp {
+            0% { opacity: 0, transform: 'translateY(20px)' }
+            100% { opacity: 1, transform: 'translateY(0)' }
         }
 
-        /* 过滤按钮样式 */
-        .filter-btn {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 8px 20px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn:hover {
+        /* 禁用3D倾斜的卡片（如时间线卡片）- 只保留简单的hover效果 */
+        .card.no-tilt:hover {
             border-color: var(--accent);
-            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
-        .filter-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
+        /* 浅色模式下禁用3D倾斜的卡片 */
+        [data-theme="light"] .card.no-tilt:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
         }
     </style>
 </head>
@@ -592,16 +871,16 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <a href="#home" class="text-2xl font-bold font-heading" style="color: var(--text-primary);">
+                <a href="#home" class="nav-link text-2xl font-bold font-heading" style="color: var(--text-primary);">
                     公子小白
                 </a>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="transition-colors" style="color: var(--text-secondary);">首页</a>
-                    <a href="#about" class="transition-colors" style="color: var(--text-secondary);">关于我</a>
-                    <a href="#portfolio" class="transition-colors" style="color: var(--text-secondary);">作品集</a>
-                    <a href="#contact" class="transition-colors" style="color: var(--text-secondary);">联系我</a>
+                    <a href="#home" class="nav-link font-medium" style="color: var(--text-primary);">首页</a>
+                    <a href="#about" class="nav-link transition-colors" style="color: var(--text-secondary);">关于我</a>
+                    <a href="#portfolio" class="nav-link transition-colors" style="color: var(--text-secondary);">作品集</a>
+                    <a href="#contact" class="nav-link transition-colors" style="color: var(--text-secondary);">联系我</a>
 
                     <!-- Theme Toggle Button -->
                     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="切换主题">
@@ -622,21 +901,21 @@
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="md:hidden hidden" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
                 <div class="px-6 py-4 space-y-4">
-                    <a href="#home" class="block py-2" style="color: var(--text-primary); font-weight: 600;">首页</a>
-                    <a href="#about" class="block py-2" style="color: var(--text-secondary);">关于我</a>
-                    <a href="#portfolio" class="block py-2" style="color: var(--text-secondary);">作品集</a>
-                    <a href="#contact" class="block py-2" style="color: var(--text-secondary);">联系我</a>
+                    <a href="#home" class="nav-link block py-2" style="color: var(--text-primary); font-weight: 600;">首页</a>
+                    <a href="#about" class="nav-link block py-2" style="color: var(--text-secondary);">关于我</a>
+                    <a href="#portfolio" class="nav-link block py-2" style="color: var(--text-secondary);">作品集</a>
+                    <a href="#contact" class="nav-link block py-2" style="color: var(--text-secondary);">联系我</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ========== 页面内容区域 ========== -->
+    <!-- ==================== 页面内容区域 ==================== -->
 
-    <!-- 首页 -->
-    <section id="section-home" class="page-section">
-        <!-- Hero Section -->
-        <div class="min-h-screen flex items-center px-6 pt-24 pb-16 relative overflow-hidden">
+    <!-- 首页内容 -->
+    <section id="page-home" class="page-section active">
+        <!-- Hero Section - Professional Design -->
+        <section class="min-h-screen flex items-center px-6 pt-24 pb-16 relative overflow-hidden">
             <!-- Particle Background Canvas -->
             <canvas id="particleCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
 
@@ -645,27 +924,27 @@
                     <!-- Left: Content -->
                     <div class="space-y-8">
                         <!-- Greeting -->
-                        <div class="text-2xl" style="color: var(--text-secondary);">
+                        <div class="text-2xl reveal" style="color: var(--text-secondary);">
                             Hello，我是公子小白 👋
                         </div>
 
-                        <!-- Name -->
-                        <h1 class="text-6xl md:text-7xl font-heading font-bold leading-tight" style="color: var(--text-primary);">
+                        <!-- Name - Larger & Bolder -->
+                        <h1 class="text-6xl md:text-7xl font-heading font-bold leading-tight reveal" style="color: var(--text-primary);">
                             公子小白
                         </h1>
 
-                        <!-- One-line Story -->
-                        <p class="text-2xl leading-relaxed" style="color: var(--text-secondary);">
+                        <!-- One-line Story - Enhanced -->
+                        <p class="text-2xl leading-relaxed reveal delay-100" style="color: var(--text-secondary);">
                             正在用AI探索无限可能
                         </p>
 
                         <!-- English Slogan -->
-                        <p class="text-lg italic leading-relaxed" style="color: var(--text-muted); opacity: 0.6;">
+                        <p class="text-lg italic leading-relaxed reveal delay-150" style="color: var(--text-muted); opacity: 0.6;">
                             Exploring AI · Building Agents · Creating the Future
                         </p>
 
                         <!-- Professional Identity - Typewriter Effect -->
-                        <div class="flex items-center gap-3 text-base" style="color: var(--text-secondary);">
+                        <div class="flex items-center gap-3 text-base reveal delay-300" style="color: var(--text-secondary);">
                             <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                             <span class="typewriter-container">
                                 <span id="typewriter"></span>
@@ -673,15 +952,15 @@
                             </span>
                         </div>
 
-                        <!-- CTA Buttons -->
-                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                            <a href="#portfolio" class="btn-primary">
+                        <!-- CTA Buttons - Enhanced -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4 reveal delay-400">
+                            <a href="#portfolio" class="nav-link btn-primary">
                                 <span>探索作品</span>
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                                 </svg>
                             </a>
-                            <a href="#contact" class="btn-secondary">
+                            <a href="#contact" class="nav-link btn-secondary">
                                 <span>联系我</span>
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -690,30 +969,30 @@
                         </div>
                     </div>
 
-                    <!-- Right: Stats & Featured -->
+                    <!-- Right: Stats & Featured - Enhanced Design -->
                     <div class="space-y-6">
-                        <!-- Stats Grid -->
+                        <!-- Stats Grid - Bigger & Better -->
                         <div class="grid grid-cols-2 gap-5">
-                            <div class="card p-8 text-center hover:scale-105 transition-transform">
+                            <div class="card p-8 text-center hover:scale-105 transition-transform reveal">
                                 <div class="text-5xl font-bold mb-2" style="color: var(--text-primary);">5</div>
                                 <div class="text-sm font-medium" style="color: var(--text-secondary);">AI Agent项目</div>
                             </div>
-                            <div class="card p-8 text-center hover:scale-105 transition-transform">
+                            <div class="card p-8 text-center hover:scale-105 transition-transform reveal delay-100">
                                 <div class="text-5xl font-bold mb-2" style="color: var(--text-primary);">200+</div>
                                 <div class="text-sm font-medium" style="color: var(--text-secondary);">天持续学习</div>
                             </div>
-                            <div class="card p-8 text-center hover:scale-105 transition-transform">
+                            <div class="card p-8 text-center hover:scale-105 transition-transform reveal delay-200">
                                 <div class="text-5xl font-bold mb-2" style="color: var(--text-primary);">2</div>
                                 <div class="text-sm font-medium" style="color: var(--text-secondary);">学习笔记</div>
                             </div>
-                            <div class="card p-8 text-center hover:scale-105 transition-transform">
+                            <div class="card p-8 text-center hover:scale-105 transition-transform reveal delay-300">
                                 <div class="text-5xl font-bold mb-2" style="color: var(--accent);">AGI</div>
                                 <div class="text-sm font-medium" style="color: var(--text-secondary);">Way to AGI学员</div>
                             </div>
                         </div>
 
-                        <!-- Featured Project -->
-                        <div class="card p-6">
+                        <!-- Featured Project - Enhanced -->
+                        <div class="card p-6 reveal delay-400">
                             <div class="flex items-center gap-2 mb-4">
                                 <div class="w-1 h-5 bg-blue-500 rounded"></div>
                                 <span class="text-sm font-semibold tracking-wide" style="color: var(--text-primary);">精选项目</span>
@@ -728,7 +1007,7 @@
                                     <span>·</span>
                                     <span>Coze + GPT-4</span>
                                 </div>
-                                <a href="#portfolio" class="text-sm font-semibold hover:underline inline-flex items-center gap-1" style="color: var(--accent);">
+                                <a href="#portfolio" class="nav-link text-sm font-semibold hover:underline inline-flex items-center gap-1" style="color: var(--accent);">
                                     查看详情
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -737,7 +1016,7 @@
                             </div>
                         </div>
 
-                        <!-- Personal Belief -->
+                        <!-- Personal Belief - Minimal & Professional -->
                         <div class="card p-6">
                             <div class="flex items-start gap-4">
                                 <div class="w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded"></div>
@@ -751,13 +1030,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </section>
 
     <!-- 关于我页面 -->
-    <section id="section-about" class="page-section hidden">
+    <section id="page-about" class="page-section hidden">
         <main class="pt-24 pb-20 px-6">
             <div class="container mx-auto max-w-5xl">
+
                 <!-- Page Header -->
                 <div class="mb-16">
                     <h1 class="text-5xl md:text-6xl font-heading font-bold mb-6" style="color: var(--text-primary);">
@@ -775,7 +1055,7 @@
                         <h2 class="text-3xl font-heading font-bold" style="color: var(--text-primary);">我的故事</h2>
                     </div>
 
-                    <div class="card p-10">
+                    <div class="card no-tilt p-10">
                         <div class="space-y-8">
                             <!-- Timeline Item 1 -->
                             <div class="flex gap-5">
@@ -886,25 +1166,127 @@
                     </div>
                 </section>
 
-                <!-- Certificate Modal -->
-                <div id="certificateModal" class="certificate-modal">
-                    <div class="certificate-modal-content">
-                        <button class="certificate-modal-close" onclick="closeCertificate()">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </button>
-                        <img src="certificate.png" alt="Way to AGI 训练营证书" class="certificate-image">
+                <!-- AI Learning Journey -->
+                <section class="mb-20">
+                    <div class="flex items-center gap-3 mb-10">
+                        <div class="w-1 h-8 bg-blue-500 rounded"></div>
+                        <h2 class="text-3xl font-heading font-bold" style="color: var(--text-primary);">学习历程</h2>
                     </div>
-                </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Course 1 -->
+                        <div class="card p-8">
+                            <div class="flex items-center justify-between mb-5">
+                                <span class="text-green-500 text-sm font-semibold px-3 py-1 bg-green-500/10 rounded-lg">● 已完成</span>
+                                <span class="text-blue-400 font-mono text-sm">2025.11</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Way to AGI COZE训练营</h3>
+                            <p class="text-base mb-5" style="color: var(--text-secondary);">系统学习AI智能体开发</p>
+                            <div onclick="openCertificate()" class="flex items-center text-blue-500 text-base font-semibold hover:underline cursor-pointer">
+                                查看证书 →
+                            </div>
+                        </div>
+
+                        <!-- Course 2 -->
+                        <div class="card p-8">
+                            <div class="flex items-center justify-between mb-5">
+                                <span class="text-amber-500 text-sm font-semibold px-3 py-1 bg-amber-500/10 rounded-lg">● 进行中</span>
+                                <span class="text-blue-400 font-mono text-sm">2026.01</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Vibe Coding 训练营</h3>
+                            <p class="text-base mb-5" style="color: var(--text-secondary);">深入AI与Web开发结合</p>
+                            <div class="text-sm" style="color: var(--text-muted);">
+                                持续学习，不断进步
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Partners -->
+                <section>
+                    <div class="flex items-center gap-3 mb-10">
+                        <div class="w-1 h-8 bg-blue-500 rounded"></div>
+                        <h2 class="text-3xl font-heading font-bold" style="color: var(--text-primary);">AI搭子</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Partner 1 -->
+                        <div class="card p-8">
+                            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">玉汝于成搭子团</h3>
+                            <p class="text-sm mb-3" style="color: var(--text-secondary);">登山社 - AI爱好者社区</p>
+                            <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
+                                一群热爱AI的伙伴，一起学习、一起成长、一起探索AI的无限可能
+                            </p>
+                        </div>
+
+                        <!-- Partner 2 -->
+                        <a href="https://www.jiangshu.fun/" target="_blank" class="card p-8 hover:border-blue-500 cursor-pointer transition-all">
+                            <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">姜书老师</h3>
+                            <p class="text-sm mb-3" style="color: var(--text-secondary);">AI导师</p>
+                            <p class="text-sm leading-relaxed mb-3" style="color: var(--text-muted);">
+                                引领我走进AI世界的导师，教会我很多AI知识和实战经验
+                            </p>
+                            <div class="text-blue-500 text-base font-semibold inline-flex items-center gap-1">
+                                访问官网
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- Partner 3 -->
+                        <a href="https://www.waytoagi.com/zh" target="_blank" class="card p-8 hover:border-blue-500 cursor-pointer transition-all">
+                            <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">Way to AGI 社区</h3>
+                            <p class="text-sm mb-3" style="color: var(--text-secondary);">AI学习社区</p>
+                            <p class="text-sm leading-relaxed mb-3" style="color: var(--text-muted);">
+                                让更多人因AI而强大
+                            </p>
+                            <div class="text-blue-500 text-base font-semibold inline-flex items-center gap-1">
+                                进入社区
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
             </div>
         </main>
+
+        <!-- Certificate Modal -->
+        <div id="certificateModal" class="certificate-modal">
+            <div class="certificate-modal-content">
+                <button class="certificate-modal-close" onclick="closeCertificate()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <img src="certificate.png" alt="Way to AGI 训练营证书" class="certificate-image">
+            </div>
+        </div>
     </section>
 
     <!-- 作品集页面 -->
-    <section id="section-portfolio" class="page-section hidden">
+    <section id="page-portfolio" class="page-section hidden">
         <main class="pt-24 pb-20 px-6">
             <div class="container mx-auto max-w-6xl">
+
                 <!-- Page Title -->
                 <div class="text-center mb-16">
                     <h1 class="text-5xl md:text-6xl font-heading font-bold mb-6" style="color: var(--text-primary);">
@@ -915,26 +1297,54 @@
                     </p>
                 </div>
 
-                <!-- Category Filters -->
-                <div class="flex flex-wrap gap-3 justify-center mb-12">
-                    <button onclick="filterByCategory('all')" class="filter-btn active px-5 py-2 rounded-lg text-sm font-semibold">
-                        全部
-                    </button>
-                    <button onclick="filterByCategory('ai')" class="filter-btn px-5 py-2 rounded-lg text-sm font-medium">
-                        AI Agent
-                    </button>
-                    <button onclick="filterByCategory('web')" class="filter-btn px-5 py-2 rounded-lg text-sm font-medium">
-                        Web开发
-                    </button>
-                    <button onclick="filterByCategory('notes')" class="filter-btn px-5 py-2 rounded-lg text-sm font-medium">
-                        学习笔记
-                    </button>
+                <!-- Search & Filter -->
+                <div class="mb-12">
+                    <!-- Search Input -->
+                    <div class="flex flex-col md:flex-row gap-4 mb-6">
+                        <div class="flex-1">
+                            <input
+                                type="search"
+                                id="searchInput"
+                                placeholder="搜索项目..."
+                                onkeyup="filterProjects()"
+                                class="w-full px-4 py-3 rounded-lg"
+                                style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);"
+                            >
+                        </div>
+                        <button
+                            onclick="filterProjects()"
+                            class="px-8 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
+                            style="background: var(--text-primary); color: var(--bg-primary);"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <span>搜索</span>
+                        </button>
+                    </div>
+
+                    <!-- Category Filters -->
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="filterByCategory('all')" class="filter-btn active px-5 py-2 rounded-lg text-sm font-semibold">
+                            全部
+                        </button>
+                        <button onclick="filterByCategory('ai')" class="filter-btn px-5 py-2 rounded-lg text-sm font-medium">
+                            AI Agent
+                        </button>
+                        <button onclick="filterByCategory('web')" class="filter-btn px-5 py-2 rounded-lg text-sm font-medium">
+                            Web开发
+                        </button>
+                        <button onclick="filterByCategory('notes')" class="filter-btn px-5 py-2 rounded-lg text-sm font-medium">
+                            学习笔记
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Projects Grid -->
                 <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
                     <!-- Project 1: 英语学习助手 -->
-                    <div class="card p-5 cursor-pointer" data-category="ai" onclick="openModal('project1')">
+                    <div class="card p-5" style="border: 1px solid var(--border-color);" data-category="ai" onclick="openModal('project1')">
                         <div class="aspect-video rounded-lg mb-6 overflow-hidden">
                             <img src="images/project1-cover.jpg" alt="英语学习助手" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
@@ -954,26 +1364,189 @@
                         </div>
                     </div>
 
-                    <!-- 更多项目卡片...由于篇幅限制，这里只展示一个示例 -->
+                    <!-- Project 2: 第二大脑 -->
+                    <div class="card p-5" style="border: 1px solid var(--border-color);" data-category="ai" onclick="openModal('project2')">
+                        <div class="aspect-video rounded-lg mb-6 overflow-hidden">
+                            <img src="images/project2-cover.jpg" alt="第二大脑" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 bg-green-500/10 text-green-500 text-sm rounded border border-green-500/30">
+                                ✓ 已完成
+                            </span>
+                            <span class="px-2 py-1 bg-blue-500/10 text-blue-500 text-sm rounded border border-blue-500/30">
+                                AI Agent
+                            </span>
+                            <span class="text-sm ml-auto" style="color: var(--text-muted);">2025.11</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-3">第二大脑</h3>
+                        <p class="mb-4" style="color: var(--text-secondary);">智能知识管理工具，帮助收集、整理、检索信息</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">Coze</span>
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">Vue</span>
+                            </div>
+                            <span class="font-medium" style="color: var(--accent);">查看详情 →</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: 变量命名智能体 -->
+                    <div class="card p-5" style="border: 1px solid var(--border-color);" data-category="ai" onclick="openModal('project3')">
+                        <div class="aspect-video rounded-lg mb-6 overflow-hidden">
+                            <img src="images/project3-cover.jpg" alt="变量命名智能体" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 bg-green-500/10 text-green-500 text-sm rounded border border-green-500/30">
+                                ✓ 已完成
+                            </span>
+                            <span class="px-2 py-1 bg-blue-500/10 text-blue-500 text-sm rounded border border-blue-500/30">
+                                AI Agent
+                            </span>
+                            <span class="text-sm ml-auto" style="color: var(--text-muted);">2025.11</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-3">变量命名智能体</h3>
+                        <p class="mb-4" style="color: var(--text-secondary);">为开发者设计的AI工具，智能生成变量名</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">Python</span>
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">API</span>
+                            </div>
+                            <span class="font-medium" style="color: var(--accent);">查看详情 →</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: 每日AI资讯信息发送 -->
+                    <div class="card p-5" style="border: 1px solid var(--border-color);" data-category="ai" onclick="openModal('project4')">
+                        <div class="aspect-video rounded-lg mb-6 overflow-hidden">
+                            <img src="images/project4-cover.jpg" alt="每日AI资讯信息发送" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 bg-green-500/10 text-green-500 text-sm rounded border border-green-500/30">
+                                ✓ 已完成
+                            </span>
+                            <span class="px-2 py-1 bg-blue-500/10 text-blue-500 text-sm rounded border border-blue-500/30">
+                                AI Agent
+                            </span>
+                            <span class="text-sm ml-auto" style="color: var(--text-muted);">2025.11</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-3">每日AI资讯信息发送</h3>
+                        <p class="mb-4" style="color: var(--text-secondary);">自动抓取并推送最新AI行业动态</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">Python</span>
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">爬虫</span>
+                            </div>
+                            <span class="font-medium" style="color: var(--accent);">查看详情 →</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: 羽生结弦粉丝主页 -->
+                    <div class="card p-5" style="border: 1px solid var(--border-color);" data-category="web" onclick="openModal('project5')">
+                        <div class="aspect-video rounded-lg mb-6 overflow-hidden">
+                            <img src="images/project5-cover.jpg" alt="羽生结弦粉丝主页" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 bg-green-500/10 text-green-500 text-sm rounded border border-green-500/30">
+                                ✓ 已完成
+                            </span>
+                            <span class="px-2 py-1 bg-pink-500/10 text-pink-500 text-sm rounded border border-pink-500/30">
+                                Web开发
+                            </span>
+                            <span class="text-sm ml-auto" style="color: var(--text-muted);">2026.01</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-3">羽生结弦粉丝主页</h3>
+                        <p class="mb-4" style="color: var(--text-secondary);">花滑运动员羽生结弦的粉丝站</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">React</span>
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">Vercel</span>
+                            </div>
+                            <span class="font-medium" style="color: var(--accent);">查看详情 →</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Vibe Coding 学习笔记 -->
+                    <a href="https://vcn4n9sm0ggv.feishu.cn/docx/Nj4MduL5Oof14OxdGnhcpFh9nbc?from=from_copylink" target="_blank" class="card p-5" style="border: 1px solid var(--border-color);" data-category="notes">
+                        <div class="aspect-video rounded-lg mb-6 overflow-hidden">
+                            <img src="images/project8-cover.jpg" alt="Vibe Coding 学习笔记" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 bg-green-500/10 text-green-500 text-sm rounded border border-green-500/30">
+                                ✓ 持续更新
+                            </span>
+                            <span class="px-3 py-1 bg-cyan-500/20 text-accent text-sm rounded border border-cyan-500/30">
+                                学习笔记
+                            </span>
+                            <span class="text-sm ml-auto" style="color: var(--text-muted);">2026.01</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-3">Vibe Coding 学习笔记</h3>
+                        <p class="mb-4" style="color: var(--text-secondary);">Web开发学习心得与实战记录</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">飞书文档</span>
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">学习笔记</span>
+                            </div>
+                            <span class="font-medium" style="color: var(--accent);">查看笔记 →</span>
+                        </div>
+                    </a>
+
+                    <!-- Project 7: AI智能体学习笔记 -->
+                    <a href="https://vcn4n9sm0ggv.feishu.cn/wiki/O23bwjfmDiNiDnkRzYfcn16HnOb?from=from_copylink" target="_blank" class="card p-5" style="border: 1px solid var(--border-color);" data-category="notes">
+                        <div class="aspect-video rounded-lg mb-6 overflow-hidden">
+                            <img src="images/project9-cover.jpg" alt="AI智能体学习笔记" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 bg-green-500/10 text-green-500 text-sm rounded border border-green-500/30">
+                                ✓ 持续更新
+                            </span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-accent text-sm rounded border border-purple-500/30">
+                                学习笔记
+                            </span>
+                            <span class="text-sm ml-auto" style="color: var(--text-muted);">2025.11</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-3">AI智能体学习笔记</h3>
+                        <p class="mb-4" style="color: var(--text-secondary);">Way to AGI Coze训练营学习心得</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">飞书知识库</span>
+                                <span class="px-2 py-1 bg-white/10 text-xs rounded-full" style="color: var(--text-muted);">Coze</span>
+                            </div>
+                            <span class="font-medium" style="color: var(--accent);">查看笔记 →</span>
+                        </div>
+                    </a>
+
                 </div>
+
+                <!-- 无结果提示 -->
+                <div id="noResults" class="hidden text-center py-20">
+                    <div class="text-6xl mb-4">🔍</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">未找到相关项目</h3>
+                    <p class="text-base mb-6" style="color: var(--text-secondary);">
+                        试试搜索：英语学习、AI Agent、Web开发、笔记...
+                    </p>
+                    <button onclick="clearSearch()" class="px-6 py-3 rounded-lg font-semibold transition-all" style="background: var(--text-primary); color: var(--bg-primary);">
+                        清除搜索
+                    </button>
+                </div>
+
             </div>
         </main>
 
-        <!-- Project Modal -->
+        <!-- Modal -->
         <div id="projectModal" class="modal-overlay" onclick="closeModalOutside(event)">
             <div class="modal-content" onclick="event.stopPropagation()">
                 <button class="modal-close" onclick="closeModal()">×</button>
                 <div id="modalBody">
-                    <!-- Dynamic content -->
+                    <!-- Dynamic content will be injected here -->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 联系我页面 -->
-    <section id="section-contact" class="page-section hidden">
+    <section id="page-contact" class="page-section hidden">
         <main class="pt-24 pb-20 px-6">
             <div class="container mx-auto max-w-5xl">
+
                 <!-- Page Title -->
                 <div class="text-center mb-16">
                     <h1 class="text-5xl md:text-6xl font-heading font-bold mb-6" style="color: var(--text-primary);">
@@ -986,26 +1559,6 @@
 
                 <!-- Contact Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Email Card -->
-                    <a href="mailto:gzxb001@gmail.com" class="card p-10 text-center group hover:scale-105 transition-transform">
-                        <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <h2 class="text-2xl font-heading font-bold mb-4" style="color: var(--text-primary);">
-                            邮箱
-                        </h2>
-                        <p class="mb-6 leading-relaxed" style="color: var(--text-secondary);">
-                            发送邮件与我取得联系<br>gzxb001@gmail.com
-                        </p>
-                        <div class="flex items-center justify-center text-blue-500 font-semibold">
-                            发送邮件
-                            <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </div>
-                    </a>
 
                     <!-- GitHub Card -->
                     <a href="https://github.com/" target="_blank" class="card p-10 text-center group hover:scale-105 transition-transform">
@@ -1022,6 +1575,27 @@
                         </p>
                         <div class="flex items-center justify-center text-blue-500 font-semibold">
                             访问 GitHub
+                            <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <!-- Email Card -->
+                    <a href="mailto:gzxb001@gmail.com" class="card p-10 text-center group hover:scale-105 transition-transform">
+                        <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-heading font-bold mb-4" style="color: var(--text-primary);">
+                            邮箱
+                        </h2>
+                        <p class="mb-6 leading-relaxed" style="color: var(--text-secondary);">
+                            发送邮件与我取得联系<br>gzxb001@gmail.com
+                        </p>
+                        <div class="flex items-center justify-center text-blue-500 font-semibold">
+                            发送邮件
                             <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
@@ -1060,6 +1634,7 @@
                             <p class="text-gray-600 text-xs mt-2">扫码关注</p>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Additional Info -->
@@ -1073,6 +1648,7 @@
                         </p>
                     </div>
                 </div>
+
             </div>
         </main>
     </section>
@@ -1137,20 +1713,15 @@
         </div>
     </footer>
 
-    <!-- ========== JavaScript ========== -->
+    <!-- ==================== JavaScript ==================== -->
 
     <!-- SPA Router -->
     <script src="spa-router.js"></script>
 
-    <!-- Audio Player -->
-    <link rel="stylesheet" href="audio-player.css">
+    <!-- Audio Player (SPA version) -->
     <script src="audio-player-spa.js"></script>
 
-    <!-- AI Chatbot -->
-    <link rel="stylesheet" href="ai-chatbot.css">
-    <script src="ai-chatbot-secure.js"></script>
-
-    <!-- Theme Toggle & Other Scripts -->
+    <!-- Theme Toggle Script -->
     <script>
         // 主题切换功能
         const themeToggle = document.getElementById('themeToggle');
@@ -1220,42 +1791,196 @@
                 setTheme(e.matches ? 'dark' : 'light');
             }
         });
+    </script>
 
-        // 移动端菜单功能
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+    <!-- Custom Cursor & Number Scroll Script -->
+    <script>
+        // ========== 自定义磁性光标 ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.createElement('div');
+            cursor.className = 'custom-cursor';
+            document.body.appendChild(cursor);
+            document.body.classList.add('cursor-custom');
+
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+
+            // 鼠标移动事件
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // 平滑跟随动画
+            function animateCursor() {
+                const easing = 0.15; // 缓动系数
+                cursorX += (mouseX - cursorX) * easing;
+                cursorY += (mouseY - cursorY) * easing;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // 悬停效果
+            const hoverElements = document.querySelectorAll('a, button, .card');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+
+            // 点击效果
+            document.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+            document.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
+        });
+
+        // ========== 数字滚动动画 ==========
+        function animateNumber(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16); // 60fps
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (target === 200 ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
         }
 
-        // 点击菜单项后自动关闭
+        // 页面加载完成后启动动画
+        window.addEventListener('load', () => {
+            // 找到所有卡片中的大数字
+            const statNumbers = document.querySelectorAll('.card .text-5xl, .card .text-4xl, .card .text-3xl');
+
+            statNumbers.forEach(el => {
+                const text = el.textContent.trim();
+                const match = text.match(/\d+/);
+
+                if (match) {
+                    const target = parseInt(match[0]);
+                    // 只有小于1000的数字才执行动画(避免AGI等文本)
+                    if (target < 1000 && !text.includes('AGI')) {
+                        // 先设置为0
+                        el.textContent = '0';
+
+                        // 延迟启动动画
+                        setTimeout(() => {
+                            animateNumber(el, target, 1500);
+                        }, 500);
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- Scroll Reveal Animation Script -->
+    <script>
+        // Scroll Reveal Animation
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileLinks = document.querySelectorAll('#mobileMenu a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    document.getElementById('mobileMenu').classList.add('hidden');
+            // 创建Intersection Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // 动画完成后停止观察
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有带有reveal类的元素
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+    <!-- 3D Card Tilt Effect Script -->
+    <script>
+        // 3D卡片倾斜效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                // 跳过标记为 no-tilt 的卡片（如"我的故事"时间线卡片）
+                if (card.classList.contains('no-tilt')) {
+                    return;
+                }
+
+                // 为每个卡片添加perspective
+                card.style.position = 'relative';
+                card.style.transformStyle = 'preserve-3d';
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // 计算卡片中心点
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // 计算旋转角度 (最大10度)
+                    const rotateX = (y - centerY) / centerY * -5;
+                    const rotateY = (x - centerX) / centerX * 5;
+
+                    // 应用3D变换
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // 鼠标离开时恢复
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
                 });
             });
         });
+    </script>
 
-        // 回顶部按钮功能
-        const backToTopButton = document.getElementById('backToTop');
-        const showThreshold = 300;
+    <!-- Page Loader Script -->
+    <script>
+        // Loading随机文案
+        const loadingMessages = [
+            "正在初始化AI神经网络...",
+            "正在加载智能体...",
+            "训练模型中...",
+            "正在连接知识图谱...",
+            "探索无限可能...",
+            "即将完成..."
+        ];
 
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > showThreshold) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
+        // 随机选择一条文案
+        const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+        document.getElementById('loadingText').textContent = randomMessage;
+
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            const pageLoader = document.getElementById('pageLoader');
+            const body = document.body;
+
+            // 快速隐藏加载动画
+            setTimeout(() => {
+                pageLoader.classList.add('hidden');
+                body.classList.remove('loading');
+
+                // 动画完成后移除loader（避免占用资源）
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 200);
+            }, 50);
         });
+    </script>
 
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
+    <!-- Typewriter Effect Script -->
+    <script>
         // 打字机效果
         const typewriterElement = document.getElementById('typewriter');
         const texts = ['AI技术爱好者', 'Agent搭建者', 'Vibe Coding探索者'];
@@ -1271,12 +1996,12 @@
                 // 删除字符
                 typewriterElement.textContent = currentText.substring(0, charIndex - 1);
                 charIndex--;
-                typingSpeed = 80;
+                typingSpeed = 80; // 删除速度快一些
             } else {
                 // 输入字符
                 typewriterElement.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
-                typingSpeed = 150;
+                typingSpeed = 150; // 输入速度正常
             }
 
             // 如果文字输入完成
@@ -1290,17 +2015,20 @@
                 // 切换到下一个文字
                 isDeleting = false;
                 textIndex = (textIndex + 1) % texts.length;
-                typingSpeed = 500;
+                typingSpeed = 500; // 切换后稍作停顿
             }
 
             setTimeout(typeWriter, typingSpeed);
         }
 
-        // 页面加载完成后延迟1.5秒启动打字机
+        // 页面加载完成后延迟1.5秒启动打字机（等待Scroll Reveal动画）
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 1500);
         });
+    </script>
 
+    <!-- Particle Background Script -->
+    <script>
         // 粒子背景系统
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
@@ -1415,82 +2143,290 @@
 
         // 窗口大小改变时重新初始化
         window.addEventListener('resize', initParticles);
+    </script>
 
-        // Page Loader
-        const loadingMessages = [
-            "正在初始化AI神经网络...",
-            "正在加载智能体...",
-            "训练模型中...",
-            "正在连接知识图谱...",
-            "探索无限可能...",
-            "即将完成..."
-        ];
+    <!-- Back to Top Button Script -->
+    <script>
+        // 回顶部按钮功能
+        const backToTopButton = document.getElementById('backToTop');
+        const showThreshold = 300; // 滚动超过300px时显示
 
-        const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
-        document.getElementById('loadingText').textContent = randomMessage;
-
-        window.addEventListener('load', function() {
-            const pageLoader = document.getElementById('pageLoader');
-            const body = document.body;
-
-            setTimeout(() => {
-                pageLoader.classList.add('hidden');
-                body.classList.remove('loading');
-
-                setTimeout(() => {
-                    pageLoader.style.display = 'none';
-                }, 200);
-            }, 50);
+        // 监听滚动事件
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > showThreshold) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
         });
 
-        // 证书模态框
+        // 平滑滚动到顶部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+    <!-- 移动端菜单功能 -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 点击菜单项后自动关闭
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileLinks = document.querySelectorAll('#mobileMenu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                });
+            });
+        });
+    </script>
+
+    <!-- 证书模态框脚本 -->
+    <script>
+        // 证书模态框功能
         function openCertificate() {
             const modal = document.getElementById('certificateModal');
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; // 禁止背景滚动
         }
 
         function closeCertificate() {
             const modal = document.getElementById('certificateModal');
             modal.classList.remove('active');
-            document.body.style.overflow = '';
+            document.body.style.overflow = ''; // 恢复背景滚动
         }
 
+        // 点击模态框背景关闭
         document.getElementById('certificateModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeCertificate();
             }
         });
 
+        // ESC键关闭模态框
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeCertificate();
             }
         });
+    </script>
 
-        // 二维码切换
-        function toggleQRCode() {
-            const qrCode = document.getElementById('qrcode');
-            const button = event.target;
-
-            if (qrCode.classList.contains('hidden')) {
-                qrCode.classList.remove('hidden');
-                qrCode.classList.add('block');
-                button.textContent = '隐藏二维码';
-            } else {
-                qrCode.classList.add('hidden');
-                qrCode.classList.remove('block');
-                button.textContent = '显示二维码';
+    <!-- 作品集模态框和筛选脚本 -->
+    <script>
+        // Project Data
+        const projects = {
+            project1: {
+                title: '英语学习助手',
+                status: '✓ 已完成',
+                category: 'AI Agent',
+                date: '2025.11',
+                emoji: '🤖',
+                gradient: 'from-blue-500/20 to-purple-500/20',
+                coverImage: 'images/project1-cover.jpg',
+                shortDesc: '基于Coze平台开发的英语学习AI智能体，提供24/7个性化学习辅导',
+                techStack: ['Coze', 'GPT-4'],
+                features: ['实时对话模拟', '语法纠错', '词汇扩展建议', '发音评估'],
+                useCases: '适合日常口语练习、备考雅思托福、商务英语提升等场景',
+                demoLink: 'https://www.coze.cn/store/agent/7570320960692191273?bot_id=true'
+            },
+            project2: {
+                title: '第二大脑',
+                status: '✓ 已完成',
+                category: 'AI Agent',
+                date: '2025.11',
+                emoji: '🧠',
+                gradient: 'from-purple-500/20 to-pink-500/20',
+                coverImage: 'images/project2-cover.jpg',
+                shortDesc: '智能知识管理工具，帮助用户收集、整理并快速检索各类信息',
+                techStack: ['Coze', 'Vue.js/React', 'Node.js', 'MongoDB'],
+                features: ['信息收藏（网页、图片）', '标签分类', '快速搜索', '笔记编辑'],
+                useCases: '适用于研究学习、项目资料整理、灵感记录等',
+                demoLink: 'https://www.coze.cn/store/agent/7571450183440384015?bot_id=true'
+            },
+            project3: {
+                title: '变量命名智能体',
+                status: '✓ 已完成',
+                category: 'AI Agent',
+                date: '2025.11',
+                emoji: '💻',
+                gradient: 'from-green-500/20 to-teal-500/20',
+                coverImage: 'images/project3-cover.jpg',
+                shortDesc: '为开发者设计的AI工具，根据代码上下文智能生成变量名',
+                techStack: ['Python', 'OpenAI API'],
+                features: ['多语言支持', '上下文理解', '命名选项', '风格选择'],
+                useCases: '适用于开发中命名困难、代码重构等场景',
+                demoLink: 'https://www.coze.cn/store/agent/7572856676387733510?bot_id=true'
+            },
+            project4: {
+                title: '每日AI资讯信息发送',
+                status: '✓ 已完成',
+                category: 'AI Agent',
+                date: '2025.11',
+                emoji: '📰',
+                gradient: 'from-orange-500/20 to-red-500/20',
+                coverImage: 'images/project4-cover.jpg',
+                shortDesc: '自动抓取并推送最新AI行业动态的定时服务',
+                techStack: ['Python', '爬虫', 'cron'],
+                features: ['多源聚合', '关键词过滤', '定时推送', '摘要生成'],
+                useCases: '适合AI研究者、开发者每日获取领域动态',
+                demoLink: 'https://www.coze.cn/space/7478698091047780352/bot/7549830130861621267'
+            },
+            project5: {
+                title: '羽生结弦粉丝主页',
+                status: '✓ 已完成',
+                category: 'Web开发',
+                date: '2026.01',
+                label: 'SPORTS',
+                gradient: 'from-pink-500/20 to-purple-500/20',
+                coverImage: 'images/project5-cover.jpg',
+                shortDesc: '聚合羽生结弦最新动态、比赛视频与粉丝互动的专题网站',
+                techStack: ['HTML', 'CSS', 'JavaScript', 'React'],
+                features: ['赛事信息', '图片视频', '粉丝讨论区', '响应式设计'],
+                useCases: '为羽生结弦的粉丝提供一站式信息获取与交流平台',
+                demoLink: 'https://yuzuru-hanyu-nxqr6jarf-gzxb001s-projects.vercel.app/',
+                notesLink: 'https://vcn4n9sm0ggv.feishu.cn/docx/Nj4MduL5Oof14OxdGnhcpFh9nbc?from=from_copylink'
             }
-        }
+        };
 
-        // 项目模态框（简化版，实际项目需要完整的projectData）
+        // Modal Functions
         function openModal(projectId) {
-            alert('项目详情功能开发中...\n项目ID: ' + projectId);
+            const project = projects[projectId];
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.getElementById('modalBody');
+
+            modalBody.innerHTML = `
+                <!-- Cover Image Area -->
+                ${project.coverImage ? `
+                    <div class="aspect-video rounded-t-3xl overflow-hidden mb-8">
+                        <img src="${project.coverImage}" alt="${project.title}" class="w-full h-full object-cover">
+                    </div>
+                ` : `
+                    <div class="aspect-video bg-gradient-to-br ${project.gradient} rounded-t-3xl flex items-center justify-center mb-8">
+                        <div class="text-center">
+                            <div class="text-6xl font-bold text-4xl" style="color: var(--text-muted); opacity: 0.3;">PROJECT</div>
+                        </div>
+                    </div>
+                `}
+
+                <!-- Project Info -->
+                <div class="px-8 pb-8">
+                    <!-- Title & Tags -->
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">${project.title}</h2>
+                    <div class="flex flex-wrap items-center gap-3 mb-6">
+                        <span class="px-4 py-2 bg-green-500/20 text-green-400 rounded border border-green-500/30">
+                            ${project.status}
+                        </span>
+                        <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded border border-blue-500/30">
+                            ${project.category}
+                        </span>
+                        <span class="text-sm ml-auto" style="color: var(--text-muted);">${project.date}</span>
+                    </div>
+
+                    <!-- Short Description -->
+                    <p class="text-xl mb-8 leading-relaxed" style="color: var(--text-secondary);">${project.shortDesc}</p>
+
+                    <!-- Tech Stack -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            技术栈
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            ${project.techStack.map(tech => `
+                                <span class="px-4 py-2 bg-white/10 text-sm rounded border border-white/20" style="color: var(--text-secondary);">
+                                    ${tech}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Try Button -->
+                    <a href="${project.demoLink}" target="_blank"
+                       class="w-full px-8 py-5 rounded-xl text-base font-semibold text-center mb-6 inline-block bg-white text-black hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
+                        <span>立即体验</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                    </a>
+
+                    <!-- Expandable Details -->
+                    <div class="border-t pt-6" style="border-color: var(--border-color);">
+                        <button onclick="toggleDetails()" class="w-full flex items-center justify-center text-blue-500 font-medium mb-4 hover:text-blue-400 transition-colors">
+                            <span>了解详细介绍</span>
+                            <svg id="detailArrow" class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+
+                        <div id="detailContent" class="hidden">
+                            <!-- Features -->
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                    </svg>
+                                    功能特性
+                                </h3>
+                                <ul class="space-y-2">
+                                    ${project.features.map(feature => `
+                                        <li class="flex items-start">
+                                            <span class="mr-2 text-blue-500">•</span>
+                                            <span class="text-sm" style="color: var(--text-muted);">${feature}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+
+                            <!-- Use Cases -->
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                    </svg>
+                                    使用场景
+                                </h3>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-muted);">${project.useCases}</p>
+                            </div>
+
+                            <!-- Related Links (if available) -->
+                            ${project.notesLink ? `
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                        <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                        </svg>
+                                        相关链接
+                                    </h3>
+                                    <a href="${project.notesLink}" target="_blank"
+                                       class="inline-flex items-center text-blue-500 hover:text-blue-400 font-medium">
+                                        <span>学习笔记</span>
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById('projectModal').classList.remove('active');
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
@@ -1500,26 +2436,155 @@
             }
         }
 
-        // 项目过滤（简化版）
+        function toggleDetails() {
+            const content = document.getElementById('detailContent');
+            const arrow = document.getElementById('detailArrow');
+
+            content.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+
+        // Filter Functions
         function filterByCategory(category) {
-            const cards = document.querySelectorAll('[data-category]');
+            const cards = document.querySelectorAll('[data-category]'); // 包含所有项目卡片
             const buttons = document.querySelectorAll('.filter-btn');
 
+            // Update button states
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
+            // 清空搜索框
+            document.getElementById('searchInput').value = '';
+
+            // Filter cards
+            let visibleCount = 0;
             cards.forEach(card => {
                 if (category === 'all' || card.dataset.category === category) {
                     card.style.display = '';
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
+
+            // 显示/隐藏无结果提示
+            const noResults = document.getElementById('noResults');
+            const projectsGrid = document.getElementById('projectsGrid');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+                projectsGrid.classList.add('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                projectsGrid.classList.remove('hidden');
+            }
         }
 
-        // 初始化AI数字分身
+        function filterProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const projectCards = document.querySelectorAll('[data-category]');
+            const noResults = document.getElementById('noResults');
+            const projectsGrid = document.getElementById('projectsGrid');
+
+            // 如果搜索框为空，显示所有项目
+            if (searchTerm === '') {
+                projectCards.forEach(card => {
+                    card.style.display = '';
+                });
+                noResults.classList.add('hidden');
+                projectsGrid.classList.remove('hidden');
+                return;
+            }
+
+            let visibleCount = 0;
+
+            projectCards.forEach(card => {
+                // 获取标题
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+
+                // 获取描述
+                const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+
+                // 获取技术标签
+                const techTags = Array.from(card.querySelectorAll('[class*="rounded-full"]'))
+                    .map(tag => tag.textContent.toLowerCase())
+                    .join(' ');
+
+                // 获取状态标签
+                const statusTags = Array.from(card.querySelectorAll('.bg-green-500\\/10, .bg-amber-500\\/10'))
+                    .map(tag => tag.textContent.toLowerCase())
+                    .join(' ');
+
+                // 获取类别标签
+                const categoryTags = Array.from(card.querySelectorAll('.bg-blue-500\\/10'))
+                    .map(tag => tag.textContent.toLowerCase())
+                    .join(' ');
+
+                // 合并所有可搜索文本
+                const searchableText = `${title} ${desc} ${techTags} ${statusTags} ${categoryTags}`;
+
+                // 搜索匹配（支持多词搜索）
+                const searchTerms = searchTerm.split(/\s+/);
+                const isMatch = searchTerms.every(term => searchableText.includes(term));
+
+                if (isMatch) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // 显示/隐藏无结果提示
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+                projectsGrid.classList.add('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                projectsGrid.classList.remove('hidden');
+            }
+        }
+
+        // 清除搜索
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            filterProjects();
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <!-- 二维码切换脚本 -->
+    <script>
+        function toggleQRCode() {
+            const qrCode = document.getElementById('qrcode');
+            const button = event.target;
+
+            if (qrCode.classList.contains('hidden')) {
+                // 显示二维码
+                qrCode.classList.remove('hidden');
+                qrCode.classList.add('block', 'animate-fade-in');
+                button.textContent = '隐藏二维码';
+            } else {
+                // 隐藏二维码
+                qrCode.classList.add('hidden');
+                qrCode.classList.remove('block', 'animate-fade-in');
+                button.textContent = '显示二维码';
+            }
+        }
+    </script>
+
+    <!-- AI数字分身聊天组件（安全版 - Vercel API代理） -->
+    <link rel="stylesheet" href="ai-chatbot.css">
+    <script src="ai-chatbot-secure.js"></script>
+    <script>
+        // 初始化AI数字分身（安全版 - API Key隐藏在服务器端）
         const aiAvatar = new AIAvatarChatSecure({
-            apiUrl: '/api/chat'
+            apiUrl: '/api/chat' // 使用Vercel API代理，安全！
         });
     </script>
 

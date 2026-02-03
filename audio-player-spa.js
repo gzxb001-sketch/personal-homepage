@@ -1,18 +1,35 @@
 /**
- * 背景音乐播放器 - SPA版本
- * 简单优雅的音乐控制 🎵
+ * 背景音乐播放器 (SPA 版本)
+ * 简化版 - 移除音效，专注音乐播放
  *
- * 功能说明：
- * - 播放/暂停背景音乐
- * - 音量控制（0-100）
- * - 用户偏好记忆（localStorage）
+ * 🎵 音乐更换说明：
+ *
+ * 1. 推荐免费音乐来源：
+ *    - Pixabay Music: https://pixabay.com/music/
+ *    - Free Music Archive: https://freemusicarchive.org/
+ *    - Incompetech: https://incompetech.com/music/royalty-free/
+ *
+ * 2. 更换音乐步骤：
+ *    a. 从上述网站下载免费音乐（MP3 格式）
+ *    b. 将音乐文件放到项目的 /music 文件夹
+ *    c. 修改下面的 this.bgMusic.src 为你的音乐路径
+ *    d. 例如：this.bgMusic.src = 'music/your-music.mp3';
+ *
+ * 3. 使用在线音乐（当前方式）：
+ *    - 直接修改 this.bgMusic.src 为新的在线音乐 URL
+ *    - 确保音乐支持跨域访问（CORS）
+ *
+ * 4. 音量调整：
+ *    - 默认音量：0.3（30%）
+ *    - 可通过页面左下角的音量滑块调整
+ *    - 或修改代码中的 this.volume = 0.3
  */
 
-class AudioSystem {
+class AudioSystemSPA {
     constructor() {
         // 音频状态
         this.musicEnabled = false;
-        this.volume = 0.3; // 音乐音量 0-1 (默认30%)
+        this.volume = 0.3; // 音乐音量 0-1
 
         // 初始化背景音乐
         this.initBackgroundMusic();
@@ -27,24 +44,23 @@ class AudioSystem {
     /**
      * 初始化背景音乐
      *
-     * 如何更换音乐：
-     * 1. 将音乐文件放入 music/ 文件夹
-     * 2. 修改下面的 this.bgMusic.src 路径
-     * 3. 例如：this.bgMusic.src = 'music/my-music.mp3';
+     * 🎵 更换音乐：修改下面的 this.bgMusic.src
      */
     initBackgroundMusic() {
         this.bgMusic = new Audio();
 
-        // ========== 🎵 在这里更换你的音乐 ==========
-        // 当前使用：免费的 Lo-fi 音乐（来自 Pixabay）
+        // ===== 在这里更换你的音乐 =====
+        // 方式1: 使用在线音乐（当前）
         this.bgMusic.src = 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3';
 
-        // 备选音乐源（取消注释即可使用）:
-        // this.bgMusic.src = 'https://cdn.pixabay.com/audio/2022/02/10/audio_fc8c8387ba.mp3'; // Lo-fi 2
-        // this.bgMusic.src = 'music/你的音乐文件.mp3'; // 本地音乐（推荐）
-        // ===========================================
+        // 方式2: 使用本地音乐文件
+        // this.bgMusic.src = 'music/your-music.mp3';
 
-        this.bgMusic.loop = true; // 循环播放
+        // 备选音乐源示例：
+        // this.bgMusic.src = 'https://cdn.pixabay.com/audio/2022/02/10/audio_fc8c8387ba.mp3';
+        // this.bgMusic.src = 'https://cdn.pixabay.com/audio/2021/11/25/audio_9bc2f8e59b.mp3';
+
+        this.bgMusic.loop = true;
         this.bgMusic.volume = this.volume;
 
         // 加载音频
@@ -59,17 +75,14 @@ class AudioSystem {
 
     /**
      * 切换背景音乐
-     * 点击按钮时调用此方法
      */
     toggleMusic() {
         if (this.musicEnabled) {
-            // 暂停音乐
             this.bgMusic.pause();
             this.musicEnabled = false;
             this.updateMusicButton(false);
         } else {
-            // 播放音乐
-            // 首次播放需要用户交互（浏览器限制）
+            // 首次播放需要用户交互
             this.bgMusic.play().then(() => {
                 this.musicEnabled = true;
                 this.updateMusicButton(true);
@@ -80,17 +93,17 @@ class AudioSystem {
             });
         }
 
-        // 保存用户偏好
         this.savePreferences();
     }
 
     /**
      * 更新音乐按钮状态
-     * @param {boolean} isPlaying - 是否正在播放
      */
     updateMusicButton(isPlaying) {
         const button = document.getElementById('musicControlBtn');
         const icon = document.getElementById('musicIcon');
+
+        if (!button || !icon) return;
 
         if (isPlaying) {
             button.classList.add('playing');
@@ -142,7 +155,6 @@ class AudioSystem {
 
     /**
      * 显示音乐提示
-     * 当无法自动播放时显示
      */
     showMusicTip() {
         const tip = document.createElement('div');
@@ -154,7 +166,7 @@ class AudioSystem {
     }
 
     /**
-     * 保存用户偏好到 localStorage
+     * 保存用户偏好
      */
     savePreferences() {
         localStorage.setItem('musicEnabled', this.musicEnabled);
@@ -169,8 +181,7 @@ class AudioSystem {
         const volume = localStorage.getItem('musicVolume');
 
         if (musicEnabled === 'true') {
-            // 需要用户交互才能播放，不自动播放
-            this.musicEnabled = false;
+            this.musicEnabled = false; // 需要用户交互才能播放
         }
         if (volume !== null) {
             this.volume = parseFloat(volume);
@@ -182,7 +193,7 @@ class AudioSystem {
 // 初始化音频系统
 let audioSystem;
 window.addEventListener('DOMContentLoaded', () => {
-    audioSystem = new AudioSystem();
+    audioSystem = new AudioSystemSPA();
 });
 
 // 导出供全局使用
