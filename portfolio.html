@@ -380,7 +380,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
         }
 
         .page-loader.hidden {
@@ -1336,8 +1336,8 @@
                 // 动画完成后移除loader（避免占用资源）
                 setTimeout(() => {
                     pageLoader.style.display = 'none';
-                }, 500);
-            }, 300);
+                }, 200);
+            }, 50);
         });
     </script>
 
