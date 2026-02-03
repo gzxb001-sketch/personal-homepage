@@ -15,8 +15,5 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ],
-  "env": {
-    "ZHIPU_API_KEY": "@zhipu-api-key"
-  }
+  ]
 }
