@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我 - 王晓宇 | AI交流与合作</title>
+
+    <!-- ==================== SEO Meta Tags ==================== -->
+
+    <!-- 基础SEO -->
+    <meta name="description" content="联系王晓宇 - 通过邮箱(gzxb001@gmail.com)、GitHub或公众号"知宇杂谈"与我取得联系。期待AI技术交流、项目合作与学习分享。">
+    <meta name="keywords" content="王晓宇, 联系我, 邮箱, GitHub, 公众号, 知宇杂谈, AI交流, 项目合作">
+    <meta name="author" content="王晓宇">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/contact.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/contact.html">
+    <meta property="og:title" content="联系我 - 王晓宇 | AI交流与合作">
+    <meta property="og:description" content="通过邮箱、GitHub或公众号联系王晓宇。期待AI技术交流、项目合作与学习分享。">
+    <meta property="og:image" content="https://yourdomain.com/og-contact.jpg">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="公子小白">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourdomain.com/contact.html">
+    <meta name="twitter:title" content="联系我 - 王晓宇 | AI交流与合作">
+    <meta name="twitter:description" content="通过邮箱、GitHub或公众号联系王晓宇。期待AI技术交流、项目合作与学习分享。">
+    <meta name="twitter:image" content="https://yourdomain.com/twitter-contact.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>">
+
+    <!-- ==================== Original Content ==================== -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        body: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 3s ease infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS变量系统 - 支持暗色/浅色主题 */
+        :root {
+            /* 默认暗色主题 */
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #171717;
+            --bg-tertiary: #27272A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #D4D4D8;
+            --text-muted: #71717A;
+            --accent: #3B82F6;
+            --border-color: #27272A;
+            --card-bg: #171717;
+            --nav-bg: rgba(10, 10, 10, 0.5);
+        }
+
+        /* 浅色主题 - 优化版 */
+        [data-theme="light"] {
+            --bg-primary: #F8F9FA;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #E9ECEF;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6C757D;
+            --accent: #2563EB;
+            --border-color: #DEE2E6;
+            --card-bg: #FFFFFF;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 文字颜色 - 使用CSS变量 */
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+        .text-accent { color: var(--accent); }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 浅色模式卡片增强 */
+        [data-theme="light"] .card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 3D卡片倾斜效果 */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .tilt-card-inner {
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        /* 回顶部按钮样式 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-to-top:hover svg {
+            transform: translateY(-2px);
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 浅色模式滚动条 */
+        [data-theme="light"] ::-webkit-scrollbar-track {
+            background: #E9ECEF;
+        }
+
+        [data-theme="light"] ::-webkit-scrollbar-thumb {
+            background: #ADB5BD;
+        }
+
+        [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+            background: #6C757D;
+        }
+
+        /* Navigation active state */
+        nav a.active {
+            color: var(--accent) !important;
+            font-weight: 600;
+            position: relative;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle.rotating {
+            animation: rotateTheme 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes rotateTheme {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 页面加载动画 */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* 页面内容初始状态 */
+        body.loading {
+            overflow: hidden;
+        }
+
+        body:not(.loading) > *:not(.page-loader) {
+            animation: fadeInPage 0.6s ease forwards;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- 路由系统已禁用 - 恢复普通跳转 -->
+    <!-- <script src="router.js"></script> -->
+</head>
+<body class="loading">
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text"><span id="loadingText">LOADING</span></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b" style="background: var(--nav-bg); border-color: var(--border-color);">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold font-heading" style="color: var(--text-primary);">
+                    公子小白
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="transition-colors" style="color: var(--text-secondary);">首页</a>
+                    <a href="about.html" class="transition-colors" style="color: var(--text-secondary);">关于我</a>
+                    <a href="portfolio.html" class="transition-colors" style="color: var(--text-secondary);">作品集</a>
+                    <a href="contact.html" class="font-medium" style="color: var(--text-primary);">联系我</a>
+
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="切换主题">
+                        <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <button class="md:hidden" style="color: var(--text-primary);">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面内容容器 - 用于动态加载 -->
+    <div id="page-content">
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20 px-6">
+        <div class="container mx-auto max-w-5xl">
+
+            <!-- Page Title -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-heading font-bold mb-6" style="color: var(--text-primary);"">
+                    联系我
+                </h1>
+                <p class="text-xl" style="color: var(--text-secondary);">
+                    期待与您的交流与合作
+                </p>
+            </div>
+
+            <!-- Contact Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- GitHub Card -->
+                <a href="https://github.com/" target="_blank" class="card p-10 text-center group   hover:scale-105 transition-transform">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8" style="color: var(--text-primary);" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-heading font-bold mb-4" style="color: var(--text-primary);"">
+                        GitHub
+                    </h2>
+                    <p class="mb-6 leading-relaxed" style="color: var(--text-secondary);">
+                        访问我的GitHub主页<br>查看代码和项目
+                    </p>
+                    <div class="flex items-center justify-center text-blue-500 font-semibold">
+                        访问 GitHub
+                        <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Email Card -->
+                <a href="mailto:gzxb001@gmail.com" class="card p-10 text-center group   hover:scale-105 transition-transform">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-heading font-bold mb-4" style="color: var(--text-primary);"">
+                        邮箱
+                    </h2>
+                    <p class="mb-6 leading-relaxed" style="color: var(--text-secondary);">
+                        发送邮件与我取得联系<br>gzxb001@gmail.com
+                    </p>
+                    <div class="flex items-center justify-center text-blue-500 font-semibold">
+                        发送邮件
+                        <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- WeChat Card -->
+                <div class="card p-10 text-center">
+                    <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-heading font-bold mb-4" style="color: var(--text-primary);"">
+                        公众号
+                    </h2>
+                    <p class="mb-4" style="color: var(--text-secondary);">
+                        知宇杂谈
+                    </p>
+                    <p class="text-sm mb-6 leading-relaxed" style="color: var(--text-muted);">
+                        分享AI技术学习心得<br>
+                        大学信息差、个人感悟
+                    </p>
+
+                    <!-- Toggle Button -->
+                    <button
+                        onclick="toggleQRCode()"
+                        class="mb-6 px-8 py-3 bg-blue-500 font-semibold rounded-lg" style="color: white;" hover:bg-blue-600 transition-all"
+                    >
+                        显示二维码
+                    </button>
+
+                    <!-- QR Code (Hidden by default) -->
+                    <div id="qrcode" class="hidden bg-white p-4 rounded-xl inline-block transition-all duration-300">
+                        <img src="qrcode.jpg" alt="知宇杂谈公众号二维码" class="w-40 h-40 rounded-lg">
+                        <p class="text-gray-600 text-xs mt-2">扫码关注</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Additional Info -->
+            <div class="mt-16 text-center">
+                <div class="card p-8 max-w-2xl mx-auto">
+                    <p class="mb-4" style="color: var(--text-secondary);">
+                        对我的项目感兴趣？或者有合作意向？
+                    </p>
+                    <p style="color: var(--text-secondary);">
+                        欢迎通过以上任何方式联系我，我会尽快回复！
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()" aria-label="回到顶部">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t" style="border-color: var(--border-color);">
+        <div class="container mx-auto max-w-4xl text-center">
+            <!-- 标语 -->
+            <p class="mb-6" style="color: var(--text-secondary);">
+                用AI探索无限可能，用代码构建美好未来
+            </p>
+
+            <!-- 社交图标 -->
+            <div class="flex items-center justify-center gap-6 mb-8">
+                <!-- 邮箱 -->
+                <a href="mailto:gzxb001@gmail.com"
+                   class="group flex flex-col items-center gap-2 transition-all hover:scale-110"
+                   style="color: var(--text-muted);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-all group-hover:bg-blue-500/10" style="background: var(--bg-secondary);">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-medium">邮箱</span>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/" target="_blank"
+                   class="group flex flex-col items-center gap-2 transition-all hover:scale-110"
+                   style="color: var(--text-muted);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-all group-hover:bg-purple-500/10" style="background: var(--bg-secondary);">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-medium">GitHub</span>
+                </a>
+
+                <!-- 公众号 -->
+                <div class="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-110" style="color: var(--text-muted);"
+                     onclick="alert('扫码关注公众号：知宇杂谈')">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-all group-hover:bg-green-500/10" style="background: var(--bg-secondary);">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-medium">公众号</span>
+                </div>
+            </div>
+
+            <!-- 版权信息 -->
+            <p class="text-sm" style="color: var(--text-muted);">
+                © 2025 公子小白. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    </div><!-- end of #page-content -->
+
+    <script>
+        function toggleQRCode() {
+            const qrCode = document.getElementById('qrcode');
+            const button = event.target;
+
+            if (qrCode.classList.contains('hidden')) {
+                // 显示二维码
+                qrCode.classList.remove('hidden');
+                qrCode.classList.add('block', 'animate-fade-in');
+                button.textContent = '隐藏二维码';
+            } else {
+                // 隐藏二维码
+                qrCode.classList.add('hidden');
+                qrCode.classList.remove('block', 'animate-fade-in');
+                button.textContent = '显示二维码';
+            }
+        }
+    </script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // 图标SVG路径
+        const moonIcon = 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z';
+        const sunIcon = 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z';
+
+        // 获取保存的主题或使用系统偏好
+        function getInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme;
+            }
+            // 跟随系统主题
+            if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                return 'light';
+            }
+            return 'dark';
+        }
+
+        // 设置主题
+        function setTheme(theme) {
+            // 添加旋转动画
+            themeToggle.classList.add('rotating');
+
+            // 延迟一点，让动画可见
+            setTimeout(() => {
+                if (theme === 'light') {
+                    html.setAttribute('data-theme', 'light');
+                    themeIcon.querySelector('path').setAttribute('d', moonIcon);
+                } else {
+                    html.removeAttribute('data-theme');
+                    themeIcon.querySelector('path').setAttribute('d', sunIcon);
+                }
+
+                // 保存到localStorage
+                localStorage.setItem('theme', theme);
+
+                // 移除旋转动画类
+                setTimeout(() => {
+                    themeToggle.classList.remove('rotating');
+                }, 500);
+            }, 150);
+        }
+
+        // 切换主题函数
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        // 初始化主题
+        const initialTheme = getInitialTheme();
+        if (initialTheme === 'light') {
+            html.setAttribute('data-theme', 'light');
+            themeIcon.querySelector('path').setAttribute('d', moonIcon);
+        }
+
+        // 监听系统主题变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // 只有在没有手动设置主题时才跟随系统
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+
+    <!-- 3D Card Tilt Effect Script -->
+    <script>
+        // 3D卡片倾斜效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                // 为每个卡片添加perspective
+                card.style.position = 'relative';
+                card.style.transformStyle = 'preserve-3d';
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // 计算卡片中心点
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // 计算旋转角度 (最大10度)
+                    const rotateX = (y - centerY) / centerY * -5;
+                    const rotateY = (x - centerX) / centerX * 5;
+
+                    // 应用3D变换
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // 鼠标离开时恢复
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+        });
+    </script>
+
+    <!-- Page Loader Script -->
+    <script>
+        // Loading随机文案
+        const loadingMessages = [
+            "正在初始化AI神经网络...",
+            "正在加载智能体...",
+            "训练模型中...",
+            "正在连接知识图谱...",
+            "探索无限可能...",
+            "即将完成..."
+        ];
+
+        // 随机选择一条文案
+        const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+        document.getElementById('loadingText').textContent = randomMessage;
+
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            // 设置当前页面的导航激活状态
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            const pageLoader = document.getElementById('pageLoader');
+            const body = document.body;
+
+            // 延迟一点，让用户看到加载动画
+            setTimeout(() => {
+                pageLoader.classList.add('hidden');
+                body.classList.remove('loading');
+
+                // 动画完成后移除loader（避免占用资源）
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 500);
+            }, 300);
+        });
+    </script>
+
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.3s ease-out;
+        }
+    </style>
+
+    <!-- Back to Top Button Script -->
+    <script>
+        // 回顶部按钮功能
+        const backToTopButton = document.getElementById('backToTop');
+        const showThreshold = 300;
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > showThreshold) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+    <!-- AI数字分身聊天组件（安全版 - Vercel API代理） -->
+    <link rel="stylesheet" href="ai-chatbot.css">
+    <script src="ai-chatbot-secure.js"></script>
+    <script>
+        // 初始化AI数字分身（安全版 - API Key隐藏在服务器端）
+        const aiAvatar = new AIAvatarChatSecure({
+            apiUrl: '/api/chat' // 使用Vercel API代理，安全！
+        });
+    </script>
+
+</body>
+</html>

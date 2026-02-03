@@ -1,0 +1,9 @@
+{
+  "name": "personal-homepage",
+  "version": "1.0.0",
+  "description": "公子小白个人主页",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel"
+  }
+}

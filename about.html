@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我 - 王晓宇 | 从农学到AI的跨界之旅</title>
+
+    <!-- ==================== SEO Meta Tags ==================== -->
+
+    <!-- 基础SEO -->
+    <meta name="description" content="了解王晓宇的成长故事 - 从大三农学学生到AI开发者的跨界历程。2025年11月开始AI学习之旅，完成Way to AGI训练营，创建5个AI Agent项目，坚持学习200+天。">
+    <meta name="keywords" content="王晓宇, 关于我, AI学习, 跨界, 农学转AI, Way to AGI, Vibe Coding, 个人成长, 学习历程">
+    <meta name="author" content="王晓宇">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/about.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/about.html">
+    <meta property="og:title" content="关于我 - 王晓宇 | 从农学到AI的跨界之旅">
+    <meta property="og:description" content="了解王晓宇的成长故事 - 从大三农学学生到AI开发者的跨界历程。Way to AGI训练营学员，Vibe Coding探索者。">
+    <meta property="og:image" content="https://yourdomain.com/og-about.jpg">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="公子小白">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourdomain.com/about.html">
+    <meta name="twitter:title" content="关于我 - 王晓宇 | 从农学到AI的跨界之旅">
+    <meta name="twitter:description" content="从大三农学学生到AI开发者的跨界历程。Way to AGI训练营学员，Vibe Coding探索者。">
+    <meta name="twitter:image" content="https://yourdomain.com/twitter-about.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+
+    <!-- ==================== Original Content ==================== -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        body: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 3s ease infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS变量系统 - 支持暗色/浅色主题 */
+        :root {
+            /* 默认暗色主题 */
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #171717;
+            --bg-tertiary: #27272A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #D4D4D8;
+            --text-muted: #71717A;
+            --accent: #3B82F6;
+            --border-color: #27272A;
+            --card-bg: #171717;
+            --nav-bg: rgba(10, 10, 10, 0.5);
+        }
+
+        /* 浅色主题 - 优化版 */
+        [data-theme="light"] {
+            --bg-primary: #F8F9FA;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #E9ECEF;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6C757D;
+            --accent: #2563EB;
+            --border-color: #DEE2E6;
+            --card-bg: #FFFFFF;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 文字颜色 - 使用CSS变量 */
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+        .text-accent { color: var(--accent); }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 禁用3D倾斜的卡片（如时间线卡片）- 只保留简单的hover效果 */
+        .card.no-tilt:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 浅色模式卡片增强 */
+        [data-theme="light"] .card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+        }
+
+        /* 浅色模式下禁用3D倾斜的卡片 */
+        [data-theme="light"] .card.no-tilt:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+        }
+
+        /* 3D卡片倾斜效果 */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .tilt-card-inner {
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 浅色模式滚动条 */
+        [data-theme="light"] ::-webkit-scrollbar-track {
+            background: #E9ECEF;
+        }
+
+        [data-theme="light"] ::-webkit-scrollbar-thumb {
+            background: #ADB5BD;
+        }
+
+        [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+            background: #6C757D;
+        }
+
+        /* Navigation active state */
+        nav a.active {
+            color: var(--accent) !important;
+            font-weight: 600;
+            position: relative;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle.rotating {
+            animation: rotateTheme 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes rotateTheme {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 页面加载动画 */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* 页面内容初始状态 */
+        body.loading {
+            overflow: hidden;
+        }
+
+        body:not(.loading) > *:not(.page-loader) {
+            animation: fadeInPage 0.6s ease forwards;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 证书模态框样式 */
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .certificate-modal.active {
+            display: flex;
+        }
+
+        .certificate-modal-content {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .certificate-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 回顶部按钮样式 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-to-top:hover svg {
+            transform: translateY(-2px);
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+    </style>
+
+    <!-- 路由系统已禁用 - 恢复普通跳转 -->
+    <!-- <script src="router.js"></script> -->
+</head>
+<body class="loading">
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text"><span id="loadingText">LOADING</span></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b" style="background: var(--nav-bg); border-color: var(--border-color);">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold font-heading" style="color: var(--text-primary);">
+                    公子小白
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="transition-colors" style="color: var(--text-secondary);">首页</a>
+                    <a href="about.html" class="font-medium" style="color: var(--text-primary);">关于我</a>
+                    <a href="portfolio.html" class="transition-colors" style="color: var(--text-secondary);">作品集</a>
+                    <a href="contact.html" class="transition-colors" style="color: var(--text-secondary);">联系我</a>
+
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="切换主题">
+                        <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden" onclick="toggleMobileMenu()" style="color: var(--text-primary);">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+                <div class="px-6 py-4 space-y-4">
+                    <a href="index.html" class="block py-2" style="color: var(--text-secondary);">首页</a>
+                    <a href="about.html" class="block py-2" style="color: var(--text-primary); font-weight: 600;">关于我</a>
+                    <a href="portfolio.html" class="block py-2" style="color: var(--text-secondary);">作品集</a>
+                    <a href="contact.html" class="block py-2" style="color: var(--text-secondary);">联系我</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面内容容器 - 用于动态加载 -->
+    <div id="page-content">
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20 px-6">
+        <div class="container mx-auto max-w-5xl">
+
+            <!-- Page Header -->
+            <div class="mb-16">
+                <h1 class="text-5xl md:text-6xl font-heading font-bold mb-6" style="color: var(--text-primary);">
+                    关于我
+                </h1>
+                <p class="text-2xl" style="color: var(--text-secondary);">
+                    从农学学生到AI开发者的跨界之旅
+                </p>
+            </div>
+
+            <!-- Story Timeline -->
+            <section class="mb-20">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-1 h-8 bg-blue-500 rounded"></div>
+                    <h2 class="text-3xl font-heading font-bold" style="color: var(--text-primary);">我的故事</h2>
+                </div>
+
+                <div class="card no-tilt p-10">
+                    <div class="space-y-8">
+                        <!-- Timeline Item 1 -->
+                        <div class="flex gap-5">
+                            <div class="flex flex-col items-center">
+                                <div class="w-4 h-4 rounded-full bg-blue-500 shadow-lg shadow-blue-500/30"></div>
+                                <div class="w-0.5 h-full bg-gradient-to-b from-blue-500 to-purple-500"></div>
+                            </div>
+                            <div class="pb-8 flex-1">
+                                <div class="text-blue-400 font-mono text-base mb-2 font-semibold">2025.11</div>
+                                <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">起点：农学学生遇见AI</h3>
+                                <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                                    作为一名大三农学学生，对AI充满好奇但完全不了解。决定报名Way to AGI Coze训练营，系统学习AI智能体开发。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="flex gap-5">
+                            <div class="flex flex-col items-center">
+                                <div class="w-4 h-4 rounded-full bg-blue-500 shadow-lg shadow-blue-500/30"></div>
+                                <div class="w-0.5 h-full bg-gradient-to-b from-blue-500 to-purple-500"></div>
+                            </div>
+                            <div class="pb-8 flex-1">
+                                <div class="text-blue-400 font-mono text-base mb-2 font-semibold">2025.12</div>
+                                <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">探索：创建第一个AI Agent</h3>
+                                <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                                    完成训练营学习，成功创建"英语学习助手"智能体，并开始探索更多AI Agent应用场景。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 3 -->
+                        <div class="flex gap-5">
+                            <div class="flex flex-col items-center">
+                                <div class="w-4 h-4 rounded-full bg-blue-500 shadow-lg shadow-blue-500/30"></div>
+                                <div class="w-0.5 h-full bg-gradient-to-b from-blue-500 to-purple-500"></div>
+                            </div>
+                            <div class="pb-8 flex-1">
+                                <div class="text-blue-400 font-mono text-base mb-2 font-semibold">2026.01</div>
+                                <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">成长：Vibe Coding实战</h3>
+                                <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                                    开始Vibe Coding训练营，深入学习AI与Web开发的结合。目前已创建5个AI Agent项目，坚持学习200+天。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 4 -->
+                        <div class="flex gap-5">
+                            <div class="flex flex-col items-center">
+                                <div class="w-4 h-4 rounded-full bg-purple-500 shadow-lg shadow-purple-500/30"></div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-purple-400 font-mono text-base mb-2 font-semibold">现在</div>
+                                <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">持续前行</h3>
+                                <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                                    继续在AI道路上探索，用AI+代码构建产品。坚信：不待扬鞭自奋蹄，努力会说谎，但努力不会白费。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills & Identity -->
+            <section class="mb-20">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-1 h-8 bg-blue-500 rounded"></div>
+                    <h2 class="text-3xl font-heading font-bold" style="color: var(--text-primary);">我是谁</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card p-8 hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">AI技术爱好者</h3>
+                        <p class="text-base" style="color: var(--text-secondary);">
+                            在读农学专业学生，对AI充满热情的自学者，相信AI能够改变世界
+                        </p>
+                    </div>
+
+                    <div class="card p-8 hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">Agent搭建者</h3>
+                        <p class="text-base" style="color: var(--text-secondary);">
+                            专注于AI智能体开发，探索各种应用场景
+                        </p>
+                    </div>
+
+                    <div class="card p-8 hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">Vibe Coding探索者</h3>
+                        <p class="text-base" style="color: var(--text-secondary);">
+                            用AI辅助编程，用代码构建美好未来
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Learning Journey -->
+            <section class="mb-20">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-1 h-8 bg-blue-500 rounded"></div>
+                    <h2 class="text-3xl font-heading font-bold" style="color: var(--text-primary);">学习历程</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Course 1 -->
+                    <div class="card p-8">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="text-green-500 text-sm font-semibold px-3 py-1 bg-green-500/10 rounded-lg">● 已完成</span>
+                            <span class="text-blue-400 font-mono text-sm">2025.11</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Way to AGI COZE训练营</h3>
+                        <p class="text-base mb-5" style="color: var(--text-secondary);">系统学习AI智能体开发</p>
+                        <div onclick="openCertificate()" class="flex items-center text-blue-500 text-base font-semibold hover:underline cursor-pointer">
+                            查看证书 →
+                        </div>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="card p-8">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="text-amber-500 text-sm font-semibold px-3 py-1 bg-amber-500/10 rounded-lg">● 进行中</span>
+                            <span class="text-blue-400 font-mono text-sm">2026.01</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Vibe Coding 训练营</h3>
+                        <p class="text-base mb-5" style="color: var(--text-secondary);">深入AI与Web开发结合</p>
+                        <div class="text-sm" style="color: var(--text-muted);">
+                            持续学习，不断进步
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Partners -->
+            <section>
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-1 h-8 bg-blue-500 rounded"></div>
+                    <h2 class="text-3xl font-heading font-bold" style="color: var(--text-primary);">AI搭子</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Partner 1 -->
+                    <div class="card p-8">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">玉汝于成搭子团</h3>
+                        <p class="text-sm mb-3" style="color: var(--text-secondary);">登山社 - AI爱好者社区</p>
+                        <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
+                            一群热爱AI的伙伴，一起学习、一起成长、一起探索AI的无限可能
+                        </p>
+                    </div>
+
+                    <!-- Partner 2 -->
+                    <a href="https://www.jiangshu.fun/" target="_blank" class="card p-8 hover:border-blue-500 cursor-pointer transition-all">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">姜书老师</h3>
+                        <p class="text-sm mb-3" style="color: var(--text-secondary);">AI导师</p>
+                        <p class="text-sm leading-relaxed mb-3" style="color: var(--text-muted);">
+                            引领我走进AI世界的导师，教会我很多AI知识和实战经验
+                        </p>
+                        <div class="text-blue-500 text-base font-semibold inline-flex items-center gap-1">
+                            访问官网
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <!-- Partner 3 -->
+                    <a href="https://www.waytoagi.com/zh" target="_blank" class="card p-8 hover:border-blue-500 cursor-pointer transition-all">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2" style="color: var(--text-primary);">Way to AGI 社区</h3>
+                        <p class="text-sm mb-3" style="color: var(--text-secondary);">AI学习社区</p>
+                        <p class="text-sm leading-relaxed mb-3" style="color: var(--text-muted);">
+                            让更多人因AI而强大
+                        </p>
+                        <div class="text-blue-500 text-base font-semibold inline-flex items-center gap-1">
+                            进入社区
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="certificate-modal">
+        <div class="certificate-modal-content">
+            <button class="certificate-modal-close" onclick="closeCertificate()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <img src="certificate.png" alt="Way to AGI 训练营证书" class="certificate-image">
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()" aria-label="回到顶部">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t" style="border-color: var(--border-color);">
+        <div class="container mx-auto max-w-4xl text-center">
+            <!-- 标语 -->
+            <p class="mb-6" style="color: var(--text-secondary);">
+                用AI探索无限可能，用代码构建美好未来
+            </p>
+
+            <!-- 社交图标 -->
+            <div class="flex items-center justify-center gap-6 mb-8">
+                <!-- 邮箱 -->
+                <a href="mailto:gzxb001@gmail.com"
+                   class="group flex flex-col items-center gap-2 transition-all hover:scale-110"
+                   style="color: var(--text-muted);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-all group-hover:bg-blue-500/10" style="background: var(--bg-secondary);">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-medium">邮箱</span>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/" target="_blank"
+                   class="group flex flex-col items-center gap-2 transition-all hover:scale-110"
+                   style="color: var(--text-muted);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-all group-hover:bg-purple-500/10" style="background: var(--bg-secondary);">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-medium">GitHub</span>
+                </a>
+
+                <!-- 公众号 -->
+                <div class="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-110" style="color: var(--text-muted);"
+                     onclick="alert('扫码关注公众号：知宇杂谈')">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-all group-hover:bg-green-500/10" style="background: var(--bg-secondary);">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-medium">公众号</span>
+                </div>
+            </div>
+
+            <!-- 版权信息 -->
+            <p class="text-sm" style="color: var(--text-muted);">
+                © 2025 公子小白. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    </div><!-- end of #page-content -->
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // 图标SVG路径
+        const moonIcon = 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z';
+        const sunIcon = 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z';
+
+        // 获取保存的主题或使用系统偏好
+        function getInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme;
+            }
+            // 跟随系统主题
+            if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                return 'light';
+            }
+            return 'dark';
+        }
+
+        // 设置主题
+        function setTheme(theme) {
+            // 添加旋转动画
+            themeToggle.classList.add('rotating');
+
+            // 延迟一点，让动画可见
+            setTimeout(() => {
+                if (theme === 'light') {
+                    html.setAttribute('data-theme', 'light');
+                    themeIcon.querySelector('path').setAttribute('d', moonIcon);
+                } else {
+                    html.removeAttribute('data-theme');
+                    themeIcon.querySelector('path').setAttribute('d', sunIcon);
+                }
+
+                // 保存到localStorage
+                localStorage.setItem('theme', theme);
+
+                // 移除旋转动画类
+                setTimeout(() => {
+                    themeToggle.classList.remove('rotating');
+                }, 500);
+            }, 150);
+        }
+
+        // 切换主题函数
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        // 初始化主题
+        const initialTheme = getInitialTheme();
+        if (initialTheme === 'light') {
+            html.setAttribute('data-theme', 'light');
+            themeIcon.querySelector('path').setAttribute('d', moonIcon);
+        }
+
+        // 监听系统主题变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // 只有在没有手动设置主题时才跟随系统
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+
+    <!-- 3D Card Tilt Effect Script -->
+    <script>
+        // 3D卡片倾斜效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                // 跳过标记为 no-tilt 的卡片（如"我的故事"时间线卡片）
+                if (card.classList.contains('no-tilt')) {
+                    return;
+                }
+
+                // 为每个卡片添加perspective
+                card.style.position = 'relative';
+                card.style.transformStyle = 'preserve-3d';
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // 计算卡片中心点
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // 计算旋转角度 (最大10度)
+                    const rotateX = (y - centerY) / centerY * -5;
+                    const rotateY = (x - centerX) / centerX * 5;
+
+                    // 应用3D变换
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // 鼠标离开时恢复
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+        });
+    </script>
+
+    <!-- Page Loader Script -->
+    <script>
+        // Loading随机文案
+        const loadingMessages = [
+            "正在初始化AI神经网络...",
+            "正在加载智能体...",
+            "训练模型中...",
+            "正在连接知识图谱...",
+            "探索无限可能...",
+            "即将完成..."
+        ];
+
+        // 随机选择一条文案
+        const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+        document.getElementById('loadingText').textContent = randomMessage;
+
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            // 设置当前页面的导航激活状态
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            const pageLoader = document.getElementById('pageLoader');
+            const body = document.body;
+
+            // 延迟一点，让用户看到加载动画
+            setTimeout(() => {
+                pageLoader.classList.add('hidden');
+                body.classList.remove('loading');
+
+                // 动画完成后移除loader（避免占用资源）
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 500);
+            }, 300);
+        });
+    </script>
+
+    <!-- Certificate Modal Script -->
+    <script>
+        // 证书模态框功能
+        function openCertificate() {
+            const modal = document.getElementById('certificateModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 禁止背景滚动
+        }
+
+        function closeCertificate() {
+            const modal = document.getElementById('certificateModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // 恢复背景滚动
+        }
+
+        // 点击模态框背景关闭
+        document.getElementById('certificateModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCertificate();
+            }
+        });
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCertificate();
+            }
+        });
+    </script>
+
+    <!-- Back to Top Button Script -->
+    <script>
+        // 回顶部按钮功能
+        const backToTopButton = document.getElementById('backToTop');
+        const showThreshold = 300;
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > showThreshold) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+    <!-- AI数字分身聊天组件（安全版 - Vercel API代理） -->
+    <link rel="stylesheet" href="ai-chatbot.css">
+    <script src="ai-chatbot-secure.js"></script>
+
+    <!-- 移动端菜单功能 -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileLinks = document.querySelectorAll('#mobileMenu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // 初始化AI数字分身（安全版 - API Key隐藏在服务器端）
+        const aiAvatar = new AIAvatarChatSecure({
+            apiUrl: '/api/chat' // 使用Vercel API代理，安全！
+        });
+    </script>
+
+</body>
+</html>

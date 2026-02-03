@@ -1,0 +1,50 @@
+# 备份文件夹
+backup/
+backup_*/
+*_backup/
+*.bak
+
+# 临时文件
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 编辑器和IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Node.js (如果将来使用)
+node_modules/
+package-lock.json
+npm-debug.log
+
+# 测试和废弃文件
+*_temp.html
+*_old.html
+prototype-*.html
+portfolio_temp.html
+
+# 旧项目版本
+personal-homepage-*/
+ui-ux-pro-max-skill/
+yunshu_skillshub/
+
+# 文档文件（可选，如果不想上传文档）
+*.md
+!README.md
+
+# 证书和敏感文件
+certificate.png
+*.pem
+*.key
+.env
+.env.local
+
+# 设计系统（可选择性上传）
+design-system/
+
+# 其他杂项
+*.log
