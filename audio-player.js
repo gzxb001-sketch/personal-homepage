@@ -1,21 +1,16 @@
 /**
- * 音乐和音效系统
- * 让网站活起来！🎵
+ * 背景音乐播放器
+ * 简单优雅的音乐控制 🎵
  */
 
 class AudioSystem {
     constructor() {
         // 音频状态
         this.musicEnabled = false;
-        this.soundEffectsEnabled = true;
         this.volume = 0.3; // 音乐音量 0-1
-        this.sfxVolume = 0.5; // 音效音量 0-1
 
         // 初始化背景音乐
         this.initBackgroundMusic();
-
-        // 初始化音效
-        this.initSoundEffects();
 
         // 创建音乐控制按钮
         this.createMusicControl();
@@ -29,10 +24,9 @@ class AudioSystem {
      */
     initBackgroundMusic() {
         this.bgMusic = new Audio();
-        // 使用免费的 Lo-fi 音乐（来自 Pixabay 或其他免费资源）
-        // 选项1: Lo-fi Hip Hop
+        // 使用免费的 Lo-fi 音乐（来自 Pixabay）
         this.bgMusic.src = 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3';
-        // 备选源（可以替换）:
+        // 备选音乐源（可以替换）:
         // this.bgMusic.src = 'https://cdn.pixabay.com/audio/2022/02/10/audio_fc8c8387ba.mp3';
 
         this.bgMusic.loop = true;
@@ -46,96 +40,6 @@ class AudioSystem {
             this.bgMusic.currentTime = 0;
             this.bgMusic.play();
         });
-    }
-
-    /**
-     * 初始化音效
-     */
-    initSoundEffects() {
-        // 使用 Web Audio API 生成简单的音效（无需外部文件）
-        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    }
-
-    /**
-     * 生成简单的点击音效
-     */
-    playClickSound() {
-        if (!this.soundEffectsEnabled) return;
-
-        try {
-            const oscillator = this.audioContext.createOscillator();
-            const gainNode = this.audioContext.createGain();
-
-            oscillator.connect(gainNode);
-            gainNode.connect(this.audioContext.destination);
-
-            // 清脆的点击声
-            oscillator.frequency.setValueAtTime(800, this.audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(400, this.audioContext.currentTime + 0.1);
-
-            gainNode.gain.setValueAtTime(this.sfxVolume * 0.3, this.audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.1);
-
-            oscillator.start(this.audioContext.currentTime);
-            oscillator.stop(this.audioContext.currentTime + 0.1);
-        } catch (e) {
-            console.log('AudioContext not ready');
-        }
-    }
-
-    /**
-     * 生成悬停音效
-     */
-    playHoverSound() {
-        if (!this.soundEffectsEnabled) return;
-
-        try {
-            const oscillator = this.audioContext.createOscillator();
-            const gainNode = this.audioContext.createGain();
-
-            oscillator.connect(gainNode);
-            gainNode.connect(this.audioContext.destination);
-
-            // 轻柔的悬停声
-            oscillator.frequency.setValueAtTime(600, this.audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(800, this.audioContext.currentTime + 0.05);
-
-            gainNode.gain.setValueAtTime(this.sfxVolume * 0.1, this.audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.05);
-
-            oscillator.start(this.audioContext.currentTime);
-            oscillator.stop(this.audioContext.currentTime + 0.05);
-        } catch (e) {
-            // 忽略错误
-        }
-    }
-
-    /**
-     * 生成成功音效
-     */
-    playSuccessSound() {
-        if (!this.soundEffectsEnabled) return;
-
-        try {
-            const oscillator = this.audioContext.createOscillator();
-            const gainNode = this.audioContext.createGain();
-
-            oscillator.connect(gainNode);
-            gainNode.connect(this.audioContext.destination);
-
-            // 愉悦的成功声
-            oscillator.frequency.setValueAtTime(523.25, this.audioContext.currentTime); // C5
-            oscillator.frequency.setValueAtTime(659.25, this.audioContext.currentTime + 0.1); // E5
-            oscillator.frequency.setValueAtTime(783.99, this.audioContext.currentTime + 0.2); // G5
-
-            gainNode.gain.setValueAtTime(this.sfxVolume * 0.3, this.audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
-
-            oscillator.start(this.audioContext.currentTime);
-            oscillator.stop(this.audioContext.currentTime + 0.3);
-        } catch (e) {
-            // 忽略错误
-        }
     }
 
     /**
@@ -180,14 +84,6 @@ class AudioSystem {
         }
     }
 
-    /**
-     * 切换音效
-     */
-    toggleSoundEffects() {
-        this.soundEffectsEnabled = !this.soundEffectsEnabled;
-        this.savePreferences();
-        return this.soundEffectsEnabled;
-    }
 
     /**
      * 设置音乐音量
@@ -222,22 +118,6 @@ class AudioSystem {
 
         // 添加到页面
         document.body.appendChild(controlDiv);
-
-        // 绑定点击和悬停音效
-        this.bindSoundEffects();
-    }
-
-    /**
-     * 绑定音效到所有交互元素
-     */
-    bindSoundEffects() {
-        // 点击音效 - 所有链接和按钮
-        setTimeout(() => {
-            document.querySelectorAll('a, button, .card').forEach(el => {
-                el.addEventListener('click', () => this.playClickSound());
-                el.addEventListener('mouseenter', () => this.playHoverSound());
-            });
-        }, 100);
     }
 
     /**
@@ -257,7 +137,6 @@ class AudioSystem {
      */
     savePreferences() {
         localStorage.setItem('musicEnabled', this.musicEnabled);
-        localStorage.setItem('soundEffectsEnabled', this.soundEffectsEnabled);
         localStorage.setItem('musicVolume', this.volume);
     }
 
@@ -266,14 +145,10 @@ class AudioSystem {
      */
     loadPreferences() {
         const musicEnabled = localStorage.getItem('musicEnabled');
-        const soundEffectsEnabled = localStorage.getItem('soundEffectsEnabled');
         const volume = localStorage.getItem('musicVolume');
 
         if (musicEnabled === 'true') {
             this.musicEnabled = false; // 需要用户交互才能播放
-        }
-        if (soundEffectsEnabled !== null) {
-            this.soundEffectsEnabled = soundEffectsEnabled === 'true';
         }
         if (volume !== null) {
             this.volume = parseFloat(volume);
