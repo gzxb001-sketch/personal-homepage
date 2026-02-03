@@ -101,19 +101,16 @@ class AudioSystemSPA {
      */
     updateMusicButton(isPlaying) {
         const button = document.getElementById('musicControlBtn');
-        const icon = document.getElementById('musicIcon');
+        const icon = document.querySelector('.vinyl-icon');
 
         if (!button || !icon) return;
 
         if (isPlaying) {
             button.classList.add('playing');
-            icon.textContent = '🎵';
-            // 添加跳动动画
-            icon.style.animation = 'bounce 0.5s ease infinite';
+            icon.textContent = '⏸'; // 暂停图标
         } else {
             button.classList.remove('playing');
-            icon.textContent = '🔇';
-            icon.style.animation = 'none';
+            icon.textContent = '▶'; // 播放图标
         }
     }
 
@@ -141,8 +138,14 @@ class AudioSystemSPA {
         const controlDiv = document.createElement('div');
         controlDiv.id = 'audioControl';
         controlDiv.innerHTML = `
-            <button id="musicControlBtn" class="music-control-btn" onclick="audioSystem.toggleMusic()" title="播放/暂停背景音乐">
-                <span id="musicIcon">🔇</span>
+            <button id="musicControlBtn" class="music-control-btn vinyl-btn" onclick="audioSystem.toggleMusic()" title="播放/暂停背景音乐">
+                <div class="vinyl-record">
+                    <div class="vinyl-grooves"></div>
+                    <div class="vinyl-label">
+                        <span class="vinyl-icon">▶</span>
+                    </div>
+                    <div class="vinyl-shine"></div>
+                </div>
             </button>
             <div id="volumeControl" class="volume-control">
                 <input type="range" min="0" max="100" value="30" onchange="audioSystem.setMusicVolume(this.value / 100)" title="音乐音量">
