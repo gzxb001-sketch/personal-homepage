@@ -329,7 +329,7 @@
             border: 2px solid var(--accent);
             border-radius: 50%;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 10003; /* 确保在AI对话框之上（AI对话框是10002） */
             transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
             transform: translate(-50%, -50%);
         }
@@ -1036,7 +1036,471 @@
         [data-theme="light"] .card.no-tilt:hover {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
         }
+
+        /* ========== 彩蛋系统样式 ========== */
+        /* 彩虹霓虹灯模式 */
+        .rainbow-mode {
+            animation: rainbow-bg 3s ease infinite;
+        }
+
+        @keyframes rainbow-bg {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .rainbow-mode .card {
+            animation: rainbow-border 2s ease infinite;
+            border-width: 3px;
+        }
+
+        @keyframes rainbow-border {
+            0% { border-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+            16% { border-color: #ff8800; box-shadow: 0 0 20px #ff8800; }
+            33% { border-color: #ffff00; box-shadow: 0 0 20px #ffff00; }
+            50% { border-color: #00ff00; box-shadow: 0 0 20px #00ff00; }
+            66% { border-color: #0088ff; box-shadow: 0 0 20px #0088ff; }
+            83% { border-color: #8800ff; box-shadow: 0 0 20px #8800ff; }
+            100% { border-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+        }
+
+        /* 彩蛋触发提示 */
+        .easter-egg-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 50px;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 10001;
+            animation: toast-appear 0.5s ease forwards;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5);
+            text-align: center;
+        }
+
+        @keyframes toast-appear {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(-10deg); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* 飘落的表情符号 */
+        .falling-emoji {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 10000;
+            animation: fall 3s ease-in forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* 数字变成666的效果 */
+        .rainbow-mode .lucky-number {
+            animation: number-pulse 0.5s ease;
+        }
+
+        @keyframes number-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); color: #ffd700; }
+        }
+
+        /* ========== AI智能开场对话系统 ========== */
+        .ai-welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 10002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .ai-welcome-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .ai-welcome-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8) translateY(30px);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 25px 80px rgba(102, 126, 234, 0.4);
+        }
+
+        .ai-welcome-overlay.active .ai-welcome-card {
+            transform: scale(1) translateY(0);
+        }
+
+        /* AI头像 */
+        .ai-avatar-welcome {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+            animation: avatar-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes avatar-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 50px rgba(102, 126, 234, 0.7); }
+        }
+
+        /* 打字机效果 */
+        .ai-typing-text {
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 60px;
+        }
+
+        .ai-typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #667eea;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 选项按钮 */
+        .ai-welcome-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ai-option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 16px;
+            padding: 16px 20px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .ai-option-btn:hover::before {
+            left: 100%;
+        }
+
+        .ai-option-btn:hover {
+            background: rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .ai-option-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .ai-option-text {
+            flex: 1;
+        }
+
+        .ai-option-arrow {
+            font-size: 18px;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .ai-option-btn:hover .ai-option-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* 关闭按钮 */
+        .ai-welcome-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-welcome-close:hover {
+            background: rgba(255, 59, 48, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* 跳过提示 */
+        .ai-skip-hint {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 640px) {
+            .ai-welcome-card {
+                padding: 30px 20px;
+                max-width: 90%;
+            }
+
+            .ai-option-btn {
+                padding: 14px 16px;
+                font-size: 15px;
+            }
+
+            .ai-typing-text {
+                font-size: 16px;
+            }
+        }
     </style>
+
+    <!-- ========== AI对话框测试函数（放在最前面，避免语法错误） ========== -->
+    <script>
+        // AI欢迎消息
+        var welcomeMessages = [
+            "Hey! 👋 欢迎来到公子小白的个人主页！",
+            "我是他的AI数字助手 🤖",
+            "想了解他的故事吗？我可以帮你快速导航～"
+        ];
+
+        // 打字机效果函数
+        window.typeWelcomeMessage = function(msgIndex, charIndex) {
+            var textElement = document.getElementById('aiTypingText');
+
+            if (!textElement) {
+                console.error('找不到 #aiTypingText 元素');
+                return;
+            }
+
+            if (msgIndex >= welcomeMessages.length) {
+                console.log('✅ 所有欢迎消息显示完成');
+                return;
+            }
+
+            var currentMessage = welcomeMessages[msgIndex];
+
+            if (charIndex === 0) {
+                textElement.textContent = '';
+            }
+
+            if (charIndex < currentMessage.length) {
+                textElement.textContent += currentMessage[charIndex];
+                setTimeout(function() {
+                    window.typeWelcomeMessage(msgIndex, charIndex + 1);
+                }, 50);
+            } else {
+                setTimeout(function() {
+                    window.typeWelcomeMessage(msgIndex + 1, 0);
+                }, 1000);
+            }
+        };
+
+        // 隐藏AI欢迎对话框
+        window.hideAIWelcome = function() {
+            var overlay = document.getElementById('aiWelcomeOverlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+                console.log('✅ AI欢迎对话框已关闭');
+                console.log('💡 提示：点击右上角"🤖 测试AI"按钮可再次查看');
+            }
+        };
+
+        // 处理选项按钮点击
+        window.handleOptionClick = function(action) {
+            console.log('🎯 选项被点击：' + action);
+
+            // 隐藏对话框
+            window.hideAIWelcome();
+
+            // 根据不同操作执行不同逻辑
+            setTimeout(function() {
+                switch(action) {
+                    case 'about':
+                        console.log('📍 跳转到关于页面');
+                        var aboutLink = document.getElementById('about-link');
+                        if (aboutLink) {
+                            aboutLink.click();
+                        } else {
+                            window.location.href = '#about';
+                        }
+                        break;
+
+                    case 'works':
+                        console.log('🚀 跳转到作品集页面');
+                        var portfolioLink = document.getElementById('portfolio-link');
+                        if (portfolioLink) {
+                            portfolioLink.click();
+                        } else {
+                            window.location.href = '#portfolio';
+                        }
+                        break;
+
+                    case 'chat':
+                        console.log('💬 打开AI聊天窗口');
+
+                        // 尝试打开AI聊天窗口（带重试机制）
+                        var retryCount = 0;
+                        var maxRetries = 10;
+                        var retryInterval = 200; // 每200ms重试一次
+
+                        function tryOpenChat() {
+                            var aiButton = document.getElementById('ai-avatar-button');
+                            if (aiButton) {
+                                console.log('✅ AI聊天按钮已找到，正在打开...');
+                                aiButton.click();
+                            } else if (retryCount < maxRetries) {
+                                retryCount++;
+                                console.log('⏳ 等待AI聊天按钮创建... (' + retryCount + '/' + maxRetries + ')');
+                                setTimeout(tryOpenChat, retryInterval);
+                            } else {
+                                console.warn('⚠️ AI聊天按钮未找到，尝试跳转到联系页面');
+                                window.location.href = '#contact';
+                            }
+                        }
+
+                        // 延迟500ms后开始尝试（等待AI聊天脚本初始化）
+                        setTimeout(tryOpenChat, 500);
+                        break;
+                }
+            }, 500);
+        };
+
+        // 绑定AI对话框按钮事件（页面加载时执行）
+        window.bindAIWelcomeEvents = function() {
+            console.log('🔗 绑定AI欢迎对话框事件...');
+
+            // 关闭按钮
+            var closeBtn = document.getElementById('aiWelcomeClose');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', window.hideAIWelcome);
+            }
+
+            // 点击背景关闭
+            var overlay = document.getElementById('aiWelcomeOverlay');
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target.id === 'aiWelcomeOverlay') {
+                        window.hideAIWelcome();
+                    }
+                });
+            }
+
+            // ESC键关闭
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    var overlay = document.getElementById('aiWelcomeOverlay');
+                    if (overlay && overlay.classList.contains('active')) {
+                        window.hideAIWelcome();
+                    }
+                }
+            });
+
+            // 选项按钮点击事件
+            var optionBtns = document.querySelectorAll('.ai-option-btn');
+            console.log('找到 ' + optionBtns.length + ' 个选项按钮');
+            optionBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var action = btn.getAttribute('data-action');
+                    window.handleOptionClick(action);
+                });
+            });
+
+            console.log('✅ AI欢迎对话框事件绑定完成');
+        };
+
+        // 全局测试函数
+        window.testAI = function() {
+            console.log('🧪 测试按钮被点击！');
+
+            try {
+                // 获取overlay元素
+                var overlay = document.getElementById('aiWelcomeOverlay');
+
+                if (!overlay) {
+                    alert('❌ 找不到AI对话框元素！');
+                    console.error('找不到元素：#aiWelcomeOverlay');
+                    return;
+                }
+
+                // 确保事件已绑定
+                window.bindAIWelcomeEvents();
+
+                // 显示对话框
+                overlay.classList.add('active');
+                console.log('✅ AI对话框已显示！');
+
+                // 开始打字机效果
+                window.typeWelcomeMessage(0, 0);
+
+            } catch (error) {
+                alert('❌ 错误：' + error.message);
+                console.error('详细错误：', error);
+            }
+        };
+
+        console.log('✅ AI测试函数已加载！');
+    </script>
 </head>
 <body class="loading">
     <!-- Page Loader -->
@@ -1047,13 +1511,55 @@
         </div>
     </div>
 
+    <!-- AI智能开场对话 -->
+    <div class="ai-welcome-overlay" id="aiWelcomeOverlay">
+        <div class="ai-welcome-card">
+            <!-- 关闭按钮 -->
+            <button class="ai-welcome-close" id="aiWelcomeClose" aria-label="关闭">
+                ✕
+            </button>
+
+            <!-- AI头像 -->
+            <div class="ai-avatar-welcome">
+                🤖
+            </div>
+
+            <!-- 欢迎语（打字机效果） -->
+            <div class="ai-typing-text">
+                <span id="aiTypingText"></span><span class="ai-typing-cursor"></span>
+            </div>
+
+            <!-- 选项按钮 -->
+            <div class="ai-welcome-options">
+                <button class="ai-option-btn" data-action="about">
+                    <span class="ai-option-icon">👋</span>
+                    <span class="ai-option-text">认识一下公子小白</span>
+                    <span class="ai-option-arrow">→</span>
+                </button>
+                <button class="ai-option-btn" data-action="works">
+                    <span class="ai-option-icon">🚀</span>
+                    <span class="ai-option-text">看看他的AI作品</span>
+                    <span class="ai-option-arrow">→</span>
+                </button>
+                <button class="ai-option-btn" data-action="chat">
+                    <span class="ai-option-icon">💬</span>
+                    <span class="ai-option-text">和AI聊聊天</span>
+                    <span class="ai-option-arrow">→</span>
+                </button>
+            </div>
+
+            <!-- 跳过提示 -->
+            <div class="ai-skip-hint">按 ESC 或点击背景关闭</div>
+        </div>
+    </div>
+
     <!-- Navigation - Premium International Design -->
     <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b" style="background: var(--nav-bg); border-color: var(--border-color);">
         <div class="max-w-7xl mx-auto px-8 py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo - Modern & Bold -->
                 <a href="#home" class="nav-link text-2xl font-black tracking-tighter">
-                    <span style="color: var(--text-primary);">XIAOYU</span>
+                    <span style="color: var(--text-primary);">XIAOBAI</span>
                     <span style="color: var(--accent);">.</span>
                 </a>
 
@@ -1069,6 +1575,11 @@
                         <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                         </svg>
+                    </button>
+
+                    <!-- Test AI Dialog Button (临时测试用) -->
+                    <button onclick="window.testAI()" class="px-3 py-1 rounded-lg text-xs font-bold transition-all hover:scale-105" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;" title="测试AI欢迎对话框">
+                        🤖 测试AI
                     </button>
                 </div>
 
@@ -1112,9 +1623,7 @@
 
                         <!-- Name - Massive Gradient Title -->
                         <h1 class="text-7xl md:text-8xl lg:text-9xl font-heading font-black leading-none reveal tracking-tight">
-                            <span class="gradient-text">XIAOYU</span>
-                            <br>
-                            <span class="gradient-text">WANG</span>
+                            <span class="gradient-text">XIAOBAI</span>
                         </h1>
 
                         <!-- Chinese Name - Subtitle -->
@@ -2571,34 +3080,36 @@
 
             let visibleCount = 0;
 
-            projectCards.forEach(card => {
+            projectCards.forEach(function(card) {
                 // 获取标题
-                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                var titleEl = card.querySelector('h3');
+                var title = titleEl ? titleEl.textContent.toLowerCase() : '';
 
                 // 获取描述
-                const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+                var descEl = card.querySelector('p');
+                var desc = descEl ? descEl.textContent.toLowerCase() : '';
 
                 // 获取技术标签
-                const techTags = Array.from(card.querySelectorAll('[class*="rounded-full"]'))
-                    .map(tag => tag.textContent.toLowerCase())
+                var techTags = Array.from(card.querySelectorAll('[class*="rounded-full"]'))
+                    .map(function(tag) { return tag.textContent.toLowerCase(); })
                     .join(' ');
 
                 // 获取状态标签
-                const statusTags = Array.from(card.querySelectorAll('.bg-green-500\\/10, .bg-amber-500\\/10'))
-                    .map(tag => tag.textContent.toLowerCase())
+                var statusTags = Array.from(card.querySelectorAll('.bg-green-500\\/10, .bg-amber-500\\/10'))
+                    .map(function(tag) { return tag.textContent.toLowerCase(); })
                     .join(' ');
 
                 // 获取类别标签
-                const categoryTags = Array.from(card.querySelectorAll('.bg-blue-500\\/10'))
-                    .map(tag => tag.textContent.toLowerCase())
+                var categoryTags = Array.from(card.querySelectorAll('.bg-blue-500\\/10'))
+                    .map(function(tag) { return tag.textContent.toLowerCase(); })
                     .join(' ');
 
                 // 合并所有可搜索文本
-                const searchableText = `${title} ${desc} ${techTags} ${statusTags} ${categoryTags}`;
+                var searchableText = title + ' ' + desc + ' ' + techTags + ' ' + statusTags + ' ' + categoryTags;
 
                 // 搜索匹配（支持多词搜索）
-                const searchTerms = searchTerm.split(/\s+/);
-                const isMatch = searchTerms.every(term => searchableText.includes(term));
+                var searchTerms = searchTerm.split(/\s+/);
+                var isMatch = searchTerms.every(function(term) { return searchableText.indexOf(term) >= 0; });
 
                 if (isMatch) {
                     card.style.display = '';
@@ -2775,9 +3286,332 @@
     <script src="ai-chatbot-secure.js"></script>
     <script>
         // 初始化AI数字分身（安全版 - API Key隐藏在服务器端）
-        const aiAvatar = new AIAvatarChatSecure({
-            apiUrl: '/api/chat' // 使用Vercel API代理，安全！
+        // 部署到Vercel后，在Vercel的环境变量中添加API Key即可使用
+        try {
+            if (typeof AIAvatarChatSecure !== 'undefined') {
+                var aiAvatar = new AIAvatarChatSecure({
+                    apiUrl: '/api/chat' // 使用Vercel API代理
+                });
+                console.log('%c✅ AI数字分身已加载（部署后可用）', 'color: #00D4FF; font-size: 14px; font-weight: bold;');
+
+                // 验证按钮是否创建成功
+                setTimeout(function() {
+                    var button = document.getElementById('ai-avatar-button');
+                    if (button) {
+                        console.log('%c✅ AI聊天按钮已创建，可以开始对话', 'color: #10B981; font-size: 12px;');
+                    } else {
+                        console.warn('%c⚠️ AI聊天按钮未找到，可能初始化失败', 'color: #FFA500; font-size: 12px;');
+                    }
+                }, 1000);
+            } else {
+                console.warn('%c⚠️ AI数字分身组件未找到', 'color: #FFA500; font-size: 14px;');
+            }
+        } catch (error) {
+            console.warn('⚠️ AI数字分身初始化失败：', error.message);
+        }
+    </script>
+
+    <!-- ========== AI智能开场对话系统 ========== -->
+    <script>
+        // AI欢迎消息数组已在 <head> 中定义，这里不再重复声明
+
+        // 检查是否已显示过（避免每次都弹）
+        function shouldShowWelcome() {
+            const lastShown = localStorage.getItem('aiWelcomeLastShown');
+            if (!lastShown) return true;
+
+            const daysSinceLastShown = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
+            return daysSinceLastShown >= 1; // 1天内只显示一次
+        }
+
+        // 显示开场对话（全局函数）
+        window.showAIWelcome = function() {
+            console.log('%c⏰ 准备显示AI欢迎对话框...', 'color: #FFA500; font-size: 14px; font-weight: bold;');
+
+            // 延迟3秒显示（等待page loader消失 + 用户先看到主页）
+            setTimeout(function() {
+                console.log('%c🎯 3秒已到，开始显示对话框...', 'color: #00D4FF; font-size: 14px; font-weight: bold;');
+
+                var overlay = document.getElementById('aiWelcomeOverlay');
+                console.log('📍 找到overlay元素:', overlay);
+
+                if (overlay) {
+                    overlay.classList.add('active');
+                    console.log('✅ 已添加 active 类');
+                    console.log('📍 当前类名:', overlay.className);
+
+                    // 使用全局打字机函数
+                    if (window.typeWelcomeMessage) {
+                        window.typeWelcomeMessage(0, 0);
+                        console.log('✅ 打字机效果已启动');
+                    } else {
+                        console.error('❌ typeWelcomeMessage 函数不存在');
+                    }
+
+                    console.log('%c✅ AI欢迎对话框已自动显示', 'color: #10B981; font-size: 16px; font-weight: bold;');
+                } else {
+                    console.error('%c❌ 找不到 aiWelcomeOverlay 元素！', 'color: #FF0000; font-size: 16px; font-weight: bold;');
+                }
+            }, 3000);
+        };
+
+        // 诊断函数：检查AI欢迎对话框状态
+        window.diagnoseAIWelcome = function() {
+            console.log('\n========== AI欢迎对话框诊断 ==========');
+            const lastShown = localStorage.getItem('aiWelcomeLastShown');
+            console.log('1. localStorage记录:', lastShown);
+
+            if (lastShown) {
+                const hoursSince = ((Date.now() - parseInt(lastShown)) / (1000 * 60 * 60)).toFixed(2);
+                const daysSince = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
+                console.log('2. 距上次显示:', hoursSince, '小时 (', daysSince.toFixed(2), '天)');
+                console.log('3. 是否应该显示:', daysSince >= 1 ? '✅ 是' : '❌ 否（24小时内）');
+            } else {
+                console.log('2. 距上次显示: 无记录');
+                console.log('3. 是否应该显示: ✅ 是（首次访问）');
+            }
+
+            const overlay = document.getElementById('aiWelcomeOverlay');
+            console.log('4. 对话框元素存在:', overlay ? '✅ 是' : '❌ 否');
+            console.log('5. 对话框当前状态:', overlay ? overlay.className : 'N/A');
+
+            console.log('\n💡 建议:');
+            if (lastShown) {
+                console.log('   - 运行 window.resetAIWelcome() 清除记录');
+                console.log('   - 或点击右上角"🤖 测试AI"按钮');
+            }
+            console.log('====================================\n');
+        };
+
+        // 重置函数：清除localStorage记录
+        window.resetAIWelcome = function() {
+            localStorage.removeItem('aiWelcomeLastShown');
+            console.log('✅ 已清除AI欢迎对话框记录，请刷新页面测试');
+            location.reload();
+        };
+
+        // 强制显示（用于测试，忽略localStorage）
+        function showAIWelcomeForce() {
+            const overlay = document.getElementById('aiWelcomeOverlay');
+            if (overlay) {
+                overlay.classList.add('active');
+                typeWelcomeMessage(0, 0);
+            }
+        }
+
+        // 测试函数（清除localStorage并显示）
+        function testAIDialog() {
+            localStorage.clear(); // 清除记录
+            showAIWelcomeForce(); // 立即显示
+        }
+
+        // 打字机效果函数已在 <head> 中定义（window.typeWelcomeMessage），这里不再重复
+
+        // hideAIWelcome 和 handleOptionClick 函数已在 <head> 中定义为全局函数，这里不再重复
+
+        // 初始化事件监听
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('%c🔧 DOMContentLoaded 事件触发', 'color: #667eea; font-size: 14px; font-weight: bold;');
+
+            // 使用全局函数绑定所有AI对话框事件
+            if (window.bindAIWelcomeEvents) {
+                window.bindAIWelcomeEvents();
+            }
+
+            console.log('%c✅ 准备在页面加载完成后显示AI欢迎对话框', 'color: #10B981; font-size: 14px; font-weight: bold;');
+
+            // 页面加载完成后显示欢迎
+            window.addEventListener('load', () => {
+                console.log('%c🚀 Window load 事件触发，开始显示AI欢迎对话框', 'color: #00D4FF; font-size: 14px; font-weight: bold;');
+
+                if (window.showAIWelcome) {
+                    window.showAIWelcome();
+                } else {
+                    console.error('❌ showAIWelcome 函数不存在！');
+                }
+            });
         });
+
+        // 控制提示：手动触发欢迎对话框（调试用）
+        console.log('%c💬 AI欢迎对话框已集成！', 'color: #667eea; font-size: 16px; font-weight: bold;');
+        console.log('%c自动显示：每次刷新页面3秒后自动弹出', 'color: #10B981; font-size: 12px;');
+        console.log('%c手动触发：点击右上角"🤖 测试AI"按钮', 'color: #00D4FF; font-size: 12px;');
+
+        // ========== 将关键函数暴露到全局作用域 ==========
+        window.testAIDialog = function() {
+            try {
+                console.log('🧪 测试按钮被点击！');
+
+                // 清除localStorage
+                localStorage.removeItem('aiWelcomeLastShown');
+
+                // 获取overlay元素
+                const overlay = document.getElementById('aiWelcomeOverlay');
+
+                if (!overlay) {
+                    alert('❌ 错误：找不到AI对话框元素！\n请刷新页面（Ctrl+Shift+R）重试。');
+                    console.error('找不到元素：#aiWelcomeOverlay');
+                    return;
+                }
+
+                // 显示对话框
+                overlay.classList.add('active');
+                console.log('✅ AI对话框已显示！');
+
+                // 开始打字机效果
+                if (typeof typeWelcomeMessage === 'function') {
+                    typeWelcomeMessage(0, 0);
+                } else {
+                    console.warn('⚠️ 打字机函数未找到，仅显示对话框');
+                }
+
+            } catch (error) {
+                alert('❌ 错误：' + error.message);
+                console.error('详细错误：', error);
+            }
+        };
+
+        window.showAIWelcomeForce = showAIWelcomeForce;
+
+        console.log('✅ 全局测试函数已加载到 window 对象！');
+    </script>
+
+    <!-- ========== 隐藏彩蛋系统 ========== -->
+    <script>
+        // Konami代码: ↑↑↓↓←→←→BA
+        const konamiCode = [
+            38,  // ↑
+            38,  // ↑
+            40,  // ↓
+            40,  // ↓
+            37,  // ←
+            39,  // →
+            37,  // ←
+            39,  // →
+            66,  // B
+            65   // A
+        ];
+
+        let konamiIndex = 0;
+        let easterEggTriggered = false;
+
+        // 监听键盘输入
+        document.addEventListener('keydown', (e) => {
+            // 如果已经触发过，按ESC关闭
+            if (easterEggTriggered && e.keyCode === 27) {
+                disableEasterEgg();
+                return;
+            }
+
+            // 检查按键
+            if (e.keyCode === konamiCode[konamiIndex]) {
+                konamiIndex++;
+
+                // 输入完成，触发彩蛋！
+                if (konamiIndex === konamiCode.length) {
+                    triggerEasterEgg();
+                    konamiIndex = 0;
+                }
+            } else {
+                // 输入错误，重置
+                konamiIndex = 0;
+            }
+        });
+
+        // 触发彩蛋
+        function triggerEasterEgg() {
+            if (easterEggTriggered) return;
+            easterEggTriggered = true;
+
+            // 1. 显示提示
+            showToast('🎉 恭喜发现隐藏彩蛋！\n你解锁了彩虹模式！');
+
+            // 2. 添加彩虹模式
+            setTimeout(() => {
+                document.body.classList.add('rainbow-mode');
+
+                // 3. 飘落表情符号
+                rainEmojis();
+
+                // 4. 数字变成666
+                makeNumbersLucky();
+            }, 500);
+        }
+
+        // 关闭彩蛋
+        function disableEasterEgg() {
+            easterEggTriggered = false;
+            document.body.classList.remove('rainbow-mode');
+
+            // 恢复数字
+            const numbers = document.querySelectorAll('.lucky-number');
+            numbers.forEach(num => {
+                num.classList.remove('lucky-number');
+            });
+        }
+
+        // 显示提示框
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'easter-egg-toast';
+            toast.innerHTML = message.replace('\n', '<br>');
+            document.body.appendChild(toast);
+
+            // 3秒后自动消失
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, -50%) scale(0)';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
+        // 飘落表情符号
+        function rainEmojis() {
+            const emojis = ['🎉', '🎊', '✨', '🌟', '💫', '🎯', '🔥', '💪', '🚀'];
+
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'falling-emoji';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + 'vw';
+                    emoji.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    document.body.appendChild(emoji);
+
+                    // 动画结束后移除
+                    setTimeout(() => emoji.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // 把数字变成666
+        function makeNumbersLucky() {
+            // 找到所有大数字
+            const statNumbers = document.querySelectorAll('.card .text-5xl');
+
+            statNumbers.forEach((num, index) => {
+                setTimeout(() => {
+                    // 添加动画类
+                    num.classList.add('lucky-number');
+
+                    // 保存原值
+                    const originalText = num.textContent;
+
+                    // 变成666
+                    num.textContent = '666';
+                    num.style.color = '#ffd700';
+
+                    // 5秒后恢复
+                    setTimeout(() => {
+                        num.textContent = originalText;
+                        num.style.color = '';
+                    }, 5000);
+                }, index * 200);
+            });
+        }
+
+        // 控制台提示
+        console.log('%c🎮 想找彩蛋？试试: ↑↑↓↓←→←→BA', 'color: #667eea; font-size: 16px; font-weight: bold;');
     </script>
 
 </body>

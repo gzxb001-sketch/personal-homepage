@@ -3,69 +3,194 @@
  * 适配公子小白网站的暗色主题
  */
 
-/* 浮动按钮 */
+/* ========== AI分身按钮 - 超炫酷版本 ========== */
+
+/* 浮动按钮容器 */
 #ai-avatar-button {
-    position: fixed;
-    top: 100px; /* 移到右上角，导航栏下方 */
+    position: fixed !important;
+    /* 位置由JavaScript动态计算，基于"测试AI"按钮的位置 */
+    top: 90px; /* 默认位置，会被JS覆盖 */
     right: 30px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    bottom: auto;
+    left: auto;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #00D4FF 100%);
     border-radius: 50%;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    cursor: grab; /* 拖拽光标 */
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-    transition: all 0.3s ease;
-    z-index: 9998;
-    opacity: 1;
-    user-select: none; /* 防止拖拽时选中 */
+    cursor: grab;
+    box-shadow:
+        0 0 30px rgba(102, 126, 234, 0.8),
+        0 0 60px rgba(0, 212, 255, 0.6),
+        0 10px 40px rgba(102, 126, 234, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    z-index: 99998 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    user-select: none;
+    border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
+/* 脉冲动画 - 像雷达波一样扩散 */
+#ai-avatar-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* 第二个脉冲波（延迟）*/
+#ai-avatar-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    animation-delay: 1s; /* 延迟1秒 */
+}
+
+/* 悬停效果 */
 #ai-avatar-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+    transform: scale(1.15);
+    box-shadow:
+        0 0 40px rgba(102, 126, 234, 1),
+        0 0 80px rgba(0, 212, 255, 0.8),
+        0 15px 60px rgba(102, 126, 234, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
+/* 拖拽状态 */
 #ai-avatar-button.dragging {
     cursor: grabbing;
     transition: none; /* 拖拽时禁用过渡动画 */
+    transform: scale(1.05);
 }
 
+/* 隐藏状态 */
 #ai-avatar-button.ai-avatar-hidden {
     opacity: 0;
-    pointer-events: none; /* 确保隐藏的按钮不能被点击 */
+    pointer-events: none;
     transform: scale(0.8);
 }
 
-#ai-avatar-button svg {
-    width: 30px;
-    height: 30px;
+/* 机器人图标容器 */
+#ai-avatar-button .ai-icon-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 机器人图标 */
+#ai-avatar-button .ai-robot-icon {
+    font-size: 40px; /* 增大图标 */
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+    animation: robot-float 3s ease-in-out infinite;
+}
+
+@keyframes robot-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* AI标签 */
+#ai-avatar-button .ai-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
     color: white;
+    font-size: 12px; /* 增大字体 */
+    font-weight: 900;
+    padding: 4px 8px; /* 增大内边距 */
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(255, 107, 107, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: badge-pulse 2s ease-in-out infinite;
+    z-index: 10;
+    border: 2px solid white; /* 添加白色边框 */
+}
+
+@keyframes badge-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 3px 12px rgba(255, 107, 107, 0.7);
+    }
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 5px 20px rgba(255, 107, 107, 1);
+    }
+}
+
+/* 旧版SVG样式（兼容）*/
+#ai-avatar-button svg {
+    width: 42px;
+    height: 42px;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 /* 聊天窗口 */
 #ai-avatar-window {
     position: fixed;
-    top: 170px; /* 移到右上角，与按钮保持70px间距 */
+    /* 位置由JavaScript动态计算，在AI数字分身按钮下方 */
     right: 30px;
+    bottom: auto;
+    left: auto;
     width: 380px;
     height: 600px;
-    max-height: calc(100vh - 190px); /* 调整最大高度 */
-    background: var(--card-bg);
+    max-height: calc(100vh - 200px);
+    background: rgba(26, 26, 46, 0.98) !important;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
-    transform: scale(0.9) translateY(-20px); /* 改为向上展开 */
+    transform: scale(0.9) translateY(-10px); /* 从上方展开 */
     pointer-events: none;
     transition: all 0.3s ease;
-    z-index: 9999;
-    border: 1px solid var(--border-color);
+    z-index: 99999; /* 比按钮更高 */
+    border: 2px solid rgba(102, 126, 234, 0.6) !important;
+    backdrop-filter: blur(20px);
 }
 
 #ai-avatar-window.ai-avatar-open {
@@ -82,8 +207,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: move; /* 拖拽光标 */
+    cursor: move; /* 移动光标，提示可以拖动 */
     user-select: none; /* 防止拖拽时选中文字 */
+    position: relative;
+}
+
+/* 添加拖动提示图标 */
+.ai-avatar-header::after {
+    content: '⋮⋮';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    pointer-events: none;
+}
+
+.ai-avatar-header:hover::after {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .ai-avatar-info {
@@ -165,7 +308,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    background: var(--bg-color);
+    background: rgba(10, 10, 10, 0.5) !important; /* 深色半透明背景 */
 }
 
 .ai-avatar-messages::-webkit-scrollbar {
@@ -209,9 +352,9 @@
 }
 
 .ai-avatar-ai .ai-avatar-bubble {
-    background: var(--card-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
+    background: rgba(39, 39, 42, 0.95) !important; /* 深灰色不透明背景 */
+    color: #ffffff !important; /* 白色文字 */
+    border: 1px solid rgba(102, 126, 234, 0.4) !important; /* 紫色边框 */
     border-bottom-left-radius: 4px;
 }
 
@@ -267,8 +410,8 @@
 /* 输入区域 */
 .ai-avatar-input-area {
     padding: 16px 20px;
-    background: var(--card-bg);
-    border-top: 1px solid var(--border-color);
+    background: rgba(26, 26, 46, 0.95) !important; /* 深色不透明背景 */
+    border-top: 2px solid rgba(102, 126, 234, 0.5) !important; /* 紫色边框 */
     display: flex;
     gap: 12px;
 }
@@ -276,22 +419,24 @@
 .ai-avatar-input-area input {
     flex: 1;
     padding: 12px 16px;
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
+    background: rgba(10, 10, 10, 0.8) !important; /* 深色背景 */
+    border: 2px solid rgba(102, 126, 234, 0.3) !important; /* 紫色边框 */
     border-radius: 24px;
-    color: var(--text-primary);
+    color: #ffffff !important; /* 白色文字 */
     font-size: 14px;
     outline: none;
     transition: all 0.2s ease;
 }
 
 .ai-avatar-input-area input:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3) !important;
+    background: rgba(10, 10, 10, 0.95) !important; /* 聚焦时更深的背景 */
 }
 
 .ai-avatar-input-area input::placeholder {
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.5) !important; /* 半透明白色占位符 */
+}
 }
 
 .ai-avatar-send-btn {
@@ -328,16 +473,25 @@
     #ai-avatar-window {
         width: calc(100vw - 40px);
         right: 20px;
-        top: 80px; /* 移动端调整为靠上 */
-        height: calc(100vh - 100px);
+        top: 170px; /* 移动端：在按钮下方 */
+        height: calc(100vh - 190px);
         max-height: none;
     }
 
     #ai-avatar-button {
         top: 80px; /* 移动端按钮位置 */
         right: 20px;
-        width: 56px;
-        height: 56px;
+        width: 65px; /* 移动端增大 */
+        height: 65px;
+    }
+
+    #ai-avatar-button .ai-robot-icon {
+        font-size: 32px; /* 移动端图标尺寸 */
+    }
+
+    #ai-avatar-button .ai-badge {
+        font-size: 10px; /* 移动端徽章字体 */
+        padding: 3px 6px;
     }
 
     .ai-avatar-bubble {
