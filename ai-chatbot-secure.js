@@ -297,19 +297,36 @@ class AIAvatarChatSecure {
 
     // 绑定事件
     bindEvents() {
+        // AI数字分身按钮点击事件 - 打开/关闭聊天窗口
+        const aiButton = document.getElementById('ai-avatar-button');
+        if (aiButton) {
+            aiButton.addEventListener('click', () => {
+                console.log('🤖 AI数字分身按钮被点击');
+                this.toggle();
+            });
+            console.log('✅ AI按钮点击事件已绑定');
+        } else {
+            console.error('❌ AI按钮未找到，无法绑定点击事件');
+        }
+
+        // 关闭按钮
         document.getElementById('ai-avatar-close').addEventListener('click', () => {
             this.close();
         });
 
+        // 发送按钮
         document.getElementById('ai-avatar-send').addEventListener('click', () => {
             this.sendMessage();
         });
 
+        // 输入框回车发送
         document.getElementById('ai-avatar-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 this.sendMessage();
             }
         });
+
+        console.log('✅ 所有AI聊天事件已绑定');
     }
 
     toggle() {
