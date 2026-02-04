@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/spa.html"
+    },
+    {
       "source": "/api/:path*",
       "destination": "/api/:path*"
     }
