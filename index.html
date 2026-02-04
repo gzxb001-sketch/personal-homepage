@@ -1401,16 +1401,15 @@
 
                         // 尝试打开AI聊天窗口（带重试机制）
                         var retryCount = 0;
-                        var maxRetries = 30; // 增加到30次（3秒）
-                        var retryInterval = 100; // 减少到100ms，更快响应
+                        var maxRetries = 30;
+                        var retryInterval = 100;
 
                         function tryOpenChat() {
-                            var aiButton = document.getElementById('ai-avatar-button');
+                            var aiButton = document.querySelector('.ai-assistant-btn');
 
-                            console.log('🔍 查找AI聊天按钮... 尝试 #' + (retryCount + 1));
+                            console.log('🔍 查找AI助手按钮... 尝试 #' + (retryCount + 1));
 
                             if (aiButton) {
-                                // 检查按钮是否真的可见（不仅存在于DOM）
                                 var rect = aiButton.getBoundingClientRect();
                                 var isVisible = rect.width > 0 && rect.height > 0;
 
@@ -1418,15 +1417,13 @@
                                     found: true,
                                     visible: isVisible,
                                     width: rect.width,
-                                    height: rect.height,
-                                    top: rect.top,
-                                    left: rect.left
+                                    height: rect.height
                                 });
 
                                 if (isVisible) {
-                                    console.log('✅ AI聊天按钮已找到且可见，正在点击...');
+                                    console.log('✅ AI助手按钮已找到且可见，正在点击...');
                                     aiButton.click();
-                                    console.log('🎯 已点击AI聊天按钮，聊天窗口应该会打开');
+                                    console.log('🎯 已点击AI助手按钮');
                                     return;
                                 }
                             }
@@ -1437,8 +1434,8 @@
                                 console.log('⏳ 等待AI聊天按钮初始化... (' + retryCount + '/' + maxRetries + ')');
                                 setTimeout(tryOpenChat, retryInterval);
                             } else {
-                                console.error('❌ AI聊天按钮未找到或不可见');
-                                alert('AI数字分身正在加载中...\n\n请稍等片刻，或直接点击页面右侧的🤖图标！');
+                                console.error('❌ AI助手按钮未找到或不可见');
+                                alert('AI助手正在加载中...\n\n请稍等片刻，或直接点击页面右侧的🤖图标！');
                             }
                         }
 
@@ -3304,46 +3301,13 @@
         window.addEventListener('resize', initParticles);
     </script>
 
-    <!-- AI数字分身聊天组件（安全版 - Vercel API代理） -->
-    <link rel="stylesheet" href="ai-chatbot.css">
-    <script src="ai-chatbot-secure.js"></script>
+    <!-- ========== 公子小白AI助手 ========== -->
+    <link rel="stylesheet" href="ai-assistant.css">
+    <script src="ai-assistant.js"></script>
     <script>
-        // 初始化AI数字分身（安全版 - API Key隐藏在服务器端）
-        // 部署到Vercel后，在Vercel的环境变量中添加API Key即可使用
-        try {
-            // 单例检查：确保全局只有一个AI聊天实例
-            if (window.aiAvatarInstance) {
-                console.warn('⚠️ AI数字分身已存在，跳过重复初始化');
-            } else if (typeof AIAvatarChatSecure !== 'undefined') {
-                window.aiAvatarInstance = new AIAvatarChatSecure({
-                    apiUrl: '/api/chat' // 使用Vercel API代理
-                });
-                console.log('%c✅ AI数字分身已加载（部署后可用）', 'color: #00D4FF; font-size: 14px; font-weight: bold;');
-
-                // 验证按钮是否创建成功
-                setTimeout(function() {
-                    var button = document.getElementById('ai-avatar-button');
-                    if (button) {
-                        console.log('%c✅ AI聊天按钮已创建，可以开始对话', 'color: #10B981; font-size: 12px;');
-
-                        // 检查是否有重复按钮
-                        var allButtons = document.querySelectorAll('#ai-avatar-button');
-                        if (allButtons.length > 1) {
-                            console.warn('⚠️ 发现', allButtons.length, '个AI按钮，保留第一个，移除其他');
-                            for (var i = 1; i < allButtons.length; i++) {
-                                allButtons[i].remove();
-                            }
-                        }
-                    } else {
-                        console.warn('%c⚠️ AI聊天按钮未找到，可能初始化失败', 'color: #FFA500; font-size: 12px;');
-                    }
-                }, 1000);
-            } else {
-                console.warn('%c⚠️ AI数字分身组件未找到', 'color: #FFA500; font-size: 14px;');
-            }
-        } catch (error) {
-            console.warn('⚠️ AI数字分身初始化失败：', error.message);
-        }
+        // AI助手会自动初始化
+        // API Key配置：在Vercel Dashboard → Settings → Environment Variables 中添加 ZHIPU_API_KEY
+        console.log('%c🤖 公子小白AI助手已加载', 'color: #667eea; font-size: 14px; font-weight: bold;');
     </script>
 
     <!-- ========== AI智能开场对话系统 ========== -->
