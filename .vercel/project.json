@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_biYjA8IjVUtGQnlGjj1KG8XN0xlX",
+  "orgId": "team_NR6RyBtTf01EY1y3FF5Obbwf",
+  "projectName": "personal-homepage",
+  "settings": {
+    "createdAt": 1770117374591,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}
