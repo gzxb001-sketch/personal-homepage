@@ -219,6 +219,13 @@ class AIAvatarChatSecure {
 
     // 创建聊天按钮
     createChatButton() {
+        // 防御性检查：确保只有一个AI按钮实例
+        const existingButton = document.getElementById('ai-avatar-button');
+        if (existingButton) {
+            console.log('⚠️ AI按钮已存在，移除旧按钮');
+            existingButton.remove();
+        }
+
         const button = document.createElement('div');
         button.id = 'ai-avatar-button';
         button.innerHTML = `
@@ -257,6 +264,13 @@ class AIAvatarChatSecure {
 
     // 创建聊天窗口
     createChatWindow() {
+        // 防御性检查：确保只有一个聊天窗口实例
+        const existingWindow = document.getElementById('ai-avatar-window');
+        if (existingWindow) {
+            console.log('⚠️ AI聊天窗口已存在，移除旧窗口');
+            existingWindow.remove();
+        }
+
         const chatWindow = document.createElement('div');
         chatWindow.id = 'ai-avatar-window';
         chatWindow.innerHTML = `
@@ -293,6 +307,7 @@ class AIAvatarChatSecure {
             </div>
         `;
         document.body.appendChild(chatWindow);
+        console.log('✅ AI聊天窗口已创建');
     }
 
     // 绑定事件
