@@ -273,6 +273,30 @@ class AIAvatarChatSecure {
 
         const chatWindow = document.createElement('div');
         chatWindow.id = 'ai-avatar-window';
+
+        // 内联样式作为fallback，确保即使CSS没有加载也能正常显示
+        chatWindow.style.cssText = `
+            position: fixed;
+            right: 30px;
+            width: 380px;
+            height: 600px;
+            max-height: calc(100vh - 200px);
+            background: #1a1a2e !important;
+            background: rgb(26, 26, 46) !important;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.9) translateY(-10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 99999 !important;
+            border: 2px solid #667eea !important;
+        `;
+
         chatWindow.innerHTML = `
             <div class="ai-avatar-header">
                 <div class="ai-avatar-info">
@@ -284,22 +308,23 @@ class AIAvatarChatSecure {
                 </div>
                 <button class="ai-avatar-close" id="ai-avatar-close">×</button>
             </div>
-            <div class="ai-avatar-messages" id="ai-avatar-messages">
+            <div class="ai-avatar-messages" id="ai-avatar-messages" style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; background: #0a0a0a !important;">
                 <div class="ai-avatar-message ai-avatar-welcome">
-                    <div class="ai-avatar-bubble">
+                    <div class="ai-avatar-bubble" style="max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.6; word-wrap: break-word; background: #1a1a2e !important; border: 2px solid #667eea !important; color: white;">
                         👋 你好！我是公子小白的AI数字分身。<br>
                         有什么想了解我的吗？我可以回答关于我的作品、技能、学习经历等问题~ ✨
                     </div>
                 </div>
             </div>
-            <div class="ai-avatar-input-area">
+            <div class="ai-avatar-input-area" style="padding: 16px 20px; background: #1a1a2e !important; border-top: 2px solid #667eea !important; display: flex; gap: 12px;">
                 <input
                     type="text"
                     id="ai-avatar-input"
                     placeholder="问我任何关于公子小白的问题..."
                     maxlength="200"
+                    style="flex: 1; padding: 12px 16px; background: #0a0a0a !important; border: 2px solid #667eea !important; border-radius: 24px; color: #ffffff !important; font-size: 14px; outline: none;"
                 />
-                <button id="ai-avatar-send" class="ai-avatar-send-btn">
+                <button id="ai-avatar-send" class="ai-avatar-send-btn" style="width: 44px; height: 44px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                     </svg>
