@@ -85,20 +85,25 @@
     <style>
         /* CSS变量系统 - 支持暗色/浅色主题 */
         :root {
-            /* 默认暗色主题 */
+            /* 默认暗色主题 - 统一电光蓝+深紫色系 */
             --bg-primary: #0A0A0A;
             --bg-secondary: #171717;
             --bg-tertiary: #27272A;
             --text-primary: #FFFFFF;
             --text-secondary: #D4D4D8;
             --text-muted: #71717A;
-            --accent: #3B82F6;
-            --border-color: #27272A;
-            --card-bg: #171717;
-            --nav-bg: rgba(10, 10, 10, 0.5);
+
+            /* 主色调 - 电光蓝 + 深紫 */
+            --accent: #00D4FF;
+            --accent-secondary: #7C3AED;
+            --accent-glow: rgba(0, 212, 255, 0.5);
+
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --nav-bg: rgba(10, 10, 10, 0.8);
         }
 
-        /* 浅色主题 - 优化版 */
+        /* 浅色主题 - 优化版 - 统一电光蓝+深紫色系 */
         [data-theme="light"] {
             --bg-primary: #F8F9FA;
             --bg-secondary: #FFFFFF;
@@ -106,9 +111,14 @@
             --text-primary: #212529;
             --text-secondary: #495057;
             --text-muted: #6C757D;
-            --accent: #2563EB;
-            --border-color: #DEE2E6;
-            --card-bg: #FFFFFF;
+
+            /* 主色调 - 浅色模式下稍深 */
+            --accent: #0099CC;
+            --accent-secondary: #6D28D9;
+            --accent-glow: rgba(0, 153, 204, 0.3);
+
+            --border-color: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.8);
             --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
@@ -142,27 +152,40 @@
         .text-muted { color: var(--text-muted); }
         .text-accent { color: var(--accent); }
 
-        /* 卡片样式 */
+        /* 卡片样式 - 玻璃态高级版 */
         .card {
             background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            transition: all 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .card:hover {
             border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 0 0 1px var(--accent-glow),
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 80px var(--accent-glow);
         }
 
         /* 浅色模式卡片增强 */
         [data-theme="light"] .card {
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            box-shadow:
+                0 0 0 1px rgba(0, 0, 0, 0.05),
+                0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         [data-theme="light"] .card:hover {
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            box-shadow:
+                0 0 0 1px rgba(0, 212, 255, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 0 60px rgba(0, 212, 255, 0.2);
         }
 
         /* 3D卡片倾斜效果 */
@@ -438,6 +461,30 @@
             51%, 100% { opacity: 0; }
         }
 
+        /* 渐变文字效果 - 大标题 */
+        .gradient-text {
+            background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #00D4FF 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 4s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        /* 渐变文字效果 - 小标题 */
+        .gradient-text-small {
+            background: linear-gradient(90deg, #00D4FF, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         /* 回顶部按钮样式 */
         .back-to-top {
             position: fixed;
@@ -505,20 +552,20 @@
             align-items: flex-start;
         }
 
-        /* 音乐控制按钮 */
+        /* 音乐控制按钮 - 统一蓝紫色调 */
         .music-control-btn {
             width: 80px;
             height: 80px;
             border-radius: 16px;
-            border: 3px solid rgba(139, 92, 246, 0.8);
+            border: 3px solid rgba(124, 58, 237, 0.8);
             cursor: pointer;
             position: relative;
             overflow: visible;
             transition: all 0.3s ease;
             box-shadow:
                 0 4px 15px rgba(0, 0, 0, 0.5),
-                0 0 20px rgba(139, 92, 246, 0.6),
-                0 0 40px rgba(59, 130, 246, 0.4);
+                0 0 20px rgba(124, 58, 237, 0.6),
+                0 0 40px rgba(0, 212, 255, 0.4);
         }
 
         /* CD专辑按钮 */
@@ -533,12 +580,12 @@
             justify-content: center;
         }
 
-        /* 确保暗色主题下按钮可见 */
+        /* 确保暗色主题下按钮可见 - 统一色调 */
         .music-control-btn {
-            background: rgba(139, 92, 246, 0.15);
+            background: rgba(124, 58, 237, 0.15);
         }
 
-        /* CD表面（蓝紫渐变 + 纹理） */
+        /* CD表面（电光蓝+深紫渐变 + 纹理） */
         .cd-surface {
             position: absolute;
             top: 0;
@@ -549,7 +596,7 @@
             align-items: center;
             justify-content: center;
 
-            /* CD纹理 + 蓝紫渐变 */
+            /* CD纹理 + 电光蓝+深紫渐变 */
             background:
                 /* CD表面纹路 */
                 repeating-radial-gradient(circle at center,
@@ -558,11 +605,11 @@
                     rgba(255, 255, 255, 0.05) 2px,
                     rgba(255, 255, 255, 0.05) 4px
                 ),
-                /* 蓝紫粉渐变（网站色系） */
+                /* 电光蓝+深紫渐变（统一色系） */
                 linear-gradient(135deg,
-                    rgba(59, 130, 246, 0.9) 0%,   /* 蓝色 - 更明显 */
-                    rgba(139, 92, 246, 0.9) 50%,  /* 紫色 - 更明显 */
-                    rgba(236, 72, 153, 0.9) 100%  /* 粉色 - 更明显 */
+                    rgba(0, 212, 255, 0.95) 0%,   /* 电光蓝 */
+                    rgba(124, 58, 237, 0.95) 50%,  /* 深紫 */
+                    rgba(0, 212, 255, 0.95) 100%  /* 电光蓝 */
                 );
             border-radius: 14px;
         }
@@ -579,13 +626,13 @@
             position: relative;
         }
 
-        /* 悬停效果 */
+        /* 悬停效果 - 统一色调 */
         .music-control-btn:hover {
             transform: scale(1.05) translateY(-2px);
             box-shadow:
                 0 6px 20px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(139, 92, 246, 0.6),
-                0 0 50px rgba(59, 130, 246, 0.4);
+                0 0 30px rgba(124, 58, 237, 0.6),
+                0 0 50px rgba(0, 212, 255, 0.4);
         }
 
         .music-control-btn:active {
@@ -1000,21 +1047,22 @@
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b" style="background: var(--nav-bg); border-color: var(--border-color);">
-        <div class="container mx-auto px-6 py-4">
+    <!-- Navigation - Premium International Design -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b" style="background: var(--nav-bg); border-color: var(--border-color);">
+        <div class="max-w-7xl mx-auto px-8 py-4">
             <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="#home" class="nav-link text-2xl font-bold font-heading" style="color: var(--text-primary);">
-                    公子小白
+                <!-- Logo - Modern & Bold -->
+                <a href="#home" class="nav-link text-2xl font-black tracking-tighter">
+                    <span style="color: var(--text-primary);">XIAOYU</span>
+                    <span style="color: var(--accent);">.</span>
                 </a>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link font-medium" style="color: var(--text-primary);">首页</a>
-                    <a href="#about" class="nav-link transition-colors" style="color: var(--text-secondary);">关于我</a>
-                    <a href="#portfolio" class="nav-link transition-colors" style="color: var(--text-secondary);">作品集</a>
-                    <a href="#contact" class="nav-link transition-colors" style="color: var(--text-secondary);">联系我</a>
+                <!-- Desktop Navigation - All Caps -->
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="#home" class="nav-link text-sm font-bold tracking-widest" style="color: var(--text-primary);">HOME</a>
+                    <a href="#about" class="nav-link text-sm font-medium tracking-wide" style="color: var(--text-secondary);">ABOUT</a>
+                    <a href="#portfolio" class="nav-link text-sm font-medium tracking-wide" style="color: var(--text-secondary);">WORKS</a>
+                    <a href="#contact" class="nav-link text-sm font-medium tracking-wide" style="color: var(--text-secondary);">CONTACT</a>
 
                     <!-- Theme Toggle Button -->
                     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="切换主题">
@@ -1048,39 +1096,48 @@
 
     <!-- 首页内容 -->
     <section id="page-home" class="page-section active">
-        <!-- Hero Section - Professional Design -->
+        <!-- Hero Section - Premium International Design -->
         <section class="min-h-screen flex items-center px-6 pt-24 pb-16 relative overflow-hidden">
             <!-- Particle Background Canvas -->
             <canvas id="particleCanvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;"></canvas>
 
-            <div class="container mx-auto max-w-6xl relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="container mx-auto max-w-7xl relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <!-- Left: Content -->
-                    <div class="space-y-8">
-                        <!-- Greeting -->
-                        <div class="text-2xl reveal" style="color: var(--text-secondary);">
-                            Hello，我是公子小白 👋
+                    <div class="space-y-10">
+                        <!-- Greeting - More Professional -->
+                        <div class="text-xl reveal tracking-widest" style="color: var(--accent); font-weight: 600;">
+                            HELLO, I'M
                         </div>
 
-                        <!-- Name - Larger & Bolder -->
-                        <h1 class="text-6xl md:text-7xl font-heading font-bold leading-tight reveal" style="color: var(--text-primary);">
-                            公子小白
+                        <!-- Name - Massive Gradient Title -->
+                        <h1 class="text-7xl md:text-8xl lg:text-9xl font-heading font-black leading-none reveal tracking-tight">
+                            <span class="gradient-text">XIAOYU</span>
+                            <br>
+                            <span class="gradient-text">WANG</span>
                         </h1>
 
-                        <!-- One-line Story - Enhanced -->
-                        <p class="text-2xl leading-relaxed reveal delay-100" style="color: var(--text-secondary);">
-                            正在用AI探索无限可能
+                        <!-- Chinese Name - Subtitle -->
+                        <div class="text-3xl md:text-4xl font-bold reveal delay-100" style="color: var(--text-secondary);">
+                            公子小白
+                        </div>
+
+                        <!-- Professional Identity - Bold Statement -->
+                        <p class="text-xl md:text-2xl leading-relaxed reveal delay-200 font-medium" style="color: var(--text-secondary);">
+                            <span class="gradient-text-small">AI ENTHUSIAST</span> ·
+                            <span style="color: var(--text-muted);">AGENT BUILDER</span> ·
+                            <span style="color: var(--text-muted);">WEB DEVELOPER</span>
                         </p>
 
-                        <!-- English Slogan -->
-                        <p class="text-lg italic leading-relaxed reveal delay-150" style="color: var(--text-muted); opacity: 0.6;">
+                        <!-- English Slogan - More Prominent -->
+                        <p class="text-lg md:text-xl leading-relaxed reveal delay-300 italic" style="color: var(--text-muted);">
                             Exploring AI · Building Agents · Creating the Future
                         </p>
 
-                        <!-- Professional Identity - Typewriter Effect -->
-                        <div class="flex items-center gap-3 text-base reveal delay-300" style="color: var(--text-secondary);">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                            <span class="typewriter-container">
+                        <!-- Typewriter Effect - Professional Identity -->
+                        <div class="flex items-center gap-3 text-base reveal delay-400" style="color: var(--text-secondary);">
+                            <div class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></div>
+                            <span class="typewriter-container font-medium">
                                 <span id="typewriter"></span>
                                 <span class="cursor">|</span>
                             </span>
