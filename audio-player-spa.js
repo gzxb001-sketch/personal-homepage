@@ -101,7 +101,7 @@ class AudioSystemSPA {
      */
     updateMusicButton(isPlaying) {
         const button = document.getElementById('musicControlBtn');
-        const icon = document.querySelector('.vinyl-icon');
+        const icon = document.querySelector('.cd-icon');
 
         if (!button || !icon) return;
 
@@ -110,7 +110,7 @@ class AudioSystemSPA {
             icon.textContent = '⏸'; // 暂停图标
         } else {
             button.classList.remove('playing');
-            icon.textContent = '▶'; // 播放图标
+            icon.textContent = '♫'; // 音乐符号
         }
     }
 
@@ -134,17 +134,16 @@ class AudioSystemSPA {
             return;
         }
 
+        console.log('🎵 正在创建音乐控制按钮...');
+
         // 创建控制按钮
         const controlDiv = document.createElement('div');
         controlDiv.id = 'audioControl';
+        controlDiv.style.cssText = 'position: fixed !important; bottom: 100px !important; left: 50px !important; z-index: 999999 !important;';
         controlDiv.innerHTML = `
-            <button id="musicControlBtn" class="music-control-btn vinyl-btn" onclick="audioSystem.toggleMusic()" title="播放/暂停背景音乐">
-                <div class="vinyl-record">
-                    <div class="vinyl-grooves"></div>
-                    <div class="vinyl-label">
-                        <span class="vinyl-icon">▶</span>
-                    </div>
-                    <div class="vinyl-shine"></div>
+            <button id="musicControlBtn" class="music-control-btn cd-album-btn" onclick="audioSystem.toggleMusic()" title="播放/暂停背景音乐">
+                <div class="cd-surface">
+                    <div class="cd-icon">♫</div>
                 </div>
             </button>
             <div id="volumeControl" class="volume-control">
@@ -154,6 +153,27 @@ class AudioSystemSPA {
 
         // 添加到页面
         document.body.appendChild(controlDiv);
+
+        console.log('✅ 音乐控制按钮已创建！');
+        console.log('按钮位置：', controlDiv.getBoundingClientRect());
+        console.log('按钮元素：', document.getElementById('musicControlBtn'));
+
+        // 3秒后再次检查
+        setTimeout(() => {
+            const btn = document.getElementById('musicControlBtn');
+            if (btn) {
+                console.log('✅ 按钮存在！位置：', btn.getBoundingClientRect());
+                console.log('按钮可见性：', {
+                    offsetWidth: btn.offsetWidth,
+                    offsetHeight: btn.offsetHeight,
+                    display: window.getComputedStyle(btn).display,
+                    visibility: window.getComputedStyle(btn).visibility,
+                    opacity: window.getComputedStyle(btn).opacity
+                });
+            } else {
+                console.error('❌ 按钮不存在！');
+            }
+        }, 3000);
     }
 
     /**
