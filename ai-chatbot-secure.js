@@ -297,44 +297,48 @@ class AIAvatarChatSecure {
 
     // 绑定事件
     bindEvents() {
-        // AI数字分身按钮点击事件 - 打开/关闭聊天窗口
-        const aiButton = document.getElementById('ai-avatar-button');
-        if (aiButton) {
-            aiButton.addEventListener('click', () => {
-                console.log('🤖 AI数字分身按钮被点击');
-                this.toggle();
-            });
-            console.log('✅ AI按钮点击事件已绑定');
-        } else {
-            console.error('❌ AI按钮未找到，无法绑定点击事件');
-        }
+        // 注意：AI数字分身按钮的点击/拖动事件在 makeDraggable() 中处理
+        // 当移动距离 < 5px 时会自动调用 this.toggle()
 
         // 关闭按钮
-        document.getElementById('ai-avatar-close').addEventListener('click', () => {
-            this.close();
-        });
+        const closeBtn = document.getElementById('ai-avatar-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                this.close();
+            });
+        }
 
         // 发送按钮
-        document.getElementById('ai-avatar-send').addEventListener('click', () => {
-            this.sendMessage();
-        });
+        const sendBtn = document.getElementById('ai-avatar-send');
+        if (sendBtn) {
+            sendBtn.addEventListener('click', () => {
+                this.sendMessage();
+            });
+        }
 
         // 输入框回车发送
-        document.getElementById('ai-avatar-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.sendMessage();
-            }
-        });
+        const input = document.getElementById('ai-avatar-input');
+        if (input) {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.sendMessage();
+                }
+            });
+        }
 
         console.log('✅ 所有AI聊天事件已绑定');
     }
 
     toggle() {
+        console.log('🔄 toggle() 被调用，当前状态 isOpen =', this.isOpen);
         this.isOpen = !this.isOpen;
         const window = document.getElementById('ai-avatar-window');
         const button = document.getElementById('ai-avatar-button');
 
+        console.log('🔄 新状态 isOpen =', this.isOpen);
+
         if (this.isOpen) {
+            console.log('✅ 打开AI聊天窗口');
             window.classList.add('ai-avatar-open');
             button.classList.add('ai-avatar-hidden');
             this.conversationHistory = this.loadHistory();
@@ -343,6 +347,7 @@ class AIAvatarChatSecure {
             // 保存打开状态到localStorage
             localStorage.setItem('aiChatOpen', 'true');
         } else {
+            console.log('❌ 关闭AI聊天窗口');
             window.classList.remove('ai-avatar-open');
             button.classList.remove('ai-avatar-hidden');
 
