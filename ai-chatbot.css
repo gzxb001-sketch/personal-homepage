@@ -313,6 +313,8 @@
     /* 使用完全不透明的背景 */
     background: #0a0a0a !important;
     background: rgb(10, 10, 10) !important;
+    /* 确保鼠标光标可见 */
+    cursor: auto !important;
 }
 
 .ai-avatar-messages::-webkit-scrollbar {
@@ -348,6 +350,8 @@
     font-size: 14px;
     line-height: 1.6;
     word-wrap: break-word;
+    /* 确保鼠标光标可见 */
+    cursor: text !important;
 }
 
 /* AI消息 */

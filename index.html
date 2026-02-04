@@ -3311,8 +3311,11 @@
         // 初始化AI数字分身（安全版 - API Key隐藏在服务器端）
         // 部署到Vercel后，在Vercel的环境变量中添加API Key即可使用
         try {
-            if (typeof AIAvatarChatSecure !== 'undefined') {
-                var aiAvatar = new AIAvatarChatSecure({
+            // 单例检查：确保全局只有一个AI聊天实例
+            if (window.aiAvatarInstance) {
+                console.warn('⚠️ AI数字分身已存在，跳过重复初始化');
+            } else if (typeof AIAvatarChatSecure !== 'undefined') {
+                window.aiAvatarInstance = new AIAvatarChatSecure({
                     apiUrl: '/api/chat' // 使用Vercel API代理
                 });
                 console.log('%c✅ AI数字分身已加载（部署后可用）', 'color: #00D4FF; font-size: 14px; font-weight: bold;');
@@ -3322,6 +3325,15 @@
                     var button = document.getElementById('ai-avatar-button');
                     if (button) {
                         console.log('%c✅ AI聊天按钮已创建，可以开始对话', 'color: #10B981; font-size: 12px;');
+
+                        // 检查是否有重复按钮
+                        var allButtons = document.querySelectorAll('#ai-avatar-button');
+                        if (allButtons.length > 1) {
+                            console.warn('⚠️ 发现', allButtons.length, '个AI按钮，保留第一个，移除其他');
+                            for (var i = 1; i < allButtons.length; i++) {
+                                allButtons[i].remove();
+                            }
+                        }
                     } else {
                         console.warn('%c⚠️ AI聊天按钮未找到，可能初始化失败', 'color: #FFA500; font-size: 12px;');
                     }

@@ -219,11 +219,11 @@ class AIAvatarChatSecure {
 
     // 创建聊天按钮
     createChatButton() {
-        // 防御性检查：确保只有一个AI按钮实例
-        const existingButton = document.getElementById('ai-avatar-button');
-        if (existingButton) {
-            console.log('⚠️ AI按钮已存在，移除旧按钮');
-            existingButton.remove();
+        // 防御性检查：移除所有已存在的AI按钮，确保只有一个实例
+        const allButtons = document.querySelectorAll('#ai-avatar-button');
+        if (allButtons.length > 0) {
+            console.warn('⚠️ 发现', allButtons.length, '个AI按钮，将全部移除');
+            allButtons.forEach(btn => btn.remove());
         }
 
         const button = document.createElement('div');
@@ -264,38 +264,35 @@ class AIAvatarChatSecure {
 
     // 创建聊天窗口
     createChatWindow() {
-        // 防御性检查：确保只有一个聊天窗口实例
-        const existingWindow = document.getElementById('ai-avatar-window');
-        if (existingWindow) {
-            console.log('⚠️ AI聊天窗口已存在，移除旧窗口');
-            existingWindow.remove();
+        // 防御性检查：移除所有已存在的聊天窗口，确保只有一个实例
+        const allWindows = document.querySelectorAll('#ai-avatar-window');
+        if (allWindows.length > 0) {
+            console.warn('⚠️ 发现', allWindows.length, '个AI聊天窗口，将全部移除');
+            allWindows.forEach(win => win.remove());
         }
 
         const chatWindow = document.createElement('div');
         chatWindow.id = 'ai-avatar-window';
 
-        // 内联样式作为fallback，确保即使CSS没有加载也能正常显示
-        chatWindow.style.cssText = `
-            position: fixed;
-            right: 30px;
-            width: 380px;
-            height: 600px;
-            max-height: calc(100vh - 200px);
-            background: #1a1a2e !important;
-            background: rgb(26, 26, 46) !important;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.9) translateY(-10px);
-            pointer-events: none;
-            transition: all 0.3s ease;
-            z-index: 99999 !important;
-            border: 2px solid #667eea !important;
-        `;
+        // 直接设置样式属性，确保背景完全不透明
+        chatWindow.style.position = 'fixed';
+        chatWindow.style.right = '30px';
+        chatWindow.style.width = '380px';
+        chatWindow.style.height = '600px';
+        chatWindow.style.maxHeight = 'calc(100vh - 200px)';
+        chatWindow.style.background = '#1a1a2e';
+        chatWindow.style.borderRadius = '20px';
+        chatWindow.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.8), 0 0 0 2px #667eea';
+        chatWindow.style.display = 'flex';
+        chatWindow.style.flexDirection = 'column';
+        chatWindow.style.overflow = 'hidden';
+        chatWindow.style.opacity = '0';
+        chatWindow.style.visibility = 'hidden';
+        chatWindow.style.transform = 'scale(0.9) translateY(-10px)';
+        chatWindow.style.pointerEvents = 'none';
+        chatWindow.style.transition = 'all 0.3s ease';
+        chatWindow.style.zIndex = '99999';
+        chatWindow.style.border = '2px solid #667eea';
 
         chatWindow.innerHTML = `
             <div class="ai-avatar-header">
