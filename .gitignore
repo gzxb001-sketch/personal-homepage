@@ -36,8 +36,7 @@ yunshu_skillshub/
 *.md
 !README.md
 
-# 证书和敏感文件
-certificate.png
+# 证书和敏感文件（保留敏感文件忽略，但允许certificate.png）
 *.pem
 *.key
 .env
