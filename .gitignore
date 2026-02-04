@@ -48,3 +48,5 @@ design-system/
 
 # 其他杂项
 *.log
+.vercel
+.env*.local
