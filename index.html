@@ -1401,26 +1401,49 @@
 
                         // 尝试打开AI聊天窗口（带重试机制）
                         var retryCount = 0;
-                        var maxRetries = 10;
-                        var retryInterval = 200; // 每200ms重试一次
+                        var maxRetries = 30; // 增加到30次（3秒）
+                        var retryInterval = 100; // 减少到100ms，更快响应
 
                         function tryOpenChat() {
                             var aiButton = document.getElementById('ai-avatar-button');
+
+                            console.log('🔍 查找AI聊天按钮... 尝试 #' + (retryCount + 1));
+
                             if (aiButton) {
-                                console.log('✅ AI聊天按钮已找到，正在打开...');
-                                aiButton.click();
-                            } else if (retryCount < maxRetries) {
+                                // 检查按钮是否真的可见（不仅存在于DOM）
+                                var rect = aiButton.getBoundingClientRect();
+                                var isVisible = rect.width > 0 && rect.height > 0;
+
+                                console.log('📍 按钮状态:', {
+                                    found: true,
+                                    visible: isVisible,
+                                    width: rect.width,
+                                    height: rect.height,
+                                    top: rect.top,
+                                    left: rect.left
+                                });
+
+                                if (isVisible) {
+                                    console.log('✅ AI聊天按钮已找到且可见，正在点击...');
+                                    aiButton.click();
+                                    console.log('🎯 已点击AI聊天按钮，聊天窗口应该会打开');
+                                    return;
+                                }
+                            }
+
+                            // 按钮未找到或不可见，继续重试
+                            if (retryCount < maxRetries) {
                                 retryCount++;
-                                console.log('⏳ 等待AI聊天按钮创建... (' + retryCount + '/' + maxRetries + ')');
+                                console.log('⏳ 等待AI聊天按钮初始化... (' + retryCount + '/' + maxRetries + ')');
                                 setTimeout(tryOpenChat, retryInterval);
                             } else {
-                                console.warn('⚠️ AI聊天按钮未找到，尝试跳转到联系页面');
-                                window.location.href = '#contact';
+                                console.error('❌ AI聊天按钮未找到或不可见');
+                                alert('AI数字分身正在加载中...\n\n请稍等片刻，或直接点击页面右侧的🤖图标！');
                             }
                         }
 
-                        // 延迟500ms后开始尝试（等待AI聊天脚本初始化）
-                        setTimeout(tryOpenChat, 500);
+                        // 延迟300ms后开始尝试（欢迎对话框关闭动画需要时间）
+                        setTimeout(tryOpenChat, 300);
                         break;
                 }
             }, 500);
