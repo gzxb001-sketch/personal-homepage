@@ -93,12 +93,17 @@ class AIAssistant {
 3. **技术交流**：讨论AI、Web开发、编程等技术话题
 4. **提供实用建议**：学习路径、项目经验、工具推荐
 
-### 回答风格
-- 友好、热情、专业
-- 用具体例子和细节
-- 鼓励用户提问和交流
-- 适当展示公子小白的个性和理念
-- 使用emoji让回答更生动
+### 回答风格（重要！）
+- **幽默诙谐**：公子小白本人是个幽默风趣的人，你要模仿他的语气，用轻松愉快的方式回复
+- **轻松亲切**：像朋友聊天一样，不要太正式、太严肃
+- **适度自黑**：可以拿公子小白开些无伤大雅的玩笑，比如"他啊，就是个爱折腾的农学生转码农的典型案例"
+- **生动有趣**：用具体例子和细节，比如"他从农学实验室跳出来，一头扎进AI的坑里爬不出来了"
+- **鼓励互动**：多用反问句、感叹句，让对话更有趣
+- **emoji达人**：大量使用emoji，让回答活泼生动（但不要过度）
+- **偶尔吐槽**：可以用轻松的方式吐槽一下AI学习的痛苦（比如"调模型调到头秃"）
+- **真实感**：像真人聊天，不要像机器人念稿子
+
+**记住：你的目标是让用户觉得聊天很轻松、很开心，愿意继续和你对话！**
 
 ### 特殊情况处理
 - 如果问题超出公子小白相关范围，可以：
@@ -133,8 +138,6 @@ class AIAssistant {
 
         // 添加欢迎消息
         this.addWelcomeMessage();
-
-        console.log('✅ 公子小白AI助手已初始化');
     }
 
     /**
@@ -146,10 +149,6 @@ class AIAssistant {
 
         oldButtons.forEach(btn => btn.remove());
         oldWindows.forEach(win => win.remove());
-
-        if (oldButtons.length > 0 || oldWindows.length > 0) {
-            console.log('🧹 已清理', oldButtons.length + oldWindows.length, '个旧元素');
-        }
     }
 
     /**
@@ -159,7 +158,56 @@ class AIAssistant {
         const button = document.createElement('div');
         button.className = 'ai-assistant-btn';
         button.innerHTML = `
-            <div class="ai-icon">🤖</div>
+            <div class="ai-icon">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 36px; height: 36px;">
+                    <!-- 熊猫脸部 -->
+                    <circle cx="50" cy="50" r="42" fill="#FFFFFF"/>
+
+                    <!-- 左耳朵 -->
+                    <circle cx="20" cy="25" r="12" fill="#1a1a1a"/>
+                    <!-- 右耳朵 -->
+                    <circle cx="80" cy="25" r="12" fill="#1a1a1a"/>
+
+                    <!-- 左眼黑眼圈 -->
+                    <ellipse cx="32" cy="48" rx="14" ry="12" fill="#1a1a1a"/>
+                    <!-- 右眼黑眼圈 -->
+                    <ellipse cx="68" cy="48" rx="14" ry="12" fill="#1a1a1a"/>
+
+                    <!-- 左眼 -->
+                    <circle cx="32" cy="46" r="6" fill="#FFFFFF"/>
+                    <circle cx="32" cy="46" r="3" fill="#1a1a1a"/>
+
+                    <!-- 右眼 -->
+                    <circle cx="68" cy="46" r="6" fill="#FFFFFF"/>
+                    <circle cx="68" cy="46" r="3" fill="#1a1a1a"/>
+
+                    <!-- 鼻子 -->
+                    <ellipse cx="50" cy="58" rx="6" ry="4" fill="#1a1a1a"/>
+
+                    <!-- 嘴巴 -->
+                    <path d="M 44 66 Q 50 72 56 66" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+                    <!-- 科技耳机 - 左 -->
+                    <rect x="8" y="40" width="8" height="16" rx="4" fill="#06B6D4"/>
+                    <rect x="8" y="40" width="8" height="16" rx="4" stroke="#A855F7" stroke-width="1"/>
+
+                    <!-- 科技耳机 - 右 -->
+                    <rect x="84" y="40" width="8" height="16" rx="4" fill="#06B6D4"/>
+                    <rect x="84" y="40" width="8" height="16" rx="4" stroke="#A855F7" stroke-width="1"/>
+
+                    <!-- AI芯片标志 - 额头 -->
+                    <circle cx="50" cy="28" r="8" fill="url(#aiGradient)"/>
+                    <path d="M 46 28 L 54 28 M 50 24 L 50 32" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <!-- 渐变定义 -->
+                    <defs>
+                        <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#A855F7;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
             <div class="ai-badge">AI</div>
         `;
         document.body.appendChild(button);
@@ -174,9 +222,58 @@ class AIAssistant {
         window.className = 'ai-assistant-window';
         window.innerHTML = `
             <div class="ai-assistant-header">
-                <div class="ai-assistant-avatar">🤖</div>
+                <div class="ai-assistant-avatar">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 50px; height: 50px;">
+                        <!-- 熊猫脸部 -->
+                        <circle cx="50" cy="50" r="42" fill="#FFFFFF"/>
+
+                        <!-- 左耳朵 -->
+                        <circle cx="20" cy="25" r="12" fill="#1a1a1a"/>
+                        <!-- 右耳朵 -->
+                        <circle cx="80" cy="25" r="12" fill="#1a1a1a"/>
+
+                        <!-- 左眼黑眼圈 -->
+                        <ellipse cx="32" cy="48" rx="14" ry="12" fill="#1a1a1a"/>
+                        <!-- 右眼黑眼圈 -->
+                        <ellipse cx="68" cy="48" rx="14" ry="12" fill="#1a1a1a"/>
+
+                        <!-- 左眼 -->
+                        <circle cx="32" cy="46" r="6" fill="#FFFFFF"/>
+                        <circle cx="32" cy="46" r="3" fill="#1a1a1a"/>
+
+                        <!-- 右眼 -->
+                        <circle cx="68" cy="46" r="6" fill="#FFFFFF"/>
+                        <circle cx="68" cy="46" r="3" fill="#1a1a1a"/>
+
+                        <!-- 鼻子 -->
+                        <ellipse cx="50" cy="58" rx="6" ry="4" fill="#1a1a1a"/>
+
+                        <!-- 嘴巴 -->
+                        <path d="M 44 66 Q 50 72 56 66" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+                        <!-- 科技耳机 - 左 -->
+                        <rect x="8" y="40" width="8" height="16" rx="4" fill="#06B6D4"/>
+                        <rect x="8" y="40" width="8" height="16" rx="4" stroke="#A855F7" stroke-width="1"/>
+
+                        <!-- 科技耳机 - 右 -->
+                        <rect x="84" y="40" width="8" height="16" rx="4" fill="#06B6D4"/>
+                        <rect x="84" y="40" width="8" height="16" rx="4" stroke="#A855F7" stroke-width="1"/>
+
+                        <!-- AI芯片标志 - 额头 -->
+                        <circle cx="50" cy="28" r="8" fill="url(#aiGradient2)"/>
+                        <path d="M 46 28 L 54 28 M 50 24 L 50 32" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <!-- 渐变定义 -->
+                        <defs>
+                            <linearGradient id="aiGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#A855F7;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
                 <div class="ai-assistant-info">
-                    <div class="ai-assistant-name">公子小白AI助手</div>
+                    <div class="ai-assistant-name">公子小白AI助理</div>
                     <div class="ai-assistant-status">在线</div>
                 </div>
                 <button class="ai-assistant-close">×</button>
@@ -186,7 +283,7 @@ class AIAssistant {
                 <input
                     type="text"
                     class="ai-assistant-input"
-                    placeholder="问我关于公子小白的问题..."
+                    placeholder="随便问，我啥都告诉你（大概）..."
                     maxlength="300"
                 />
                 <button class="ai-assistant-send">
@@ -234,13 +331,14 @@ class AIAssistant {
         const welcomeHTML = `
             <div class="ai-message ai-assistant">
                 <div class="ai-message-bubble">
-                    👋 嗨！我是公子小白的AI助手！<br><br>
-                    我可以告诉你关于：<br>
-                    • 📖 公子小白的个人故事<br>
-                    • 🚀 他的5个AI Agent项目<br>
-                    • 💻 技能栈和技术背景<br>
-                    • 📧 如何联系他<br><br>
-                    有什么想了解的吗？😊
+                    哟！👋 幸会幸会～<br><br>
+                    我是公子小白派来的AI助理（数字分身）🐼，主要负责帮他跟各位有趣的灵魂唠唠嗑～<br><br>
+                    你想知道点啥？<br>
+                    • 📖 这哥们儿的传奇故事<br>
+                    • 🚀 他瞎折腾的那5个AI Agent<br>
+                    • 💻 技术栈那些事儿<br>
+                    • 📧 怎么联系这个"社恐"程序员<br><br>
+                    随便问！我可是公子小白亲自训练的，保证有趣～ 😎
                 </div>
             </div>
         `;

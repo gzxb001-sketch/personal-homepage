@@ -54,6 +54,10 @@
     animation: float 3s ease-in-out infinite;
 }
 
+.ai-assistant-btn .ai-icon svg {
+    filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.6));
+}
+
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-3px); }
@@ -156,6 +160,12 @@
     border: 2px solid rgba(255, 255, 255, 0.4);
     position: relative;
     z-index: 1;
+    color: #ffffff;
+    padding: 0;
+}
+
+.ai-assistant-avatar svg {
+    filter: drop-shadow(0 0 6px rgba(102, 126, 234, 0.5));
 }
 
 .ai-assistant-info {
