@@ -10,6 +10,7 @@ class SPARouter {
             '#home': 'page-home',
             '#about': 'page-about',
             '#portfolio': 'page-portfolio',
+            '#wechat': 'page-wechat',
             '#contact': 'page-contact'
         };
 
