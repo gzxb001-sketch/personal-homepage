@@ -1,12 +1,11 @@
 {
+  "version": 2,
+  "public": true,
+  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/spa.html"
-    },
-    {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
