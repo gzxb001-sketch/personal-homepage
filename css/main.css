@@ -6,17 +6,19 @@
     --bg-tertiary: #FFF0E0;
     --text-primary: #1C1917;
     --text-secondary: #57534E;
-    --text-muted: #A8A29E;
+    --text-muted: #78716C;
 
     /* 主强调色 - 活力橙 */
-    --accent: #F97316;
+    --accent: #EA580C;
     --accent-light: #FB923C;
-    --accent-secondary: #8B5CF6;
+    --accent-secondary: #7C3AED;
     --accent-glow: rgba(249, 115, 22, 0.15);
+    /* 小字号正文用的深橙（WCAG AA 达标），--accent 保留给边框/图标/大标题 */
+    --accent-text: #C2410C;
 
     /* 辅助色扩展 */
     --secondary-purple: #8B5CF6;
-    --accent-cyan: #06B6D4;
+    --accent-cyan: #0E7490;
     --success-green: #10B981;
     --warning-orange: #F97316;
 
@@ -27,8 +29,16 @@
 
     /* 温暖渐变 - 橙紫渐变 */
     --gradient-neon: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+    --gradient-text: linear-gradient(135deg, #EA580C 0%, #F97316 100%);
     --gradient-subtle: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
     --gradient-multi: linear-gradient(135deg, #F97316 0%, #8B5CF6 50%, #06B6D4 100%);
+
+    /* 阴影 Token - 暖色系（清除旧深色主题残留） */
+    --shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.06);
+    --shadow-md: 0 4px 12px rgba(28, 25, 23, 0.08);
+    --shadow-lg: 0 8px 24px rgba(28, 25, 23, 0.12);
+    --shadow-accent: 0 4px 14px rgba(249, 115, 22, 0.28);
+    --shadow-accent-lg: 0 8px 24px rgba(249, 115, 22, 0.32);
 }
 
 * {
@@ -42,7 +52,7 @@ html {
 }
 
 body {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     background: var(--bg-primary);
     min-height: 100vh;
     color: var(--text-primary);
@@ -51,16 +61,16 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
 
 /* ==================== 文字颜色工具类 ==================== */
 .text-primary { color: var(--text-primary); }
 .text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
-.text-accent { color: var(--accent); }
+.text-accent { color: var(--accent-text); }
 .gradient-text {
-    background: var(--gradient-neon);
+    background: var(--gradient-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -93,7 +103,7 @@ a, button, input, textarea, select {
 }
 
 .card:hover {
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     transform: translateY(-2px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
@@ -119,7 +129,7 @@ a, button, input, textarea, select {
 }
 
 .bento-card:hover {
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
 }
@@ -148,7 +158,7 @@ a, button, input, textarea, select {
     border-radius: 6px;
     background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
     border: 1px solid rgba(249, 115, 22, 0.2);
-    color: var(--accent);
+    color: var(--accent-text);
     transition: all 0.2s ease;
     cursor: default;
 }
@@ -163,7 +173,7 @@ a, button, input, textarea, select {
 .skill-tag-compact:nth-child(3n+1) {
     background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
     border-color: rgba(249, 115, 22, 0.2);
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 .skill-tag-compact:nth-child(3n+2) {
@@ -231,10 +241,10 @@ a, button, input, textarea, select {
 }
 
 .card:focus-visible {
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     box-shadow:
         0 0 0 2px var(--accent-glow),
-        0 4px 12px rgba(59, 130, 246, 0.2);
+        var(--shadow-md);
 }
 
 /* ==================== 按钮样式 ==================== */
@@ -252,10 +262,7 @@ a, button, input, textarea, select {
     gap: 10px;
     text-decoration: none;
     border: none;
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.3),
-        0 8px 24px rgba(6, 182, 212, 0.25),
-        0 0 40px rgba(168, 85, 247, 0.1);
+    box-shadow: var(--shadow-accent);
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -278,10 +285,7 @@ a, button, input, textarea, select {
 
 .btn-primary:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.4),
-        0 16px 40px rgba(6, 182, 212, 0.3),
-        0 0 60px rgba(168, 85, 247, 0.15);
+    box-shadow: var(--shadow-accent-lg);
 }
 
 .btn-primary:active {
@@ -305,8 +309,8 @@ a, button, input, textarea, select {
 }
 
 .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--accent-text);
+    color: var(--accent-text);
     background: var(--gradient-subtle);
     transform: translateY(-2px);
 }
@@ -324,6 +328,13 @@ a, button, input, textarea, select {
 
 .nav-link:active {
     transform: scale(0.95);
+}
+
+/* 当前页导航高亮（brand-link 为 Logo，不参与高亮） */
+.nav-link.active:not(.brand-link) {
+    color: var(--accent) !important;
+    background: var(--accent-glow);
+    border-radius: 8px;
 }
 
 /* 触摸优化 */
@@ -364,7 +375,7 @@ a, button, input, textarea, select {
     width: 50px;
     height: 50px;
     border: 3px solid var(--border-color);
-    border-top-color: var(--accent);
+    border-top-color: var(--accent-text);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -410,7 +421,7 @@ a, button, input, textarea, select {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: var(--shadow-accent);
     z-index: 1000;
 }
 
@@ -421,7 +432,7 @@ a, button, input, textarea, select {
 
 .back-to-top:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    box-shadow: var(--shadow-accent-lg);
 }
 
 /* ==================== 模态框 ==================== */
@@ -478,7 +489,7 @@ a, button, input, textarea, select {
 
 .skill-bar-percentage {
     font-weight: 700;
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 .skill-bar-track {
@@ -522,7 +533,7 @@ a, button, input, textarea, select {
 
 .skill-card:hover {
     transform: translateY(-4px);
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     box-shadow: 0 8px 24px rgba(249, 115, 22, 0.15);
 }
 
@@ -575,7 +586,7 @@ a, button, input, textarea, select {
 
 .skill-badge-daily {
     background: rgba(249, 115, 22, 0.15);
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 .skill-badge-exploring {
@@ -654,7 +665,7 @@ a, button, input, textarea, select {
 .skill-card:hover .skill-project-tag {
     background: rgba(249, 115, 22, 0.1);
     border-color: rgba(249, 115, 22, 0.3);
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 /* ==================== 技术栈图标 ==================== */
@@ -681,7 +692,7 @@ a, button, input, textarea, select {
 
 .tech-icon:hover {
     transform: translateY(-5px);
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
 }
 
@@ -709,9 +720,9 @@ a, button, input, textarea, select {
 }
 
 .github-stats-card:hover {
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+    box-shadow: var(--shadow-md);
 }
 
 .github-stats-card img {
@@ -738,9 +749,9 @@ a, button, input, textarea, select {
 }
 
 .blog-card:hover {
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+    box-shadow: var(--shadow-lg);
 }
 
 .blog-card-category {
@@ -750,7 +761,7 @@ a, button, input, textarea, select {
     border-radius: 20px;
     font-size: 12px;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--accent-text);
     margin-bottom: 15px;
 }
 
@@ -801,13 +812,13 @@ a, button, input, textarea, select {
 }
 
 .filter-tab:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--accent-text);
+    color: var(--accent-text);
 }
 
 .filter-tab.active {
     background: var(--gradient-neon);
-    border-color: var(--accent);
+    border-color: var(--accent-text);
     color: white;
 }
 
@@ -835,9 +846,9 @@ a, button, input, textarea, select {
 
 .share-button:hover {
     transform: translateY(-3px);
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    border-color: var(--accent-text);
+    color: var(--accent-text);
+    box-shadow: var(--shadow-md);
 }
 
 /* ==================== 响应式优化 ==================== */
@@ -880,7 +891,7 @@ a, button, input, textarea, select {
     border-radius: 8px;
     background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(249, 115, 22, 0.06) 100%);
     border: 1px solid rgba(249, 115, 22, 0.2);
-    color: var(--accent);
+    color: var(--accent-text);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
     box-shadow: 0 1px 2px rgba(249, 115, 22, 0.05);
@@ -897,7 +908,7 @@ a, button, input, textarea, select {
 .skill-tag:nth-child(3n+1) {
     background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(249, 115, 22, 0.06) 100%);
     border-color: rgba(249, 115, 22, 0.2);
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 .skill-tag:nth-child(3n+2) {

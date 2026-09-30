@@ -135,14 +135,14 @@
     animation: pulse 3s ease-in-out infinite;
 }
 
-/* ==================== Reveal动画类 ==================== */
-.reveal {
+/* ==================== Reveal动画类（html.js 由 main.js 添加，JS 不可用时内容直接可见） ==================== */
+html.js .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.reveal.active {
+html.js .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
@@ -366,7 +366,7 @@
 
 /* ==================== 移动端优化 ==================== */
 @media (max-width: 768px) {
-    .reveal {
+    html.js .reveal {
         transform: translateY(20px);
     }
 

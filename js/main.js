@@ -1,7 +1,10 @@
+// 渐进增强：标记 JS 可用，reveal 初始隐藏只在 html.js 下生效（JS 失败时内容仍可见）
+document.documentElement.classList.add('js');
+
 // ==================== 页面导航和路由 ====================
 
-// 页面切换功能
-function navigateToPage(pageId) {
+// 页面切换功能（skipHashUpdate: 浏览器前进/后退触发时避免重复写入历史）
+function navigateToPage(pageId, skipHashUpdate = false) {
     // 隐藏所有页面
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
@@ -12,6 +15,15 @@ function navigateToPage(pageId) {
     if (targetPage) {
         targetPage.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // 写入历史记录：后退/前进键与 #about 形式的分享链接可用
+        if (!skipHashUpdate && window.location.hash !== `#${pageId}`) {
+            try {
+                history.pushState(null, '', `#${pageId}`);
+            } catch (e) {
+                window.location.hash = pageId;
+            }
+        }
     }
 
     // 更新导航状态
@@ -19,10 +31,8 @@ function navigateToPage(pageId) {
         link.classList.remove('active');
     });
 
-    const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-    if (activeLink) {
-        activeLink.classList.add('active');
-    }
+    const activeLinks = document.querySelectorAll(`[data-page="${pageId}"]`);
+    activeLinks.forEach(link => link.classList.add('active'));
 
     // 关闭移动菜单
     const mobileMenu = document.getElementById('mobileMenu');
@@ -39,20 +49,25 @@ function navigateToPage(pageId) {
 
 // 绑定导航链接
 document.addEventListener('DOMContentLoaded', () => {
-    // 桌面导航
-    document.querySelectorAll('[data-page]').forEach(link => {
+    // 所有站内锚点（导航、CTA 按钮、页脚内链）：切换页面并写入历史
+    document.querySelectorAll('a.nav-link[href^="#"]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const pageId = link.getAttribute('data-page');
+            const pageId = link.getAttribute('data-page') || link.getAttribute('href').slice(1);
             navigateToPage(pageId);
         });
     });
 
-    // 处理URL hash
+    // 处理URL hash（支持 #about 这类链接直达）
     const hash = window.location.hash.replace('#', '');
     if (hash) {
         navigateToPage(hash);
     }
+});
+
+// 浏览器后退/前进：同步页面状态
+window.addEventListener('popstate', () => {
+    navigateToPage(window.location.hash.replace('#', '') || 'home', true);
 });
 
 // ==================== 移动菜单切换 ====================
@@ -137,16 +152,22 @@ class Typewriter {
 }
 
 // ==================== 页面加载动画 ====================
-window.addEventListener('load', () => {
+// 只等 DOM 就绪即隐藏加载器并初始化交互，避免被外部资源（字体/CDN）卡住；
+// 2.5 秒兜底确保任何情况下加载屏都会消失
+function hidePageLoader() {
     const pageLoader = document.getElementById('pageLoader');
     if (pageLoader) {
-        setTimeout(() => {
-            pageLoader.classList.add('hidden');
-        }, 500);
+        pageLoader.classList.add('hidden');
     }
+}
+
+setTimeout(hidePageLoader, 2500);
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(hidePageLoader, 300);
 
     // 初始化打字机效果
-    const typewriter = new Typewriter('typewriter', [
+    new Typewriter('typewriter', [
         '用AI探索无限可能',
         '用代码构建美好未来',
         'Vibe Coding实践者'
@@ -256,7 +277,7 @@ function showToast(message, duration = 3000) {
         color: white;
         padding: 16px 24px;
         border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
         z-index: 10000;
         animation: slideInRight 0.3s ease;
         font-weight: 600;

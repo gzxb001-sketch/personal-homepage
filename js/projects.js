@@ -161,19 +161,16 @@ const projectStatuses = [
 ];
 
 // ==================== 渲染项目卡片 ====================
-function renderProjects(filteredProjects = null) {
-    const projectsGrid = document.getElementById('projectsGrid');
-    if (!projectsGrid) return;
-
-    const projectsToRender = filteredProjects || Object.values(projectsData);
-
-    projectsGrid.innerHTML = projectsToRender.map(project => `
+function buildProjectCard(project) {
+    return `
         <div class="card project-card reveal overflow-hidden" data-category="${project.categoryId}" data-status="${project.status}">
             <!-- 封面图区域 -->
             <div class="project-cover-wrapper relative">
                 ${project.coverImage ? `
                     <img src="${project.coverImage}"
                          alt="${project.title}"
+                         loading="lazy"
+                         decoding="async"
                          class="w-full h-56 object-cover project-cover-image"
                          onerror="this.parentElement.innerHTML='<div class=\\'w-full h-56 flex items-center justify-center text-6xl\\' style=\\'background:${project.gradient}\\'>${project.emoji}</div>'">
                 ` : `
@@ -242,11 +239,40 @@ function renderProjects(filteredProjects = null) {
                 </button>
             </div>
         </div>
-    `).join('');
+    `;
+}
+
+function renderProjects(filteredProjects = null) {
+    const projectsGrid = document.getElementById('projectsGrid');
+    if (!projectsGrid) return;
+
+    const projectsToRender = filteredProjects || Object.values(projectsData);
+    projectsGrid.innerHTML = projectsToRender.map(buildProjectCard).join('');
 
     // 触发动画
     setTimeout(() => {
         document.querySelectorAll('.project-card').forEach(card => {
+            card.classList.add('active');
+        });
+    }, 100);
+}
+
+// ==================== 首页精选作品 ====================
+const featuredProjectIds = ['project1', 'project2', 'project7'];
+
+function renderFeaturedProjects() {
+    const featuredGrid = document.getElementById('featuredGrid');
+    if (!featuredGrid) return;
+
+    featuredGrid.innerHTML = featuredProjectIds
+        .map(id => projectsData[id])
+        .filter(Boolean)
+        .map(buildProjectCard)
+        .join('');
+
+    // 触发动画
+    setTimeout(() => {
+        featuredGrid.querySelectorAll('.project-card').forEach(card => {
             card.classList.add('active');
         });
     }, 100);
@@ -466,6 +492,7 @@ function closeModalOutside(event) {
 // ==================== 初始化 ====================
 document.addEventListener('DOMContentLoaded', () => {
     renderProjects();
+    renderFeaturedProjects();
     initFilterTabs();
     initSearch();
 

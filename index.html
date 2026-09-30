@@ -15,23 +15,23 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="王晓宇 | AI爱好者 & Agent搭建者">
     <meta property="og:description" content="从农学学生到AI开发者的跨界之旅。AI技术爱好者、Agent搭建者、Vibe Coding探索者。">
-    <meta property="og:image" content="images/og-1200x630.jpg">
+    <meta property="og:image" content="https://gzxb001-sketch.github.io/personal-homepage/images/og-1200x630.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:site_name" content="公子小白">
-    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:url" content="https://gzxb001-sketch.github.io/personal-homepage/">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://yourdomain.com/">
+    <meta name="twitter:url" content="https://gzxb001-sketch.github.io/personal-homepage/">
     <meta name="twitter:title" content="王晓宇 | AI爱好者 & Agent搭建者">
     <meta name="twitter:description" content="从农学学生到AI开发者的跨界之旅。AI技术爱好者、Agent搭建者、Vibe Coding探索者。">
-    <meta name="twitter:image" content="images/twitter-1200x630.jpg">
+    <meta name="twitter:image" content="https://gzxb001-sketch.github.io/personal-homepage/images/twitter-1200x630.jpg">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <!-- Favicon（PNG，兼容 iOS 添加主屏） -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- 预加载关键资源 - 性能优化 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -50,8 +50,8 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        heading: ['Inter', 'sans-serif'],
-                        body: ['Space Grotesk', 'sans-serif'],
+                        heading: ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        body: ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
                     },
                     animation: {
                         'gradient-x': 'gradient-x 3s ease infinite',
@@ -92,7 +92,7 @@
       "alternateName": "公子小白",
       "jobTitle": "AI开发者",
       "description": "AI技术爱好者、Agent搭建者、Vibe Coding探索者",
-      "url": "https://yourdomain.com",
+      "url": "https://gzxb001-sketch.github.io/personal-homepage/",
       "sameAs": [
         "https://github.com/gzxb001-sketch"
       ],
@@ -117,8 +117,8 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
-                <a href="#home" class="nav-link flex items-center gap-3" data-page="home">
-                    <img src="images/avatar.jpg" alt="公子小白" class="w-10 h-10 rounded-full object-cover" style="border: 2px solid var(--accent);">
+                <a href="#home" class="nav-link brand-link flex items-center gap-3" data-page="home">
+                    <img src="images/avatar.jpg" alt="公子小白" width="40" height="40" class="w-10 h-10 rounded-full object-cover" style="border: 2px solid var(--accent);">
                     <span class="font-bold text-xl hidden sm:block" style="color: var(--text-primary);">公子小白</span>
                 </a>
 
@@ -171,8 +171,8 @@
                             <!-- Friendly Greeting -->
                             <div class="reveal" style="animation-delay: 0.1s;">
                                 <div class="flex items-center gap-4 mb-6">
-                                    <span class="text-5xl animate-bounce" style="display: inline-block; animation-duration: 2s;">👋</span>
-                                    <h2 class="text-3xl md:text-4xl font-bold" style="color: var(--text-primary);">
+                                    <span class="text-4xl md:text-6xl">👋</span>
+                                    <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black" style="color: var(--text-primary);">
                                         你好，我是<span class="gradient-text">公子小白</span>
                                     </h2>
                                 </div>
@@ -239,29 +239,27 @@
 
                         <!-- Right: Avatar & Stats -->
                         <div class="space-y-6">
-                            <!-- Avatar -->
-                            <div class="card p-6 text-center reveal">
-                                <img src="images/avatar.jpg" alt="公子小白" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover" style="border: 3px solid var(--border-color);">
-                                <h3 class="text-xl font-bold" style="color: var(--text-primary);">公子小白</h3>
+                            <!-- 头像卡：slogan + 状态（姓名只在导航和主标题出现） -->
+                            <div class="card p-8 text-center reveal">
+                                <img src="images/avatar.jpg" alt="公子小白" width="144" height="144" class="w-36 h-36 rounded-full mx-auto mb-4 object-cover" style="border: 3px solid var(--accent);">
+                                <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">
+                                    用AI探索无限可能，用代码构建美好未来
+                                </p>
+                                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold" style="background: rgba(16, 185, 129, 0.12); color: #047857;">
+                                    <span class="w-2 h-2 rounded-full" style="background: #10B981;"></span>
+                                    Open to AI 合作与交流
+                                </span>
                             </div>
 
-                            <!-- Stats Grid -->
+                            <!-- 核心数据 -->
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="card p-6 md:p-8 text-center hover:scale-[1.02] transition-all duration-300 reveal">
-                                    <div class="text-4xl md:text-5xl lg:text-6xl font-black mb-2 gradient-text">7</div>
+                                    <div class="text-4xl md:text-5xl font-black mb-2 gradient-text">7</div>
                                     <div class="text-xs md:text-sm font-medium tracking-wide" style="color: var(--text-secondary);">项目作品</div>
                                 </div>
                                 <div class="card p-6 md:p-8 text-center hover:scale-[1.02] transition-all duration-300 reveal delay-100">
-                                    <div class="text-4xl md:text-5xl lg:text-6xl font-black mb-2" style="color: var(--text-primary);">200+</div>
+                                    <div class="text-4xl md:text-5xl font-black mb-2" style="color: var(--text-primary);">200+</div>
                                     <div class="text-xs md:text-sm font-medium tracking-wide" style="color: var(--text-secondary);">天持续学习</div>
-                                </div>
-                                <div class="card p-6 md:p-8 text-center hover:scale-[1.02] transition-all duration-300 reveal delay-200">
-                                    <div class="text-4xl md:text-5xl lg:text-6xl font-black mb-2" style="color: var(--text-primary);">3</div>
-                                    <div class="text-xs md:text-sm font-medium tracking-wide" style="color: var(--text-secondary);">学习笔记</div>
-                                </div>
-                                <div class="card p-6 md:p-8 text-center hover:scale-[1.02] transition-all duration-300 reveal delay-300">
-                                    <div class="text-4xl md:text-5xl lg:text-6xl font-black mb-2" style="color: var(--accent);">AGI</div>
-                                    <div class="text-xs md:text-sm font-medium tracking-wide" style="color: var(--text-secondary);">Way to AGI</div>
                                 </div>
                             </div>
 
@@ -281,80 +279,31 @@
                 </div>
             </section>
 
-            <!-- AI搭子区域（首页第二屏） -->
+            <!-- 精选作品（首页第二屏，数据与卡片由 projects.js 渲染） -->
             <section class="py-20 px-6 bg-gradient-to-b from-transparent to-[var(--bg-secondary)]">
                 <div class="container mx-auto max-w-6xl">
-                    <div class="text-center mb-16 reveal">
+                    <div class="text-center mb-12 reveal">
                         <div class="inline-block mb-4 px-4 py-2 rounded-lg" style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2);">
-                            <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">Community</span>
+                            <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">Featured Works</span>
                         </div>
-                        <h2 class="text-4xl md:text-5xl font-black mb-4" style="color: var(--text-primary);">
-                            🤝 AI路上，有幸遇见
+                        <h2 class="text-3xl md:text-4xl font-black mb-4" style="color: var(--text-primary);">
+                            精选作品
                         </h2>
                         <p class="text-lg" style="color: var(--text-secondary);">
-                            感谢这些伙伴，让我的AI之旅不再孤单
+                            从AI Agent到Web开发，7个项目的实践记录
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- 玉汝于成搭子团 -->
-                        <div class="card p-8 hover:scale-[1.02] transition-all duration-300 reveal">
-                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background: rgba(249, 115, 22, 0.1);">
-                                <span class="text-3xl">👥</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">玉汝于成搭子团</h3>
-                            <p class="text-sm mb-4 px-3 py-1 rounded-lg inline-block" style="background: var(--bg-tertiary); color: var(--accent-secondary);">
-                                登山社 · AI爱好者社区
-                            </p>
-                            <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
-                                一群热爱AI的伙伴<br>
-                                一起学习、一起成长<br>
-                                一起探索AI的无限可能
-                            </p>
-                        </div>
+                    <div id="featuredGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- 由 projects.js 渲染 -->
+                    </div>
 
-                        <!-- 姜书老师 -->
-                        <a href="https://www.jiangshu.fun/" target="_blank" class="card p-8 hover:scale-[1.02] hover:border-[var(--accent)] transition-all duration-300 reveal delay-100 group">
-                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background: rgba(139, 92, 246, 0.1);">
-                                <span class="text-3xl">👨‍🏫</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">姜书老师</h3>
-                            <p class="text-sm mb-4 px-3 py-1 rounded-lg inline-block" style="background: var(--bg-tertiary); color: var(--accent-secondary);">
-                                AI导师
-                            </p>
-                            <p class="text-base leading-relaxed mb-4" style="color: var(--text-secondary);">
-                                引领我走进AI世界的导师<br>
-                                教会我很多AI知识<br>
-                                和实战经验
-                            </p>
-                            <div class="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all" style="color: var(--accent);">
-                                <span>访问官网</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </div>
-                        </a>
-
-                        <!-- Way to AGI -->
-                        <a href="https://www.waytoagi.com/zh" target="_blank" class="card p-8 hover:scale-[1.02] hover:border-[var(--accent)] transition-all duration-300 reveal delay-200 group">
-                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background: rgba(6, 182, 212, 0.1);">
-                                <span class="text-3xl">⚡</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Way to AGI</h3>
-                            <p class="text-sm mb-4 px-3 py-1 rounded-lg inline-block" style="background: var(--bg-tertiary); color: var(--accent-cyan);">
-                                AI学习社区
-                            </p>
-                            <p class="text-base leading-relaxed mb-4" style="color: var(--text-secondary);">
-                                让更多人因AI而强大<br>
-                                系统化的AI课程<br>
-                                温暖的学习社区
-                            </p>
-                            <div class="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all" style="color: var(--accent-cyan);">
-                                <span>进入社区</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </div>
+                    <div class="text-center mt-10 reveal">
+                        <a href="#portfolio" class="nav-link inline-flex items-center gap-2 font-semibold" style="color: var(--accent-text);">
+                            查看全部作品
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -371,7 +320,7 @@
                             <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">About Me</span>
                         </div>
                         <h1 class="text-4xl md:text-5xl font-black mb-4" style="color: var(--text-primary);">
-                            关于<span class="gradient-text">我</span>
+                            <span class="gradient-text">关于我</span>
                         </h1>
                         <p class="text-lg md:text-xl" style="color: var(--text-secondary);">
                             农学类大三学生 · 生物信息升学方向 · AI实践者
@@ -383,7 +332,7 @@
                         <!-- 左侧：个人信息卡片（高） -->
                         <div class="bento-card bento-card-tall">
                             <div class="flex flex-col items-center text-center">
-                                <img src="images/avatar.jpg" alt="公子小白" class="w-24 h-24 rounded-2xl object-cover mb-4" style="border: 3px solid var(--accent);">
+                                <img src="images/avatar.jpg" alt="公子小白" width="96" height="96" loading="lazy" class="w-24 h-24 rounded-2xl object-cover mb-4" style="border: 3px solid var(--accent);">
                                 <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">公子小白 👋</h2>
                                 <p class="text-sm mb-4" style="color: var(--text-secondary);">
                                     <strong>农学类大三学生</strong><br>
@@ -595,6 +544,96 @@
                         </div>
                     </section>
                 </div>
+
+                <!-- AI搭子致谢（通栏区块） -->
+                <section class="py-20 px-6 -mx-6" style="background: linear-gradient(to bottom, transparent, var(--bg-secondary));">
+                        <div class="max-w-6xl mx-auto">
+                            <div class="text-center mb-16 reveal">
+                                <div class="inline-block mb-4 px-4 py-2 rounded-lg" style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2);">
+                                    <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">Community</span>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-black mb-4" style="color: var(--text-primary);">
+                                    🤝 AI路上，有幸遇见
+                                </h2>
+                                <p class="text-lg" style="color: var(--text-secondary);">
+                                    感谢这些伙伴，让我的AI之旅不再孤单
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <!-- 玉汝于成搭子团 -->
+                                <div class="card p-8 hover:scale-[1.02] transition-all duration-300 reveal">
+                                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background: rgba(249, 115, 22, 0.1);">
+                                        <svg class="w-7 h-7" style="color: #EA580C;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">玉汝于成搭子团</h3>
+                                    <p class="text-sm mb-4 px-3 py-1 rounded-lg inline-block" style="background: var(--bg-tertiary); color: var(--accent-secondary);">
+                                        登山社 · AI爱好者社区
+                                    </p>
+                                    <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                                        一群热爱AI的伙伴<br>
+                                        一起学习、一起成长<br>
+                                        一起探索AI的无限可能
+                                    </p>
+                                </div>
+
+                                <!-- 姜书老师 -->
+                                <a href="https://www.jiangshu.fun/" target="_blank" class="card p-8 hover:scale-[1.02] hover:border-[var(--accent)] transition-all duration-300 reveal delay-100 group">
+                                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background: rgba(139, 92, 246, 0.1);">
+                                        <svg class="w-7 h-7" style="color: #7C3AED;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/>
+                                            <path d="M22 10v6"/>
+                                            <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">姜书老师</h3>
+                                    <p class="text-sm mb-4 px-3 py-1 rounded-lg inline-block" style="background: var(--bg-tertiary); color: var(--accent-secondary);">
+                                        AI导师
+                                    </p>
+                                    <p class="text-base leading-relaxed mb-4" style="color: var(--text-secondary);">
+                                        引领我走进AI世界的导师<br>
+                                        教会我很多AI知识<br>
+                                        和实战经验
+                                    </p>
+                                    <div class="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all" style="color: var(--accent-text);">
+                                        <span>访问官网</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </div>
+                                </a>
+
+                                <!-- Way to AGI -->
+                                <a href="https://www.waytoagi.com/zh" target="_blank" class="card p-8 hover:scale-[1.02] hover:border-[var(--accent)] transition-all duration-300 reveal delay-200 group">
+                                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style="background: rgba(6, 182, 212, 0.1);">
+                                        <svg class="w-7 h-7" style="color: #0E7490;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Way to AGI</h3>
+                                    <p class="text-sm mb-4 px-3 py-1 rounded-lg inline-block" style="background: var(--bg-tertiary); color: var(--accent-cyan);">
+                                        AI学习社区
+                                    </p>
+                                    <p class="text-base leading-relaxed mb-4" style="color: var(--text-secondary);">
+                                        让更多人因AI而强大<br>
+                                        系统化的AI课程<br>
+                                        温暖的学习社区
+                                    </p>
+                                    <div class="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all" style="color: var(--accent-cyan);">
+                                        <span>进入社区</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
             </main>
         </section>
 
@@ -607,8 +646,8 @@
                         <div class="inline-block mb-4 px-4 py-2 rounded-lg" style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2);">
                             <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">Portfolio</span>
                         </div>
-                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black mb-6" style="color: var(--text-primary);">
-                            作品<span class="gradient-text">集</span>
+                        <h1 class="text-4xl md:text-5xl font-black mb-6" style="color: var(--text-primary);">
+                            <span class="gradient-text">作品集</span>
                         </h1>
                         <p class="text-xl md:text-2xl" style="color: var(--text-secondary);">
                             AI Agent · Web开发 · 微信小程序
@@ -667,8 +706,8 @@
                         <div class="inline-block mb-4 px-4 py-2 rounded-lg" style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2);">
                             <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">Skills</span>
                         </div>
-                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black mb-6" style="color: var(--text-primary);">
-                            技术<span class="gradient-text">栈</span>
+                        <h1 class="text-4xl md:text-5xl font-black mb-6" style="color: var(--text-primary);">
+                            <span class="gradient-text">技术栈</span>
                         </h1>
                         <p class="text-xl md:text-2xl" style="color: var(--text-secondary);">
                             持续学习，不断成长
@@ -691,11 +730,6 @@
                             <div class="github-stats-card">
                                 <h3 class="text-lg font-bold mb-4" style="color: var(--text-primary);">常用语言</h3>
                                 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=gzxb001-sketch&layout=compact&theme=default&hide_border=true" alt="Top Languages">
-                            </div>
-
-                            <div class="github-stats-card">
-                                <h3 class="text-lg font-bold mb-4" style="color: var(--text-primary);">贡献热力图</h3>
-                                <img src="https://github-readme-streak-stats.herokuapp.com/?user=gzxb001-sketch&theme=default&hide_border=true" alt="Streak Stats">
                             </div>
                         </div>
                     </section>
@@ -756,8 +790,8 @@
                         <div class="inline-block mb-4 px-4 py-2 rounded-lg" style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2);">
                             <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">Blog</span>
                         </div>
-                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black mb-6" style="color: var(--text-primary);">
-                            学习<span class="gradient-text">笔记</span>
+                        <h1 class="text-4xl md:text-5xl font-black mb-6" style="color: var(--text-primary);">
+                            <span class="gradient-text">学习笔记</span>
                         </h1>
                         <p class="text-xl md:text-2xl" style="color: var(--text-secondary);">
                             记录成长，分享经验
@@ -777,15 +811,15 @@
             <main class="pt-24 pb-20 px-6">
                 <div class="container mx-auto max-w-4xl">
                     <div class="text-center">
-                        <h1 class="text-5xl md:text-6xl font-black mb-8 reveal" style="color: var(--text-primary);">
-                            关注<span class="gradient-text">公众号</span>
+                        <h1 class="text-4xl md:text-5xl font-black mb-8 reveal" style="color: var(--text-primary);">
+                            <span class="gradient-text">关注公众号</span>
                         </h1>
                         <p class="text-xl mb-12 reveal" style="color: var(--text-secondary);">
                             获取更多AI学习资源和项目分享
                         </p>
 
                         <div class="card p-12 reveal">
-                            <img src="images/miniprogram-qrcode.png" alt="公众号二维码" class="w-64 h-64 mx-auto mb-6 rounded-lg">
+                            <img src="images/miniprogram-qrcode.png" alt="公众号二维码" width="256" height="256" loading="lazy" class="w-64 h-64 mx-auto mb-6 rounded-lg">
                             <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">公子小白的AI实验室</h3>
                             <p class="text-base" style="color: var(--text-muted);">扫码关注，一起探索AI世界</p>
                         </div>
@@ -802,8 +836,8 @@
                         <div class="inline-block mb-4 px-4 py-2 rounded-lg" style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2);">
                             <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--accent);">Contact</span>
                         </div>
-                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black mb-6" style="color: var(--text-primary);">
-                            联系<span class="gradient-text">我</span>
+                        <h1 class="text-4xl md:text-5xl font-black mb-6" style="color: var(--text-primary);">
+                            <span class="gradient-text">联系我</span>
                         </h1>
                         <p class="text-xl md:text-2xl" style="color: var(--text-secondary);">
                             期待与你的交流与合作
@@ -812,7 +846,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- GitHub Card -->
-                        <a href="https://github.com/gzxb001-sketch" target="_blank" class="card p-10 text-center group hover:scale-105 transition-all duration-300 reveal" style="border: 1px solid rgba(249, 115, 22, 0.2);">
+                        <a href="https://github.com/gzxb001-sketch" target="_blank" class="card p-10 text-center group hover:scale-[1.02] transition-all duration-300 reveal" style="border: 1px solid rgba(249, 115, 22, 0.2);">
                             <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: rgba(249, 115, 22, 0.1);">
                                 <svg class="w-10 h-10" style="color: var(--accent);" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -829,14 +863,14 @@
                         </a>
 
                         <!-- Email Card -->
-                        <a href="mailto:your.email@example.com" class="card p-10 text-center group hover:scale-105 transition-all duration-300 reveal delay-100" style="border: 1px solid rgba(249, 115, 22, 0.2);">
+                        <a href="mailto:gzxb001@gmail.com" class="card p-10 text-center group hover:scale-[1.02] transition-all duration-300 reveal delay-100" style="border: 1px solid rgba(249, 115, 22, 0.2);">
                             <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: rgba(249, 115, 22, 0.1);">
                                 <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
                             </div>
                             <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">Email</h3>
-                            <p class="text-sm mb-4" style="color: var(--text-muted);">商务合作与交流</p>
+                            <p class="text-sm mb-4" style="color: var(--text-muted);">gzxb001@gmail.com</p>
                             <span class="inline-flex items-center gap-2 text-sm font-semibold" style="color: var(--accent);">
                                 发送邮件
                                 <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -846,7 +880,7 @@
                         </a>
 
                         <!-- 微信 Card -->
-                        <div class="card p-10 text-center hover:scale-105 transition-all duration-300 reveal delay-200" style="border: 1px solid rgba(249, 115, 22, 0.2);">
+                        <div class="card p-10 text-center hover:scale-[1.02] transition-all duration-300 reveal delay-200" style="border: 1px solid rgba(249, 115, 22, 0.2);">
                             <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: rgba(249, 115, 22, 0.1);">
                                 <svg class="w-10 h-10" style="color: var(--accent);" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8.5,12c-3.037,0-5.5-2.463-5.5-5.5S5.463,1,8.5,1s5.5,2.463,5.5,5.5S11.537,12,8.5,12z M19,11.5c0,2.485-2.015,4.5-4.5,4.5 c-0.354,0-0.696-0.042-1.025-0.117l-1.975,1.475l0.5-1.975C10.314,14.592,9.5,13.148,9.5,11.5c0-2.485,2.015-4.5,4.5-4.5 S18.5,9.015,18.5,11.5z M17,11.5c0-1.657-1.343-3-3-3s-3,1.343-3,3c0,0.558,0.171,1.073,0.455,1.513l-0.455,1.487l1.686-1.142 C13.221,13.781,13.601,13.85,14,13.85C15.657,13.85,17,12.507,17,11.5z"/>
@@ -863,9 +897,16 @@
                         </div>
 
                         <!-- Coze Card -->
-                        <a href="https://www.coze.cn/store/bot" target="_blank" class="card p-10 text-center group hover:scale-105 transition-all duration-300 reveal delay-300" style="border: 1px solid rgba(249, 115, 22, 0.2);">
+                        <a href="https://www.coze.cn/store/bot" target="_blank" class="card p-10 text-center group hover:scale-[1.02] transition-all duration-300 reveal delay-300" style="border: 1px solid rgba(249, 115, 22, 0.2);">
                             <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: rgba(249, 115, 22, 0.1);">
-                                <span class="text-4xl">🤖</span>
+                                <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8V4H8"/>
+                                    <rect width="16" height="12" x="4" y="8" rx="2"/>
+                                    <path d="M2 14h2"/>
+                                    <path d="M20 14h2"/>
+                                    <path d="M15 13v2"/>
+                                    <path d="M9 13v2"/>
+                                </svg>
                             </div>
                             <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">Coze Store</h3>
                             <p class="text-sm mb-4" style="color: var(--text-muted);">体验我的AI智能体</p>
@@ -883,6 +924,24 @@
 
     </main>
 
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="px-6 py-10" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div class="container mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="images/avatar.jpg" alt="公子小白" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-full object-cover" style="border: 2px solid var(--border-color);">
+                <p class="text-sm">
+                    <span class="font-bold" style="color: var(--text-primary);">公子小白</span>
+                    <span style="color: var(--text-muted);"> · 正在用AI探索无限可能</span>
+                </p>
+            </div>
+            <div class="flex items-center gap-5 text-sm">
+                <a href="https://github.com/gzxb001-sketch" target="_blank" class="nav-link font-medium" style="color: var(--text-secondary);">GitHub</a>
+                <a href="mailto:gzxb001@gmail.com" class="nav-link font-medium" style="color: var(--text-secondary);">Email</a>
+                <span class="text-xs" style="color: var(--text-muted);">© 2026 公子小白</span>
+            </div>
+        </div>
+    </footer>
+
     <!-- ==================== 微信二维码模态框 ==================== -->
     <div id="wechatModal" class="wechat-modal" onclick="closeWeChatModalOutside(event)">
         <div class="wechat-modal-content">
@@ -895,7 +954,7 @@
                 <h3 class="wechat-modal-title">扫码添加微信</h3>
                 <p class="wechat-modal-subtitle">期待与你的交流</p>
                 <div class="wechat-modal-qrcode">
-                    <img src="images/wechat-qrcode.png" alt="微信二维码">
+                    <img src="images/wechat-qrcode.png" alt="微信二维码" width="240" height="240" loading="lazy">
                 </div>
                 <p class="wechat-modal-tip">打开微信扫一扫,即可添加好友</p>
             </div>

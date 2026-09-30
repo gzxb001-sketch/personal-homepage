@@ -1,5 +1,19 @@
 // ==================== 公子小白AI助手 ====================
 
+// 系统提示词：AI数字分身的知识库与人设（线上API与本地降级共用）
+const SYSTEM_PROMPT = `你是「公子小白」（王晓宇）的AI数字分身，嵌入在他的个人主页中。用友好、真诚、简洁的中文回答，可用少量emoji和Markdown加粗，默认不超过200字。
+
+关于公子小白：
+- 农学类大三学生，正向生物信息学方向探索；从农学跨界AI
+- Way to AGI Coze训练营学员，已持续学习200+天
+- 定位：AI爱好者 · Agent搭建者 · Web开发者（Vibe Coding实践者）
+- 7个项目：英语学习助手、第二大脑、变量命名智能体、每日AI资讯推送（均为AI Agent）；羽生结弦粉丝主页（Web）；蛋指标测量者（微信小程序）；AI面试助手
+- 技能：Coze平台、Claude API、GPT-4、Prompt工程、HTML/CSS/JavaScript、React（学习中）、Python、Flask、Git
+- 座右铭："不待扬鞭自奋蹄，努力会说谎，但努力不会白费"
+- 联系方式：GitHub github.com/gzxb001-sketch；其他方式请引导访客到主页"联系我"页面
+
+只回答与公子小白、AI学习或其项目相关的问题；不确定的信息不要编造。`;
+
 class AIAssistant {
     constructor() {
         this.container = null;
@@ -27,7 +41,14 @@ class AIAssistant {
         this.container.innerHTML = `
             <!-- 切换按钮 -->
             <button id="aiAssistantToggle" class="ai-assistant-toggle" aria-label="打开AI助手">
-                <span class="ai-icon">🤖</span>
+                <svg class="w-7 h-7" style="color: #fff;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8V4H8"/>
+                    <rect width="16" height="12" x="4" y="8" rx="2"/>
+                    <path d="M2 14h2"/>
+                    <path d="M20 14h2"/>
+                    <path d="M15 13v2"/>
+                    <path d="M9 13v2"/>
+                </svg>
                 <span class="ai-badge">AI</span>
             </button>
 
@@ -173,7 +194,7 @@ class AIAssistant {
         }
     }
 
-    sendMessage() {
+    async sendMessage() {
         const input = document.getElementById('aiChatInput');
         const message = input?.value.trim();
 
@@ -187,17 +208,59 @@ class AIAssistant {
             input.value = '';
         }
 
-        // 模拟AI回复
         this.isTyping = true;
         this.showTypingIndicator();
 
-        // 模拟思考时间
-        setTimeout(() => {
-            this.hideTypingIndicator();
-            const response = this.generateResponse(message);
-            this.addMessage(response, 'assistant');
-            this.isTyping = false;
-        }, 1000 + Math.random() * 1000);
+        // 优先调用线上API（Vercel Serverless代理智谱AI），失败时降级到本地知识库
+        this.history = this.history || [];
+        let reply = null;
+        try {
+            const res = await fetch('/api/ai-assistant', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    messages: [
+                        { role: 'system', content: SYSTEM_PROMPT },
+                        ...this.history.slice(-10),
+                        { role: 'user', content: message }
+                    ]
+                })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                reply = data?.choices?.[0]?.message?.content?.trim() || null;
+            }
+        } catch (e) {
+            // 本地静态预览无 /api 代理，静默降级
+        }
+
+        if (!reply) {
+            await new Promise(resolve => setTimeout(resolve, 800));
+            reply = this.generateResponse(message);
+        }
+
+        // 记录对话上下文（保留最近10轮）
+        this.history.push({ role: 'user', content: message }, { role: 'assistant', content: reply });
+        if (this.history.length > 20) {
+            this.history = this.history.slice(-20);
+        }
+
+        this.hideTypingIndicator();
+        this.addMessage(reply, 'assistant');
+        this.isTyping = false;
+    }
+
+    // 极简Markdown渲染：先转义HTML防注入，再转换 **加粗**、`代码`、列表与换行
+    renderMarkdown(text) {
+        const escaped = String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        return escaped
+            .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+            .replace(/`([^`\n]+)`/g, '<code>$1</code>')
+            .replace(/^[-•] (.+)$/gm, '· $1')
+            .replace(/\n/g, '<br>');
     }
 
     addMessage(text, type) {
@@ -206,11 +269,12 @@ class AIAssistant {
 
         const messageDiv = document.createElement('div');
         messageDiv.className = `ai-message ai-message-${type}`;
+        const html = this.renderMarkdown(text);
 
         if (type === 'assistant') {
             messageDiv.innerHTML = `
                 <div class="ai-message-content">
-                    <p>${text}</p>
+                    <p>${html}</p>
                 </div>
                 <div class="ai-message-avatar">🤖</div>
             `;
@@ -218,7 +282,7 @@ class AIAssistant {
             messageDiv.innerHTML = `
                 <div class="ai-message-avatar">👤</div>
                 <div class="ai-message-content">
-                    <p>${text}</p>
+                    <p>${html}</p>
                 </div>
             `;
         }
@@ -362,7 +426,7 @@ class AIAssistant {
 
 🔗 **GitHub**：github.com/gzxb001-sketch
 💬 **微信**：查看主页的"联系我"页面
-📧 **邮箱**：可以在GitHub联系我
+📧 **邮箱**：gzxb001@gmail.com
 
 期待与你的交流！😊`;
         }
@@ -396,7 +460,7 @@ const aiAssistantStyles = `
         background: var(--gradient-neon);
         border: none;
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
@@ -405,7 +469,7 @@ const aiAssistantStyles = `
 
     .ai-assistant-toggle:hover {
         transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        box-shadow: 0 8px 24px rgba(249, 115, 22, 0.32);
     }
 
     .ai-icon {
@@ -507,6 +571,21 @@ const aiAssistantStyles = `
         background: var(--gradient-neon);
         color: white;
         border-bottom-right-radius: 4px;
+    }
+
+    .ai-message-content strong {
+        font-weight: 700;
+    }
+
+    .ai-message-content code {
+        background: rgba(0, 0, 0, 0.07);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+    .ai-message-user .ai-message-content code {
+        background: rgba(255, 255, 255, 0.25);
     }
 
     .ai-message-avatar {
@@ -627,7 +706,6 @@ document.head.appendChild(styleSheet);
 let aiAssistant;
 document.addEventListener('DOMContentLoaded', () => {
     aiAssistant = new AIAssistant();
+    // 导出到全局
+    window.aiAssistant = aiAssistant;
 });
-
-// 导出到全局
-window.aiAssistant = aiAssistant;
