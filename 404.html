@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 · 页面被小白抓坏了 | 公子小白</title>
+    <meta name="robots" content="noindex">
+    <style>
+        :root {
+            --bg-primary: #FFFBF7;
+            --bg-secondary: #FFF5EB;
+            --accent: #EA580C;
+            --text-primary: #1C1917;
+            --text-secondary: #57534E;
+            --text-muted: #78716C;
+            --border-color: #FED7AA;
+            --leaf: #16A34A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Space Grotesk', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+            background:
+                radial-gradient(900px 420px at 85% -10%, rgba(249, 115, 22, 0.08), transparent 65%),
+                var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-align: center;
+            padding: 24px;
+        }
+        .box { max-width: 520px; }
+        .code {
+            font-size: clamp(84px, 18vw, 150px);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #EA580C, #F97316);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+        h1 { font-size: 24px; margin: 18px 0 10px; }
+        p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #F97316, #FB923C);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249, 115, 22, 0.32); }
+        .cat { font-size: 52px; display: inline-block; margin-bottom: 6px; animation: tilt 3s ease-in-out infinite; }
+        @keyframes tilt {
+            0%, 100% { transform: rotate(-6deg); }
+            50% { transform: rotate(6deg); }
+        }
+        @media (prefers-reduced-motion: reduce) { .cat { animation: none; } }
+        .tip { margin-top: 22px; font-size: 12px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span class="cat" aria-hidden="true">🐱</span>
+        <div class="code">404</div>
+        <h1>这个页面被小白抓坏了</h1>
+        <p>果实掉到别处去了——回田里看看，<br>7 个项目都好好长在枝头上。</p>
+        <a class="btn" href="/">回到农田 🌾</a>
+        <p class="tip">提示：主页的所有页面都用 # 导航，比如 gzxb001-sketch.github.io/personal-homepage/#portfolio</p>
+    </div>
+</body>
+</html>

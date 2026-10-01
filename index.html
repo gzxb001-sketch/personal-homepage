@@ -83,6 +83,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/farm.css">
+    <link rel="stylesheet" href="css/cmdk.css">
 
     <!-- 结构化数据 -->
     <script type="application/ld+json">
@@ -133,6 +134,10 @@
                     <!-- 暂时隐藏公众号导航 -->
                     <!-- <a href="#wechat" class="nav-link px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200" data-page="wechat" style="color: var(--text-secondary);">公众号</a> -->
                     <a href="#contact" class="nav-link px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200" data-page="contact" style="color: var(--text-secondary);">联系我</a>
+                    <button id="cmdkOpen" class="cmdk-trigger" aria-label="打开命令面板" title="搜索快捷入口">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <kbd>Ctrl K</kbd>
+                    </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -154,6 +159,7 @@
                     <!-- 暂时隐藏公众号导航 -->
                     <!-- <a href="#wechat" class="nav-link block px-4 py-3 rounded-lg" role="menuitem" data-page="wechat">公众号</a> -->
                     <a href="#contact" class="nav-link block px-4 py-3 rounded-lg" role="menuitem" data-page="contact">联系我</a>
+                    <button id="cmdkOpenMobile" class="cmdk-trigger w-full justify-center" aria-label="打开命令面板">搜索与快捷操作</button>
                 </div>
             </div>
         </div>
@@ -535,6 +541,97 @@
                                 <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
                                     用<span class="font-bold" style="color: var(--accent-secondary);">AI+代码构建产品</span>
                                 </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 生长日志（个人 Changelog） -->
+                    <section class="mb-16" id="changelog">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-1 h-8 rounded-full" style="background: var(--gradient-neon);"></div>
+                            <h2 class="text-2xl md:text-3xl font-bold" style="color: var(--text-primary);">生长日志</h2>
+                            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded" style="background: rgba(249, 115, 22, 0.12); color: var(--accent-text);">当前 v3.2</span>
+                        </div>
+                        <p class="text-sm mb-8" style="color: var(--text-muted);">把简历写成更新日志——每一次生长，都值得记一笔。</p>
+
+                        <div class="space-y-3">
+                            <div class="card p-5 flex items-start gap-4 reveal">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">v3.2</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">New</span>
+                                        <span class="text-xs font-mono" style="color: var(--text-muted);">2026.09</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">首页长出「数字农田」：项目变成果实、还能浇水；AI 助手接入真实大模型；全站字体与对比度升级</p>
+                                </div>
+                            </div>
+                            <div class="card p-5 flex items-start gap-4 reveal delay-100">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: rgba(249, 115, 22, 0.12); color: var(--accent-text);">v3.1</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: rgba(249, 115, 22, 0.12); color: var(--accent-text);">Improved</span>
+                                        <span class="text-xs font-mono" style="color: var(--text-muted);">2026.04</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">全站视觉升级：温暖橙主题、中文字体系统、Bento 关于页、移动端打磨</p>
+                                </div>
+                            </div>
+                            <div class="card p-5 flex items-start gap-4 reveal delay-200">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">v3.0</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">New</span>
+                                        <span class="text-xs font-mono" style="color: var(--text-muted);">2026.02</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">AI 数字分身入驻本站，随时回答关于我的问题</p>
+                                </div>
+                            </div>
+                            <div class="card p-5 flex items-start gap-4 reveal delay-300">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">v2.5</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">New</span>
+                                        <span class="text-xs font-mono" style="color: var(--text-muted);">2026.01</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Vibe Coding 实战期：项目数量长到 7 个，覆盖 Agent / Web / 小程序</p>
+                                </div>
+                            </div>
+                            <div class="card p-5 flex items-start gap-4 reveal">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">v2.0</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: rgba(22, 163, 74, 0.12); color: #15803D;">New</span>
+                                        <span class="text-xs font-mono" style="color: var(--text-muted);">2025.12</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">第一个 AI Agent「英语学习助手」发芽，从此一发不可收拾</p>
+                                </div>
+                            </div>
+                            <div class="card p-5 flex items-start gap-4 reveal delay-100">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: rgba(139, 92, 246, 0.12); color: #7C3AED;">v1.1</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: rgba(139, 92, 246, 0.12); color: #7C3AED;">New</span>
+                                        <span class="text-xs font-mono" style="color: var(--text-muted);">2025.11</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">加入 Way to AGI Coze 训练营，开始系统学习智能体开发</p>
+                                </div>
+                            </div>
+                            <div class="card p-5 flex items-start gap-4 reveal delay-200">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: var(--bg-tertiary); color: var(--text-muted);">v1.0</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: var(--bg-tertiary); color: var(--text-muted);">初始版本</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">农学新生，埋下「跨界」伏笔</p>
+                                </div>
+                            </div>
+                            <div class="card p-5 flex items-start gap-4 reveal delay-300">
+                                <span class="text-xs font-mono font-bold px-2.5 py-1 rounded flex-shrink-0" style="background: var(--bg-tertiary); color: var(--text-muted);">—</span>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background: rgba(124, 58, 237, 0.12); color: #7C3AED;">Fixed</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">期末周心态崩溃问题（临时方案，待根治）</p>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -967,6 +1064,7 @@
     <script src="js/main.js"></script>
     <script src="js/projects.js"></script>
     <script src="js/farm.js"></script>
+    <script src="js/cmdk.js"></script>
     <script src="js/ai-assistant.js"></script>
 </body>
 </html>
