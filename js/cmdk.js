@@ -46,14 +46,6 @@
                     }, 350);
                 }
             },
-            {
-                label: '给农田浇点水',
-                hint: '动作',
-                run: () => {
-                    navigateToPage('home');
-                    setTimeout(() => document.getElementById('farmWaterBtn')?.click(), 350);
-                }
-            },
             { label: '复制本页链接', hint: '动作', run: () => copyLink() },
             { label: '去我的 GitHub', hint: '动作', run: () => window.open('https://github.com/gzxb001-sketch', '_blank') },
             { label: '喵一声', hint: '彩蛋', run: () => showToast('喵~ 🐱') }
