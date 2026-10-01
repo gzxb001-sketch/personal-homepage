@@ -82,6 +82,7 @@
     <!-- 自定义CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/farm.css">
 
     <!-- 结构化数据 -->
     <script type="application/ld+json">
@@ -163,118 +164,105 @@
 
         <!-- ========== 首页 ========== -->
         <section id="page-home" class="page-section active" aria-labelledby="hero-title">
-            <section class="min-h-screen flex items-center px-6 pt-24 pb-16 relative overflow-hidden">
-                <div class="container mx-auto max-w-7xl relative z-10">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
-                        <!-- Left: Content -->
-                        <div class="space-y-8 md:space-y-10">
-                            <!-- Friendly Greeting -->
-                            <div class="reveal" style="animation-delay: 0.1s;">
-                                <div class="flex items-center gap-4 mb-6">
-                                    <span class="text-4xl md:text-6xl">👋</span>
-                                    <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black" style="color: var(--text-primary);">
-                                        你好，我是<span class="gradient-text">公子小白</span>
-                                    </h2>
-                                </div>
-                                <p class="text-lg md:text-xl leading-relaxed" style="color: var(--text-secondary);">
-                                    从农学类学生到AI开发者的跨界之旅
-                                </p>
-                            </div>
+            <section class="farm-hero" aria-label="公子小白的数字农田">
+                <!-- 太阳与云 -->
+                <div class="farm-sun" aria-hidden="true"></div>
+                <div class="farm-cloud farm-cloud-1" aria-hidden="true"></div>
+                <div class="farm-cloud farm-cloud-2" aria-hidden="true"></div>
 
-                            <!-- Identity -->
-                            <p class="text-base md:text-lg leading-relaxed reveal delay-100" style="animation-delay: 0.2s; color: var(--text-muted);">
-                                <span style="color: var(--accent-secondary); font-weight: 600;">AI爱好者</span> ·
-                                Agent搭建者 · Web开发者
-                            </p>
-
-                            <!-- Typewriter Effect -->
-                            <div class="flex items-center gap-3 text-sm md:text-base reveal delay-200" style="animation-delay: 0.3s; color: var(--text-secondary);">
-                                <div class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></div>
-                                <span class="typewriter-container font-medium">
-                                    <span id="typewriter"></span>
-                                    <span class="cursor">|</span>
-                                </span>
-                            </div>
-
-                            <!-- CTA Buttons -->
-                            <div class="flex flex-col sm:flex-row gap-4 pt-4 reveal delay-300" style="animation-delay: 0.4s;">
-                                <a href="#portfolio" class="nav-link btn-primary group">
-                                    <span>探索作品</span>
-                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                                    </svg>
-                                </a>
-                                <a href="#contact" class="nav-link btn-secondary group">
-                                    <span>联系我</span>
-                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <!-- Social Links (底部集成) -->
-                            <div class="reveal delay-400" style="animation-delay: 0.5s;">
-                                <div class="flex items-center gap-4">
-                                    <a href="https://github.com/gzxb001-sketch" target="_blank" class="flex items-center gap-2 text-sm transition-all duration-200 hover:text-[var(--accent)]" style="color: var(--text-muted);" title="GitHub">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                        </svg>
-                                        <span>GitHub</span>
-                                    </a>
-                                    <button onclick="shareToTwitter()" class="flex items-center gap-2 text-sm transition-all duration-200 hover:text-[var(--accent)]" style="color: var(--text-muted);" title="分享到Twitter">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-                                        </svg>
-                                        <span>分享</span>
-                                    </button>
-                                    <button onclick="copyLink()" class="flex items-center gap-2 text-sm transition-all duration-200 hover:text-[var(--accent)]" style="color: var(--text-muted);" title="复制链接">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2m-6 12h8a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z"/>
-                                        </svg>
-                                        <span>复制链接</span>
-                                    </button>
-                                </div>
-                            </div>
+                <div class="farm-inner container mx-auto max-w-6xl px-6 pt-24 pb-8">
+                    <!-- 文案 -->
+                    <div class="farm-copy">
+                        <p class="farm-overline">👋 你好，我是<strong>公子小白</strong> · AI爱好者 · Agent搭建者 · Web开发者</p>
+                        <h1 id="hero-title" class="farm-title">
+                            一个农学生，在浏览器里<span class="gradient-text">种 AI</span>
+                        </h1>
+                        <p class="farm-sub">7 个项目 = 7 颗果实，点击一颗，尝尝味道</p>
+                        <div class="farm-cta">
+                            <a href="#portfolio" class="nav-link btn-primary group">
+                                <span>探索作品</span>
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </a>
+                            <a href="#contact" class="nav-link btn-secondary group">
+                                <span>联系我</span>
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </a>
                         </div>
+                    </div>
 
-                        <!-- Right: Avatar & Stats -->
-                        <div class="space-y-6">
-                            <!-- 头像卡：slogan + 状态（姓名只在导航和主标题出现） -->
-                            <div class="card p-8 text-center reveal">
-                                <img src="images/avatar.jpg" alt="公子小白" width="144" height="144" class="w-36 h-36 rounded-full mx-auto mb-4 object-cover" style="border: 3px solid var(--accent);">
-                                <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">
-                                    用AI探索无限可能，用代码构建美好未来
-                                </p>
-                                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold" style="background: rgba(16, 185, 129, 0.12); color: #047857;">
-                                    <span class="w-2 h-2 rounded-full" style="background: #10B981;"></span>
-                                    Open to AI 合作与交流
-                                </span>
-                            </div>
+                    <!-- 农田场景：SVG 线条画 + JS 渲染的果实 -->
+                    <div class="farm-scene" id="farmScene" role="group" aria-label="数字农田：每颗果实是一个项目，点击查看详情">
+                        <svg class="farm-svg" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                            <!-- 地面 -->
+                            <path class="farm-ground" d="M-10 522 C 150 505, 320 540, 520 528 C 700 518, 880 546, 1060 530 C 1120 525, 1170 528, 1210 522 L 1210 570 L -10 570 Z" fill="#FDF3E4" stroke="#E5C69B" stroke-width="2"/>
+                            <path d="M180 548 h34 M600 554 h40 M950 550 h30" stroke="#E0BE8E" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M430 540 c 2 -10 5 -14 4 -19 M437 540 c 0 -8 3 -12 7 -15 M424 540 c -1 -7 -4 -11 -8 -13 M720 542 c 2 -9 5 -13 4 -18 M727 542 c 0 -7 3 -11 6 -14" stroke="#7BC47F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            <!-- 主植物：从土壤里长出 7 颗果实 -->
+                            <g class="farm-plant">
+                                <path class="farm-stem" d="M300 522 C 294 440, 312 372, 304 308 C 298 252, 316 168, 322 96" fill="none" stroke="#16A34A" stroke-width="4" stroke-linecap="round" pathLength="100"/>
+                                <path class="farm-branch" style="--i:0" d="M318 206 C 330 168, 338 130, 346 106" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+                                <path class="farm-branch" style="--i:1" d="M309 236 C 300 228, 294 221, 290 216" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+                                <path class="farm-branch" style="--i:2" d="M307 268 C 340 246, 378 212, 404 194" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+                                <path class="farm-branch" style="--i:3" d="M304 352 C 282 342, 260 333, 244 327" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+                                <path class="farm-branch" style="--i:4" d="M303 330 C 352 320, 420 302, 452 293" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+                                <path class="farm-branch" style="--i:5" d="M300 448 C 312 438, 324 426, 334 418" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+                                <path class="farm-branch" style="--i:6" d="M301 428 C 364 418, 452 402, 500 393" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+                                <g transform="translate(286 462) rotate(-38)"><ellipse class="farm-leaf" style="--i:0" rx="17" ry="7" fill="#4ADE80"/></g>
+                                <g transform="translate(318 388) rotate(32)"><ellipse class="farm-leaf" style="--i:1" rx="17" ry="7" fill="#16A34A"/></g>
+                                <g transform="translate(296 306) rotate(-30)"><ellipse class="farm-leaf" style="--i:2" rx="17" ry="7" fill="#4ADE80"/></g>
+                                <g transform="translate(320 214) rotate(28)"><ellipse class="farm-leaf" style="--i:3" rx="17" ry="7" fill="#16A34A"/></g>
+                                <g transform="translate(310 150) rotate(-24)"><ellipse class="farm-leaf" style="--i:4" rx="15" ry="6" fill="#4ADE80"/></g>
+                            </g>
+                            <!-- 猫咪农夫：坐在田边敲笔记本（外层 g 定位，内层 g 做入场动画，避免 transform 冲突） -->
+                            <g transform="translate(800,316)">
+                            <g class="farm-cat">
+                                <path class="farm-tail" d="M148 178 C 186 168, 194 132, 170 120" fill="none" stroke="#C9BFAF" stroke-width="11" stroke-linecap="round"/>
+                                <ellipse cx="92" cy="176" rx="58" ry="42" fill="#FFFDF8" stroke="#C9BFAF" stroke-width="3"/>
+                                <path d="M44 88 L36 54 L64 72 Z" fill="#FFFDF8" stroke="#C9BFAF" stroke-width="3" stroke-linejoin="round"/>
+                                <path d="M100 88 L108 54 L80 72 Z" fill="#FFFDF8" stroke="#C9BFAF" stroke-width="3" stroke-linejoin="round"/>
+                                <path d="M38 86 C 44 54, 100 54, 106 86" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round"/>
+                                <rect x="28" y="80" width="15" height="24" rx="7" fill="#F97316"/>
+                                <rect x="101" y="80" width="15" height="24" rx="7" fill="#F97316"/>
+                                <circle cx="60" cy="106" r="7.5" fill="#fff" stroke="#D6CDC0" stroke-width="1.5"/>
+                                <circle cx="86" cy="106" r="7.5" fill="#fff" stroke="#D6CDC0" stroke-width="1.5"/>
+                                <circle class="farm-pupil" cx="60" cy="106" r="3.4" fill="#3F3A34"/>
+                                <circle class="farm-pupil" cx="86" cy="106" r="3.4" fill="#3F3A34"/>
+                                <path d="M69 116 L75 116 L72 120 Z" fill="#E8A87C"/>
+                                <path d="M66 124 Q72 129 78 124" fill="none" stroke="#B9AE9E" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M40 112 h-14 M40 118 l-12 5 M104 112 h14 M104 118 l12 5" stroke="#D6CDC0" stroke-width="2" stroke-linecap="round"/>
+                                <rect x="120" y="128" width="82" height="52" rx="7" fill="#FFFDF8" stroke="#C9BFAF" stroke-width="3"/>
+                                <rect x="128" y="136" width="66" height="36" rx="3" fill="#1C1917"/>
+                                <text x="161" y="159" text-anchor="middle" font-size="13" fill="#4ADE80" font-family="monospace">&gt;_</text>
+                                <ellipse cx="130" cy="176" rx="10" ry="7" fill="#FFFDF8" stroke="#C9BFAF" stroke-width="2.5"/>
+                                <ellipse cx="158" cy="176" rx="10" ry="7" fill="#FFFDF8" stroke="#C9BFAF" stroke-width="2.5"/>
+                                <path d="M114 180 L208 180 L216 194 L106 194 Z" fill="#F3E8D8" stroke="#E5D5BC" stroke-width="2"/>
+                            </g>
+                            </g>
+                        </svg>
+                        <div class="farm-fruits" id="farmFruits"><!-- 果实由 farm.js 从 projectsData 渲染 --></div>
+                        <div class="farm-drops" id="farmDrops" aria-hidden="true"></div>
+                    </div>
 
-                            <!-- 核心数据 -->
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="card p-6 md:p-8 text-center hover:scale-[1.02] transition-all duration-300 reveal">
-                                    <div class="text-4xl md:text-5xl font-black mb-2 gradient-text">7</div>
-                                    <div class="text-xs md:text-sm font-medium tracking-wide" style="color: var(--text-secondary);">项目作品</div>
-                                </div>
-                                <div class="card p-6 md:p-8 text-center hover:scale-[1.02] transition-all duration-300 reveal delay-100">
-                                    <div class="text-4xl md:text-5xl font-black mb-2" style="color: var(--text-primary);">200+</div>
-                                    <div class="text-xs md:text-sm font-medium tracking-wide" style="color: var(--text-secondary);">天持续学习</div>
-                                </div>
-                            </div>
-
-                            <!-- Featured Quote -->
-                            <div class="card p-8 reveal delay-400">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-1 h-full flex-shrink-0" style="background: var(--gradient-neon);"></div>
-                                    <div>
-                                        <p class="text-base md:text-lg leading-relaxed font-medium" style="color: var(--text-secondary);">
-                                            "不待扬鞭自奋蹄，努力会说谎，但努力不会白费"
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- 生长度 + 浇水 -->
+                    <div class="farm-bar">
+                        <div class="farm-growth">
+                            <span>🌱 生长度</span>
+                            <div class="farm-growth-track"><div class="farm-growth-fill" id="farmGrowthFill"></div></div>
+                            <span class="farm-growth-num" id="farmGrowthNum">32%</span>
                         </div>
+                        <button class="farm-water" id="farmWaterBtn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                            <span>浇点水</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI 生成进场（farm.js 控制，仅首次访问播放） -->
+                <div class="farm-intro" id="farmIntro" aria-hidden="true">
+                    <div class="farm-intro-box">
+                        <div class="farm-intro-prompt"><span class="farm-intro-caret"></span><span id="farmPromptText"></span></div>
+                        <div class="farm-intro-progress"><div class="farm-intro-bar"></div></div>
+                        <p class="farm-intro-status" id="farmIntroStatus">正在连接灵感源…</p>
                     </div>
                 </div>
             </section>
@@ -324,6 +312,13 @@
                         </h1>
                         <p class="text-lg md:text-xl" style="color: var(--text-secondary);">
                             农学类大三学生 · 生物信息升学方向 · AI实践者
+                        </p>
+                    </div>
+
+                    <!-- 金句（原首页迁移至此） -->
+                    <div class="card p-6 mb-10 reveal" style="border-left: 3px solid var(--accent);">
+                        <p class="text-base md:text-lg leading-relaxed font-medium" style="color: var(--text-secondary);">
+                            "不待扬鞭自奋蹄，努力会说谎，但努力不会白费"
                         </p>
                     </div>
 
@@ -971,6 +966,7 @@
     <!-- ==================== JavaScript ==================== -->
     <script src="js/main.js"></script>
     <script src="js/projects.js"></script>
+    <script src="js/farm.js"></script>
     <script src="js/ai-assistant.js"></script>
 </body>
 </html>
