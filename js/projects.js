@@ -38,7 +38,7 @@ const projectsData = {
         techStack: ['Python', 'Flask', 'Claude API', 'SQLite', 'React'],
         features: ['智能简历解析', '岗位能力分析', '个性化优化建议', '模拟面试对话', '面试题库', '数据管理'],
         useCases: '适用于求职者准备面试、HR筛选候选人、职业规划辅导等场景',
-        role: '基于开源项目二次开发 · 功能扩展与定制',
+        role: '团队合作开发 · 基于开源项目二次开发与功能定制',
         challenge: 'Claude API 简历解析与多轮模拟面试设计',
         outcome: '功能完整上线，代码开源',
         demoLink: 'https://github.com/alexanderkinging/JD-supervisor',
