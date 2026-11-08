@@ -23,29 +23,6 @@ const projectsData = {
         stars: 0,
         forks: 0
     },
-    project7: {
-        id: 'project7',
-        title: 'AI面试助手',
-        status: '✓ 已上线',
-        category: 'AI Agent',
-        categoryId: 'ai-agent',
-        date: '2025.02',
-        emoji: '💼',
-        gradient: 'from-blue-500/20 to-indigo-500/20',
-        coverImage: 'images/project7-cover.jpg',
-        shortDesc: 'AI驱动的求职面试全流程辅导平台 - 智能简历解析、岗位分析、模拟面试',
-        fullDesc: '全功能AI面试辅导平台，提供简历智能解析、岗位能力分析、个性化优化建议、模拟面试对话等功能，帮助求职者提升面试成功率。',
-        techStack: ['Python', 'Flask', 'Claude API', 'SQLite', 'React'],
-        features: ['智能简历解析', '岗位能力分析', '个性化优化建议', '模拟面试对话', '面试题库', '数据管理'],
-        useCases: '适用于求职者准备面试、HR筛选候选人、职业规划辅导等场景',
-        role: '团队合作开发 · 基于开源项目二次开发与功能定制',
-        challenge: 'Claude API 简历解析与多轮模拟面试设计',
-        outcome: '功能完整上线，代码开源',
-        demoLink: 'https://github.com/alexanderkinging/JD-supervisor',
-        githubRepo: 'https://github.com/alexanderkinging/JD-supervisor',
-        stars: 0,
-        forks: 0
-    },
     project6: {
         id: 'project6',
         title: '蛋指标测量者',
@@ -185,6 +162,29 @@ const projectsData = {
         githubRepo: null, // 如果有GitHub仓库可以添加
         stars: 0,
         forks: 0
+    },
+    project7: {
+        id: 'project7',
+        title: 'AI面试助手',
+        status: '✓ 已上线',
+        category: 'AI Agent',
+        categoryId: 'ai-agent',
+        date: '2025.02',
+        emoji: '💼',
+        gradient: 'from-blue-500/20 to-indigo-500/20',
+        coverImage: 'images/project7-cover.jpg',
+        shortDesc: 'AI驱动的求职面试全流程辅导平台 - 智能简历解析、岗位分析、模拟面试',
+        fullDesc: '全功能AI面试辅导平台，提供简历智能解析、岗位能力分析、个性化优化建议、模拟面试对话等功能，帮助求职者提升面试成功率。',
+        techStack: ['Python', 'Flask', 'Claude API', 'SQLite', 'React'],
+        features: ['智能简历解析', '岗位能力分析', '个性化优化建议', '模拟面试对话', '面试题库', '数据管理'],
+        useCases: '适用于求职者准备面试、HR筛选候选人、职业规划辅导等场景',
+        role: '黑客松团队项目 · 参与需求讨论与文档整理',
+        challenge: 'Claude API 简历解析与多轮模拟面试设计',
+        outcome: '功能完整上线，代码开源',
+        demoLink: 'https://github.com/alexanderkinging/JD-supervisor',
+        githubRepo: 'https://github.com/alexanderkinging/JD-supervisor',
+        stars: 0,
+        forks: 0
     }
 };
 
@@ -302,7 +302,7 @@ function renderProjects(filteredProjects = null) {
 }
 
 // ==================== 首页精选作品 ====================
-const featuredProjectIds = ['project8', 'project7', 'project6'];
+const featuredProjectIds = ['project8', 'project6', 'project2'];
 
 function renderFeaturedProjects() {
     const featuredGrid = document.getElementById('featuredGrid');
