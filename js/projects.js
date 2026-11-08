@@ -15,6 +15,9 @@ const projectsData = {
         techStack: ['React', 'Next.js', 'Vercel'],
         features: ['高频考研词库', 'OCR拍照录词', '间隔记忆复习', '考前冲刺模式', '学习数据统计'],
         useCases: '适合考研英语备考、四六级词汇强化、日常单词积累等场景',
+        role: '独立开发 · 全栈（产品、前端、部署）',
+        challenge: 'OCR 拍照识词与间隔复习算法的工程落地',
+        outcome: '已上线并开源，免注册即可使用',
         demoLink: 'https://vocabulary-review-omega.vercel.app/',
         githubRepo: 'https://github.com/gzxb001-sketch/vocabulary_review',
         stars: 0,
@@ -35,6 +38,9 @@ const projectsData = {
         techStack: ['Python', 'Flask', 'Claude API', 'SQLite', 'React'],
         features: ['智能简历解析', '岗位能力分析', '个性化优化建议', '模拟面试对话', '面试题库', '数据管理'],
         useCases: '适用于求职者准备面试、HR筛选候选人、职业规划辅导等场景',
+        role: '基于开源项目二次开发 · 功能扩展与定制',
+        challenge: 'Claude API 简历解析与多轮模拟面试设计',
+        outcome: '功能完整上线，代码开源',
         demoLink: 'https://github.com/alexanderkinging/JD-supervisor',
         githubRepo: 'https://github.com/alexanderkinging/JD-supervisor',
         stars: 0,
@@ -55,6 +61,9 @@ const projectsData = {
         techStack: ['微信小程序', 'AI视觉', '图像处理', 'Python', 'TensorFlow'],
         features: ['拍照自动测量', '长度/宽度/长宽比计算', '数据记录功能', '结果导出Excel', '批量处理'],
         useCases: '适用于实验室蛋品质检测、家禽养殖场日常测量等场景',
+        role: '独立开发 · 小程序端与视觉测量算法',
+        challenge: '拍照场景下的尺寸测量精度优化',
+        outcome: '已上线，服务实验室测量场景',
         demoLink: 'https://github.com/gzxb001-sketch',
         githubRepo: 'https://github.com/gzxb001-sketch/egg-measurer',
         stars: 0,
@@ -75,6 +84,9 @@ const projectsData = {
         techStack: ['Coze', 'Vue.js', 'Node.js', 'MongoDB'],
         features: ['信息收藏（网页、图片）', 'AI智能分类', '标签系统', '全文搜索', '笔记编辑'],
         useCases: '适用于研究学习、项目资料整理、灵感记录等',
+        role: '独立设计并搭建（Coze 平台）',
+        challenge: '多模态信息的自动分类与检索设计',
+        outcome: 'Coze 商店上架',
         demoLink: 'https://www.coze.cn/store/agent/7571450183440384015?bot_id=true',
         githubRepo: null,
         stars: 0,
@@ -95,6 +107,9 @@ const projectsData = {
         techStack: ['Python', 'OpenAI API', 'FastAPI'],
         features: ['多语言支持', '上下文理解', '命名选项推荐', '风格选择（驼峰/下划线）'],
         useCases: '适用于开发中命名困难、代码重构等场景',
+        role: '独立开发 · 后端 API 与提示词设计',
+        challenge: '代码上下文理解与命名规范约束',
+        outcome: 'Coze 商店上架',
         demoLink: 'https://www.coze.cn/store/agent/7572856676387733510?bot_id=true',
         githubRepo: null,
         stars: 0,
@@ -115,6 +130,9 @@ const projectsData = {
         techStack: ['Python', '爬虫', 'cron', 'BeautifulSoup', 'Coze API'],
         features: ['多源聚合', '关键词过滤', 'AI摘要生成', '定时推送', '个性化推荐'],
         useCases: '适合AI研究者、开发者每日获取领域动态',
+        role: '独立开发 · 自动化管线',
+        challenge: '多源抓取的稳定性与摘要去噪',
+        outcome: '每日定时推送，持续运行',
         demoLink: 'https://www.coze.cn/space/7478698091047780352/bot/7549830130861621267',
         githubRepo: null,
         stars: 0,
@@ -136,6 +154,9 @@ const projectsData = {
         techStack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vercel'],
         features: ['赛事信息实时更新', '高清视频库', '图片画廊', '粉丝讨论区', '响应式设计'],
         useCases: '为羽生结弦的粉丝提供一站式信息获取与交流平台',
+        role: '独立开发 · 前端',
+        challenge: '响应式布局与多类型媒体内容组织',
+        outcome: '已上线 Vercel',
         demoLink: 'https://yuzuru-hanyu-nxqr6jarf-gzxb001s-projects.vercel.app/',
         notesLink: 'https://vcn4n9sm0ggv.feishu.cn/docx/Nj4MduL5Oof14OxdGnhcpFh9nbc?from=from_copylink',
         githubRepo: null,
@@ -157,6 +178,9 @@ const projectsData = {
         techStack: ['Coze', 'GPT-4', 'JavaScript'],
         features: ['实时对话模拟', '语法纠错', '词汇扩展建议', '发音评估', '学习进度跟踪'],
         useCases: '适合日常口语练习、备考雅思托福、商务英语提升等场景',
+        role: '独立设计并搭建 · 首个 AI Agent',
+        challenge: '从零上手 Coze 与对话式学习流程设计',
+        outcome: 'Coze 商店上架（训练营作品）',
         demoLink: 'https://www.coze.cn/store/agent/7570320960692191273?bot_id=true',
         githubRepo: null, // 如果有GitHub仓库可以添加
         stars: 0,
@@ -438,6 +462,21 @@ function openModal(projectId) {
 
             <div class="prose max-w-none">
                 <p class="text-lg mb-6" style="color: var(--text-secondary); line-height: 1.8;">${project.fullDesc}</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+                    <div class="p-4 rounded-lg" style="background: rgba(249, 115, 22, 0.06); border: 1px solid var(--border-color);">
+                        <div class="text-xs font-bold mb-1.5" style="color: var(--accent-text);">👤 我的角色</div>
+                        <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">${project.role}</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background: rgba(139, 92, 246, 0.06); border: 1px solid var(--border-color);">
+                        <div class="text-xs font-bold mb-1.5" style="color: var(--accent-secondary);">🧩 核心难点</div>
+                        <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">${project.challenge}</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background: rgba(16, 185, 129, 0.06); border: 1px solid var(--border-color);">
+                        <div class="text-xs font-bold mb-1.5" style="color: #15803D;">📈 项目产出</div>
+                        <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">${project.outcome}</p>
+                    </div>
+                </div>
 
                 <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">核心功能</h3>
                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
