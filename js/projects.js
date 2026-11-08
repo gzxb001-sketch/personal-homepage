@@ -23,6 +23,29 @@ const projectsData = {
         stars: 0,
         forks: 0
     },
+    project9: {
+        id: 'project9',
+        title: '校园心晴AI',
+        status: '✓ 已上线',
+        category: 'AI 应用',
+        categoryId: 'ai-app',
+        date: '2026.11',
+        emoji: '🌤️',
+        gradient: 'from-sky-500/20 to-indigo-500/20',
+        coverImage: 'images/project9-cover.png',
+        shortDesc: '面向校园的陪伴式 AI 心理支持应用，情绪联动视觉氛围',
+        fullDesc: '校园心晴 AI 不是一个冰冷的问答框，而是一个能陪学生聊天、梳理情绪的校园心理伙伴。产品强调"先接住情绪，再慢慢整理"，界面会随情绪状态切换粒子与光效，并适配系统的减少动画偏好；同时明确声明不替代医疗诊断，并提供心理援助热线。',
+        techStack: ['AI 对话', 'CSS 粒子视觉', 'Vercel'],
+        features: ['陪伴式对话（先接情绪再整理）', '情绪联动粒子与光效', '低门槛表达入口', '减少动画无障碍适配', '隐私说明与援助热线'],
+        useCases: '适合大学生情绪压力疏导、日常倾诉、考前焦虑缓解等场景',
+        role: '独立开发 · 产品设计、界面与 AI 对话集成',
+        challenge: '情绪联动的视觉氛围与无障碍降级兼顾',
+        outcome: '已上线，24 小时可访问',
+        demoLink: 'https://campus-mood-ai.vercel.app/',
+        githubRepo: null,
+        stars: 0,
+        forks: 0
+    },
     project6: {
         id: 'project6',
         title: '蛋指标测量者',
@@ -192,6 +215,7 @@ const projectsData = {
 const projectCategories = [
     { id: 'all', name: '全部项目', icon: '📚' },
     { id: 'ai-agent', name: 'AI Agent', icon: '🤖' },
+    { id: 'ai-app', name: 'AI 应用', icon: '🌤️' },
     { id: 'web', name: 'Web开发', icon: '💻' },
     { id: 'miniprogram', name: '微信小程序', icon: '📱' }
 ];
@@ -302,7 +326,7 @@ function renderProjects(filteredProjects = null) {
 }
 
 // ==================== 首页精选作品 ====================
-const featuredProjectIds = ['project8', 'project6', 'project2'];
+const featuredProjectIds = ['project8', 'project9', 'project6'];
 
 function renderFeaturedProjects() {
     const featuredGrid = document.getElementById('featuredGrid');
