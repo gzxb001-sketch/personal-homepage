@@ -141,6 +141,26 @@ const projectsData = {
         githubRepo: 'https://github.com/alexanderkinging/JD-supervisor',
         stars: 0,
         forks: 0
+    },
+    project8: {
+        id: 'project8',
+        title: '竹墨词库',
+        status: '✓ 已上线',
+        category: 'Web开发',
+        categoryId: 'web',
+        date: '2026.11',
+        emoji: '📖',
+        gradient: 'from-emerald-500/20 to-teal-500/20',
+        coverImage: 'images/project8-cover.png',
+        shortDesc: '面向考研学子的生词速记与间隔复习应用，支持OCR拍照录词与考前冲刺',
+        fullDesc: '竹墨词库是一款面向考研学子的单词速记应用：预置高频考研词汇，支持 OCR 拍照录词、间隔记忆复习和考前冲刺模式，学习数据本地永久保存，无需注册即可开箱体验。',
+        techStack: ['React', 'Next.js', 'Vercel'],
+        features: ['高频考研词库', 'OCR拍照录词', '间隔记忆复习', '考前冲刺模式', '学习数据统计'],
+        useCases: '适合考研英语备考、四六级词汇强化、日常单词积累等场景',
+        demoLink: 'https://vocabulary-review-omega.vercel.app/',
+        githubRepo: null,
+        stars: 0,
+        forks: 0
     }
 };
 

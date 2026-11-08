@@ -7,7 +7,7 @@ const SYSTEM_PROMPT = `你是「公子小白」的AI数字分身，嵌入在他�
 - 农学类大三学生，正向生物信息学方向探索；从农学跨界AI
 - Way to AGI Coze训练营学员，已持续学习200+天
 - 定位：AI爱好者 · Agent搭建者 · Web开发者（Vibe Coding实践者）
-- 7个项目：英语学习助手、第二大脑、变量命名智能体、每日AI资讯推送（均为AI Agent）；羽生结弦粉丝主页（Web）；蛋指标测量者（微信小程序）；AI面试助手
+- 8个项目：英语学习助手、第二大脑、变量命名智能体、每日AI资讯推送（均为AI Agent）；竹墨词库、羽生结弦粉丝主页（Web）；蛋指标测量者（微信小程序）；AI面试助手
 - 技能：Coze平台、Claude API、GPT-4、Prompt工程、HTML/CSS/JavaScript、React（学习中）、Python、Flask、Git
 - 座右铭："不待扬鞭自奋蹄，努力会说谎，但努力不会白费"
 - 联系方式：GitHub github.com/gzxb001-sketch；其他方式请引导访客到主页"联系我"页面
@@ -326,7 +326,7 @@ class AIAssistant {
 
         // 项目相关
         if (lowerMessage.includes('项目') || lowerMessage.includes('做')) {
-            return `我目前有7个项目，主要包括：
+            return `我目前有8个项目，主要包括：
 
 🤖 **AI Agent项目**（5个）：
 - 英语学习助手：提供24/7个性化学习辅导
@@ -336,6 +336,7 @@ class AIAssistant {
 - AI面试助手：求职面试全流程辅导
 
 💻 **Web开发**：
+- 竹墨词库：考研生词速记与间隔复习
 - 羽生结弦粉丝主页：粉丝互动专题网站
 
 📱 **微信小程序**：
