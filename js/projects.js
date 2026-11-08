@@ -158,7 +158,7 @@ const projectsData = {
         features: ['高频考研词库', 'OCR拍照录词', '间隔记忆复习', '考前冲刺模式', '学习数据统计'],
         useCases: '适合考研英语备考、四六级词汇强化、日常单词积累等场景',
         demoLink: 'https://vocabulary-review-omega.vercel.app/',
-        githubRepo: null,
+        githubRepo: 'https://github.com/gzxb001-sketch/vocabulary_review',
         stars: 0,
         forks: 0
     }
